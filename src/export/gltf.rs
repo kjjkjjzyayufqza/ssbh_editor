@@ -1,5 +1,5 @@
 use anyhow::Result;
-use gltf_json::{accessor, buffer, material, mesh, scene, validation, Accessor, Asset, Buffer, Index, Material, Mesh, Node, Root, Scene};
+use gltf_json::{accessor, buffer, material, mesh, scene, validation, Accessor, Asset, Buffer, Index, Material, Mesh, Node, Root, Scene, Skin};
 use gltf_json::buffer::View as BufferView;
 use ssbh_data::{mesh_data::MeshData, skel_data::SkelData};
 use ssbh_wgpu::ModelFolder;
@@ -25,6 +25,7 @@ pub fn export_scene_to_gltf(
     let mut meshes = Vec::new();
     let mut nodes = Vec::new();
     let mut materials = Vec::new();
+    let mut skins = Vec::new();
 
     // Process skeleton data first to establish bone hierarchy
     let skeleton_node_count = if let Some((_, Some(skel_data))) = model_folder.skels.first() {
@@ -39,8 +40,12 @@ pub fn export_scene_to_gltf(
 
     // Process mesh data and create mesh nodes
     if let Some((_, Some(mesh_data))) = model_folder.meshes.first() {
+        let skel_data = model_folder.skels.first()
+            .and_then(|(_, skel)| skel.as_ref());
+        
         let mesh_count = process_mesh_data(
             mesh_data,
+            skel_data,
             &mut gltf_root,
             &mut buffer_data,
             &mut buffer_views,
@@ -49,10 +54,29 @@ pub fn export_scene_to_gltf(
             &mut materials,
         )?;
         
+        // Create skin object if skeleton exists and has bone influences
+        let skin_index = if let Some(skel_data) = skel_data {
+            if mesh_data.objects.iter().any(|obj| !obj.bone_influences.is_empty()) {
+                let skin_index = create_skin(
+                    skel_data,
+                    &mut buffer_data,
+                    &mut buffer_views,
+                    &mut accessors,
+                    &mut skins,
+                )?;
+                Some(skin_index)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+        
         // Create mesh nodes that reference the meshes
         create_mesh_nodes(
             mesh_count,
             skeleton_node_count,
+            skin_index,
             &mut nodes,
         );
     }
@@ -74,11 +98,14 @@ pub fn export_scene_to_gltf(
         gltf_root.buffer_views = buffer_views;
     }
 
-    // Set accessors, meshes, materials, and nodes
+    // Set accessors, meshes, materials, nodes, and skins
     gltf_root.accessors = accessors;
     gltf_root.meshes = meshes;
     gltf_root.materials = materials;
     gltf_root.nodes = nodes;
+    if !skins.is_empty() {
+        gltf_root.skins = skins;
+    }
 
     // Create scene with root nodes (nodes without parents)
     // For skeleton nodes, only include root bones (those without parent_index)
@@ -127,6 +154,7 @@ pub fn export_scene_to_gltf(
 
 fn process_mesh_data(
     mesh_data: &MeshData,
+    skel_data: Option<&SkelData>,
     _gltf_root: &mut Root,
     buffer_data: &mut Vec<u8>,
     buffer_views: &mut Vec<BufferView>,
@@ -205,6 +233,92 @@ fn process_mesh_data(
             None
         };
 
+        // Create joint and weight accessors if bone influences exist
+        let (joints_accessor_index, weights_accessor_index) = if !mesh_object.bone_influences.is_empty() && skel_data.is_some() {
+            let skel = skel_data.unwrap();
+            let vertex_count = mesh_object.vertex_count().unwrap_or(0) as usize;
+            
+            // Create joint and weight data for each vertex (up to 4 influences per vertex)
+            let mut joints_data = vec![[0u16; 4]; vertex_count];
+            let mut weights_data = vec![[0.0f32; 4]; vertex_count];
+            
+            // Build bone name to index mapping
+            let bone_name_to_index: BTreeMap<String, u16> = skel.bones
+                .iter()
+                .enumerate()
+                .filter_map(|(i, bone)| {
+                    if i <= u16::MAX as usize {
+                        Some((bone.name.clone(), i as u16))
+                    } else {
+                        eprintln!("Warning: Bone index {} exceeds u16::MAX, skipping bone '{}'", i, bone.name);
+                        None
+                    }
+                })
+                .collect();
+            
+            // Collect all influences per vertex first
+            let mut vertex_influences: Vec<Vec<(u16, f32)>> = vec![Vec::new(); vertex_count];
+            
+            for influence in &mesh_object.bone_influences {
+                if let Some(&bone_index) = bone_name_to_index.get(&influence.bone_name) {
+                    for vertex_weight in &influence.vertex_weights {
+                        let vertex_idx = vertex_weight.vertex_index as usize;
+                        if vertex_idx < vertex_count {
+                            vertex_influences[vertex_idx].push((bone_index, vertex_weight.vertex_weight));
+                        }
+                    }
+                }
+            }
+            
+            // Process each vertex: sort by weight and take top 4, then normalize
+            for (vertex_idx, influences) in vertex_influences.iter_mut().enumerate() {
+                if influences.is_empty() {
+                    // For vertices with no influences, assign to root bone with weight 1.0
+                    // This prevents rendering issues with unweighted vertices
+                    joints_data[vertex_idx][0] = 0; // Assign to first bone (usually root)
+                    weights_data[vertex_idx][0] = 1.0;
+                    continue;
+                }
+                
+                // Sort by weight descending and take top 4
+                influences.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+                influences.truncate(4);
+                
+                // Calculate total weight for normalization
+                let total_weight: f32 = influences.iter().map(|(_, weight)| weight).sum();
+                
+                if total_weight > 0.0 {
+                    // Normalize weights and assign to arrays
+                    for (slot, &(joint_index, weight)) in influences.iter().enumerate() {
+                        joints_data[vertex_idx][slot] = joint_index;
+                        weights_data[vertex_idx][slot] = weight / total_weight;
+                    }
+                } else {
+                    // If total weight is zero, assign to root bone with weight 1.0
+                    joints_data[vertex_idx][0] = 0;
+                    weights_data[vertex_idx][0] = 1.0;
+                }
+            }
+            
+            let joints_accessor = create_joints_accessor(
+                &joints_data,
+                buffer_data,
+                buffer_views,
+                accessors,
+            )?;
+            
+            let weights_accessor = create_weights_accessor(
+                &weights_data,
+                buffer_data,
+                buffer_views,
+                accessors,
+            )?;
+            
+            (Some(joints_accessor), Some(weights_accessor))
+        } else {
+            (None, None)
+        };
+
         // Create indices accessor
         let indices_accessor_index = if !mesh_object.vertex_indices.is_empty() {
             Some(create_indices_accessor(
@@ -235,6 +349,20 @@ fn process_mesh_data(
             attributes.insert(
                 validation::Checked::Valid(mesh::Semantic::TexCoords(0)),
                 Index::new(texcoord_idx as u32),
+            );
+        }
+
+        if let Some(joints_idx) = joints_accessor_index {
+            attributes.insert(
+                validation::Checked::Valid(mesh::Semantic::Joints(0)),
+                Index::new(joints_idx as u32),
+            );
+        }
+
+        if let Some(weights_idx) = weights_accessor_index {
+            attributes.insert(
+                validation::Checked::Valid(mesh::Semantic::Weights(0)),
+                Index::new(weights_idx as u32),
             );
         }
 
@@ -311,6 +439,7 @@ fn process_skeleton_data(
 fn create_mesh_nodes(
     mesh_count: usize,
     _skeleton_node_offset: usize,
+    skin_index: Option<usize>,
     nodes: &mut Vec<Node>,
 ) {
     // Create a node for each mesh
@@ -323,7 +452,7 @@ fn create_mesh_nodes(
             children: None,
             camera: None,
             mesh: Some(Index::new(mesh_index as u32)),
-            skin: None,
+            skin: skin_index.map(|i| Index::new(i as u32)),
             matrix: None,
             weights: None,
             extensions: Default::default(),
@@ -523,4 +652,230 @@ fn convert_vector_data_to_vec2(data: &ssbh_data::mesh_data::VectorData) -> Resul
             Ok(vec4_data.iter().map(|v| [v[0], v[1]]).collect())
         }
     }
+}
+
+fn create_joints_accessor(
+    joints_data: &[[u16; 4]],
+    buffer_data: &mut Vec<u8>,
+    buffer_views: &mut Vec<BufferView>,
+    accessors: &mut Vec<Accessor>,
+) -> Result<usize> {
+    let byte_offset = buffer_data.len();
+    let byte_length = joints_data.len() * 4 * 2; // 4 components * 2 bytes per u16
+    
+    // Convert joints data to bytes
+    for joints in joints_data {
+        for &joint in joints {
+            buffer_data.extend_from_slice(&joint.to_le_bytes());
+        }
+    }
+
+    // Create buffer view
+    let buffer_view = BufferView {
+        buffer: Index::new(0),
+        byte_offset: Some(validation::USize64::from(byte_offset)),
+        byte_length: validation::USize64::from(byte_length),
+        byte_stride: Some(buffer::Stride(8)), // 4 * 2 bytes
+        target: Some(validation::Checked::Valid(buffer::Target::ArrayBuffer)),
+        name: None,
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+    buffer_views.push(buffer_view);
+    let buffer_view_index = buffer_views.len() - 1;
+
+    let accessor = Accessor {
+        buffer_view: Some(Index::new(buffer_view_index as u32)),
+        byte_offset: Some(validation::USize64::from(0u64)),
+        component_type: validation::Checked::Valid(accessor::GenericComponentType(accessor::ComponentType::U16)),
+        count: validation::USize64::from(joints_data.len()),
+        type_: validation::Checked::Valid(accessor::Type::Vec4),
+        min: None,
+        max: None,
+        sparse: None,
+        normalized: false,
+        name: None,
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+
+    accessors.push(accessor);
+    Ok(accessors.len() - 1)
+}
+
+fn create_weights_accessor(
+    weights_data: &[[f32; 4]],
+    buffer_data: &mut Vec<u8>,
+    buffer_views: &mut Vec<BufferView>,
+    accessors: &mut Vec<Accessor>,
+) -> Result<usize> {
+    let byte_offset = buffer_data.len();
+    let byte_length = weights_data.len() * 4 * 4; // 4 components * 4 bytes per f32
+    
+    // Convert weights data to bytes
+    for weights in weights_data {
+        for &weight in weights {
+            buffer_data.extend_from_slice(&weight.to_le_bytes());
+        }
+    }
+
+    // Create buffer view
+    let buffer_view = BufferView {
+        buffer: Index::new(0),
+        byte_offset: Some(validation::USize64::from(byte_offset)),
+        byte_length: validation::USize64::from(byte_length),
+        byte_stride: Some(buffer::Stride(16)), // 4 * 4 bytes
+        target: Some(validation::Checked::Valid(buffer::Target::ArrayBuffer)),
+        name: None,
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+    buffer_views.push(buffer_view);
+    let buffer_view_index = buffer_views.len() - 1;
+
+    let accessor = Accessor {
+        buffer_view: Some(Index::new(buffer_view_index as u32)),
+        byte_offset: Some(validation::USize64::from(0u64)),
+        component_type: validation::Checked::Valid(accessor::GenericComponentType(accessor::ComponentType::F32)),
+        count: validation::USize64::from(weights_data.len()),
+        type_: validation::Checked::Valid(accessor::Type::Vec4),
+        min: None,
+        max: None,
+        sparse: None,
+        normalized: false,
+        name: None,
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+
+    accessors.push(accessor);
+    Ok(accessors.len() - 1)
+}
+
+fn create_skin(
+    skel_data: &SkelData,
+    buffer_data: &mut Vec<u8>,
+    buffer_views: &mut Vec<BufferView>,
+    accessors: &mut Vec<Accessor>,
+    skins: &mut Vec<Skin>,
+) -> Result<usize> {
+    // Calculate world transforms for each bone in bind pose
+    let mut world_transforms = vec![glam::Mat4::IDENTITY; skel_data.bones.len()];
+    let mut calculated = vec![false; skel_data.bones.len()];
+    
+    // Function to recursively calculate world transform for a bone
+    fn calculate_world_transform(
+        bone_index: usize,
+        skel_data: &SkelData,
+        world_transforms: &mut [glam::Mat4],
+        calculated: &mut [bool],
+    ) {
+        if calculated[bone_index] {
+            return;
+        }
+        
+        let bone = &skel_data.bones[bone_index];
+        let local_transform = glam::Mat4::from_cols_array_2d(&bone.transform);
+        
+        if let Some(parent_index) = bone.parent_index {
+            // Ensure parent is calculated first
+            calculate_world_transform(parent_index, skel_data, world_transforms, calculated);
+            // Child bone: world_transform = parent_world_transform * local_transform
+            world_transforms[bone_index] = world_transforms[parent_index] * local_transform;
+        } else {
+            // Root bone: world_transform = local_transform
+            world_transforms[bone_index] = local_transform;
+        }
+        
+        calculated[bone_index] = true;
+    }
+    
+    // Calculate world transforms for all bones
+    for bone_index in 0..skel_data.bones.len() {
+        calculate_world_transform(bone_index, skel_data, &mut world_transforms, &mut calculated);
+    }
+    
+    // Create inverse bind matrices from world transforms
+    let mut inverse_bind_matrices = Vec::new();
+    
+    for world_transform in &world_transforms {
+        // For GLTF, we need the inverse of the world transform at bind time
+        let inverse_bind_matrix = world_transform.inverse();
+        let matrix_array = inverse_bind_matrix.to_cols_array();
+        inverse_bind_matrices.push(matrix_array);
+    }
+    
+    // Create accessor for inverse bind matrices
+    let inverse_bind_matrices_accessor = create_mat4_accessor(
+        &inverse_bind_matrices,
+        buffer_data,
+        buffer_views,
+        accessors,
+    )?;
+
+    // Create joint indices (0..bone_count)
+    let joints: Vec<Index<Node>> = (0..skel_data.bones.len())
+        .map(|i| Index::new(i as u32))
+        .collect();
+
+    let skin = Skin {
+        inverse_bind_matrices: Some(Index::new(inverse_bind_matrices_accessor as u32)),
+        skeleton: None, // Could set to root bone if needed
+        joints,
+        name: Some("Skeleton".to_string()),
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+
+    skins.push(skin);
+    Ok(skins.len() - 1)
+}
+
+fn create_mat4_accessor(
+    matrices: &[[f32; 16]],
+    buffer_data: &mut Vec<u8>,
+    buffer_views: &mut Vec<BufferView>,
+    accessors: &mut Vec<Accessor>,
+) -> Result<usize> {
+    let byte_offset = buffer_data.len();
+    let byte_length = matrices.len() * 16 * 4; // 16 components * 4 bytes per f32
+    
+    // Convert matrices to bytes
+    for matrix in matrices {
+        for &component in matrix {
+            buffer_data.extend_from_slice(&component.to_le_bytes());
+        }
+    }
+
+    // Create buffer view
+    let buffer_view = BufferView {
+        buffer: Index::new(0),
+        byte_offset: Some(validation::USize64::from(byte_offset)),
+        byte_length: validation::USize64::from(byte_length),
+        byte_stride: Some(buffer::Stride(64)), // 16 * 4 bytes
+        target: Some(validation::Checked::Valid(buffer::Target::ArrayBuffer)),
+        name: None,
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+    buffer_views.push(buffer_view);
+    let buffer_view_index = buffer_views.len() - 1;
+
+    let accessor = Accessor {
+        buffer_view: Some(Index::new(buffer_view_index as u32)),
+        byte_offset: Some(validation::USize64::from(0u64)),
+        component_type: validation::Checked::Valid(accessor::GenericComponentType(accessor::ComponentType::F32)),
+        count: validation::USize64::from(matrices.len()),
+        type_: validation::Checked::Valid(accessor::Type::Mat4),
+        min: None,
+        max: None,
+        sparse: None,
+        normalized: false,
+        name: None,
+        extensions: Default::default(),
+        extras: Default::default(),
+    };
+
+    accessors.push(accessor);
+    Ok(accessors.len() - 1)
 }
