@@ -74,7 +74,7 @@ fn main() {
             renderer: eframe::Renderer::Wgpu,
             viewport: ViewportBuilder::default()
                 .with_icon(icon)
-                .with_inner_size([1280.0, 720.0]),
+                .with_inner_size([1620.0, 880.0]),
             wgpu_options: WgpuConfiguration {
                 wgpu_setup: WgpuSetup::CreateNew(WgpuSetupCreateNew {
                     instance_descriptor: wgpu::InstanceDescriptor {
@@ -210,7 +210,7 @@ fn create_app(
     SsbhApp {
         models: Vec::new(),
         default_thumbnails,
-        render_actions: [RenderAction::UpdateClearColor].into(),
+        render_actions: [RenderAction::UpdateClearColor, RenderAction::UpdateRenderSettings].into(),
         release_info,
         should_validate_models: false,
         should_update_thumbnails: false,

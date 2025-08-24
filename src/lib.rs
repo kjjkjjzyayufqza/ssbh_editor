@@ -143,8 +143,10 @@ impl RenderState {
         bone_name_renderer: BoneNameRenderer,
     ) -> Self {
         let shared_data = SharedRenderData::new(device, queue);
+        let mut render_settings = RenderSettings::default();
+        render_settings.debug_mode = ssbh_wgpu::DebugMode::Basic;
         Self {
-            render_settings: RenderSettings::default(),
+            render_settings,
             skinning_settings: SkinningSettings::default(),
             model_render_options: ModelRenderOptions::default(),
             texture_render_settings: nutexb_wgpu::RenderSettings::default(),
