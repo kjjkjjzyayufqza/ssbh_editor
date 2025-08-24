@@ -134,7 +134,7 @@ dependencies = [
  "objc2-foundation 0.3.1",
  "parking_lot 0.12.4",
  "percent-encoding",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
  "x11rb",
 ]
 
@@ -457,13 +457,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "binrw"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "81419ff39e6ed10a92a7f125290859776ced35d9a08a665ae40b23e7ca702f30"
+dependencies = [
+ "array-init",
+ "binrw_derive 0.15.0",
+ "bytemuck",
+]
+
+[[package]]
 name = "binrw_derive"
 version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d6b019a3efebe7f453612083202887b6f1ace59e20d010672e336eea4ed5be97"
 dependencies = [
  "either",
- "owo-colors",
+ "owo-colors 3.5.0",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
@@ -476,7 +487,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cb515fdd6f8d3a357c8e19b8ec59ef53880807864329b1cb1cba5c53bf76557e"
 dependencies = [
  "either",
- "owo-colors",
+ "owo-colors 3.5.0",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
@@ -489,10 +500,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d8ba42866ce5bced2645bfa15e97eef2c62d2bdb530510538de8dd3d04efff3c"
 dependencies = [
  "either",
- "owo-colors",
+ "owo-colors 3.5.0",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
+]
+
+[[package]]
+name = "binrw_derive"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "376404e55ec40d0d6f8b4b7df3f87b87954bd987f0cf9a7207ea3b6ea5c9add4"
+dependencies = [
+ "either",
+ "owo-colors 4.2.2",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -1283,7 +1307,7 @@ checksum = "0265fa0e7bcdb058128cdf7597cdacea42e33911713663a04d971a39cad16afa"
 dependencies = [
  "const_panic",
  "encase_derive",
- "glam",
+ "glam 0.28.0",
  "thiserror 1.0.69",
 ]
 
@@ -1741,11 +1765,10 @@ dependencies = [
 [[package]]
 name = "geometry_tools"
 version = "0.6.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26366a111b24ca51add28b2c6a8de685f777f5503924730329e6f720a71ed820"
+source = "git+https://github.com/ScanMountGoat/geometry_tools?rev=d3d4d4a#d3d4d4a364155068764a0a2e693c5e4e39334c31"
 dependencies = [
- "glam",
- "thiserror 1.0.69",
+ "glam 0.30.5",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -1820,6 +1843,12 @@ dependencies = [
  "mint",
  "serde",
 ]
+
+[[package]]
+name = "glam"
+version = "0.30.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f2d1aab06663bdce00d6ca5e5ed586ec8d18033a771906c993a1e3755b368d85"
 
 [[package]]
 name = "glow"
@@ -2470,18 +2499,18 @@ dependencies = [
 
 [[package]]
 name = "itertools"
-version = "0.10.5"
+version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0fd2260e829bddf4cb6ea802289de2f86d6a7a690192fbe91b3f46e0f2c8473"
+checksum = "ba291022dbbd398a455acf126c1e341954079855bc60dfdda641363bd6922569"
 dependencies = [
  "either",
 ]
 
 [[package]]
 name = "itertools"
-version = "0.12.1"
+version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ba291022dbbd398a455acf126c1e341954079855bc60dfdda641363bd6922569"
+checksum = "2b192c782037fadd9cfa75548310488aabdbf3d2da73885b31bd0abd03351285"
 dependencies = [
  "either",
 ]
@@ -2803,9 +2832,9 @@ dependencies = [
 
 [[package]]
 name = "modular-bitfield"
-version = "0.11.2"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a53d79ba8304ac1c4f9eb3b9d281f21f7be9d4626f72ce7df4ad8fbde4f38a74"
+checksum = "be0d5274763b5572c8f29dadb5cd0bc59de64c805de433c1b556075f733b0a1a"
 dependencies = [
  "modular-bitfield-impl",
  "static_assertions",
@@ -2813,13 +2842,13 @@ dependencies = [
 
 [[package]]
 name = "modular-bitfield-impl"
-version = "0.11.2"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5a7d5f7076603ebc68de2dc6a650ec331a062a13abaa346975be747bbfa4b789"
+checksum = "f8eec4327f127d4d18c54c8bfbf7b05d74cc9a1befdcc6283a241238ffbc84c6"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 1.0.109",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -3031,6 +3060,18 @@ checksum = "d4b1f32aa48bc74ec799cd2ecdd811984d3ee2caf5bbb07f2f0026771a3a0862"
 dependencies = [
  "binrw 0.13.3",
  "tegra_swizzle",
+]
+
+[[package]]
+name = "nutexb_wgpu"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "log",
+ "nutexb",
+ "thiserror 1.0.69",
+ "wgpu",
+ "wgsl_to_wgpu",
 ]
 
 [[package]]
@@ -3504,6 +3545,12 @@ name = "owo-colors"
 version = "3.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c1b04fb49957986fdce4d6ee7a65027d55d4b6d2265e5848bbb507b58ccfdb6f"
+
+[[package]]
+name = "owo-colors"
+version = "4.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "48dd4f4a2c8405440fd0462561f0e5806bd0f77e86f51c761481bdd4018b545e"
 
 [[package]]
 name = "parking"
@@ -4197,7 +4244,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.4.15",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -4210,7 +4257,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.9.4",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -4652,22 +4699,20 @@ dependencies = [
 [[package]]
 name = "ssbh_data"
 version = "0.19.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "75ab6392d4504d2be129b105902a9f0cbf1c756871e36bd586c8aee0f8344cbe"
 dependencies = [
  "ahash",
- "binrw 0.14.1",
+ "binrw 0.15.0",
  "bitvec",
  "geometry_tools",
- "glam",
+ "glam 0.30.5",
  "half",
- "itertools 0.10.5",
+ "itertools 0.14.0",
  "modular-bitfield",
  "serde",
  "ssbh_lib",
  "ssbh_write",
  "strum 0.24.1",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -4687,11 +4732,11 @@ dependencies = [
  "egui_plot",
  "futures",
  "futures-intrusive",
- "glam",
+ "glam 0.28.0",
  "image",
  "log",
  "nutexb",
- "nutexb_wgpu",
+ "nutexb_wgpu 0.1.0 (git+https://github.com/ScanMountGoat/ssbh_wgpu)",
  "octocrab",
  "once_cell",
  "open",
@@ -4713,31 +4758,28 @@ dependencies = [
 [[package]]
 name = "ssbh_lib"
 version = "0.19.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "484c9a9047ffce5b3e456f9f69657a33df341023b1d126b74f155e98a546d5d1"
 dependencies = [
- "binrw 0.14.1",
+ "binrw 0.15.0",
  "modular-bitfield",
  "serde",
  "serde_bytes",
  "ssbh_write",
  "strum 0.24.1",
- "thiserror 1.0.69",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
 name = "ssbh_wgpu"
 version = "0.1.0"
-source = "git+https://github.com/ScanMountGoat/ssbh_wgpu#6a74ec8f96ac5ca2a061d08356924a9e2ee2a23b"
 dependencies = [
  "bytemuck",
  "encase",
- "glam",
+ "glam 0.28.0",
  "glyphon",
  "image",
  "indexmap 1.9.3",
  "log",
- "nutexb_wgpu",
+ "nutexb_wgpu 0.1.0",
  "prc-rs",
  "rayon",
  "serde_json",
@@ -4753,8 +4795,6 @@ dependencies = [
 [[package]]
 name = "ssbh_write"
 version = "0.19.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c7bbb6a711a2f418fc98d5016e04229410914f58de13bd1118d98b0f7ec020e6"
 dependencies = [
  "ssbh_write_derive",
 ]
@@ -4762,12 +4802,10 @@ dependencies = [
 [[package]]
 name = "ssbh_write_derive"
 version = "0.19.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3709db29d9b56ba3ff955589062353fe2cee20c28ca65ca6e19b72c4defe96db"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 1.0.109",
+ "syn 2.0.104",
 ]
 
 [[package]]
@@ -4990,7 +5028,7 @@ dependencies = [
  "getrandom 0.3.3",
  "once_cell",
  "rustix 1.0.7",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5949,7 +5987,7 @@ version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf221c93e13a30d793f7645a0e7762c55d169dbb0a49671918a2319d289b10bb"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
