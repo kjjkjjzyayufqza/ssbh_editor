@@ -350,6 +350,7 @@ pub struct SsbhApp {
     pub screenshot_to_render: Option<PathBuf>,
     pub animation_gif_to_render: Option<PathBuf>,
     pub animation_image_sequence_to_render: Option<PathBuf>,
+    pub export_gltf_path: Option<PathBuf>,
 
     pub material_presets: Vec<MatlEntryData>,
     pub default_presets: Vec<MatlEntryData>,
@@ -899,6 +900,29 @@ impl SsbhApp {
             }
             self.screenshot_to_render = None;
             render_state.update_clear_color(self.preferences.viewport_color);
+        }
+
+        // Handle GLTF export
+        if let Some(file) = &self.export_gltf_path {
+            if let Some(selected_model) = self.ui_state.selected_folder_index
+                .and_then(|i| self.models.get(i))
+            {
+                if let Err(e) = crate::export::gltf::export_scene_to_gltf(&selected_model.model, file) {
+                    error!("Error exporting GLTF to {file:?}: {e}");
+                } else {
+                    log::info!("Successfully exported scene to GLTF: {file:?}");
+                }
+            } else if !self.models.is_empty() {
+                // If no model is selected, export the first one
+                if let Err(e) = crate::export::gltf::export_scene_to_gltf(&self.models[0].model, file) {
+                    error!("Error exporting GLTF to {file:?}: {e}");
+                } else {
+                    log::info!("Successfully exported scene to GLTF: {file:?}");
+                }
+            } else {
+                error!("No models available to export");
+            }
+            self.export_gltf_path = None;
         }
     }
 

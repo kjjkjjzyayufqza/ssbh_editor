@@ -230,6 +230,7 @@ fn create_app(
         screenshot_to_render: None,
         animation_gif_to_render: None,
         animation_image_sequence_to_render: None,
+        export_gltf_path: None,
         markdown_cache: CommonMarkCache::default(),
         previous_viewport_width: 512.0,
         previous_viewport_height: 512.0,

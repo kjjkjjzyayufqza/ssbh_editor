@@ -90,6 +90,19 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
             if button(ui, "Clear Workspace").clicked() {
                 app.clear_workspace();
             }
+
+            ui.separator();
+
+            ui.menu_button("Export", |ui| {
+                if button(ui, "Export Scene to GLTF...").clicked() {
+                    if let Some(file) = FileDialog::new()
+                        .add_filter("GLTF", &["gltf"])
+                        .save_file()
+                    {
+                        app.export_gltf_path = Some(file);
+                    }
+                }
+            });
         });
 
         // TODO: Add icons?

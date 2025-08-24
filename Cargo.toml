@@ -40,6 +40,8 @@ futures = "0.3"
 pico-args = "0.5.0"
 reqwest = { version = "0.12.5", features = ["blocking"] }
 approx = "0.5.1"
+gltf = "1.4.1"
+gltf-json = "1.4.1"
 
 [patch.crates-io]
 ssbh_data = { path = "E:/research/ssbh_lib/ssbh_data" }
