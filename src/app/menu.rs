@@ -102,6 +102,12 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
                         app.export_gltf_path = Some(file);
                     }
                 }
+                
+                ui.separator();
+                
+                if button(ui, "Export NUMDLB Scene...").clicked() {
+                    app.scene_export_dialog.is_open = true;
+                }
             });
         });
 

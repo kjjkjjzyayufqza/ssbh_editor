@@ -13,6 +13,7 @@ use log::error;
 use nutexb_wgpu::TextureRenderer;
 use ssbh_editor::{
     app::{RenderAction, SsbhApp, UiState},
+    export::numdlb_scene::SceneExportDialogState,
     checkerboard_texture, default_fonts, default_text_styles,
     material::load_material_presets,
     path::{presets_file, PROJECT_DIR},
@@ -231,6 +232,8 @@ fn create_app(
         animation_gif_to_render: None,
         animation_image_sequence_to_render: None,
         export_gltf_path: None,
+        scene_export_dialog: SceneExportDialogState::default(),
+        pending_scene_export: None,
         markdown_cache: CommonMarkCache::default(),
         previous_viewport_width: 512.0,
         previous_viewport_height: 512.0,

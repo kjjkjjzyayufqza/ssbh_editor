@@ -5,6 +5,7 @@ use self::{
 use crate::{
     app::{anim_list::anim_list, shortcut::format_shortcut, swing_list::swing_list},
     capture::{render_animation_to_gif, render_animation_to_image_sequence, render_screenshot},
+    export::numdlb_scene::{SceneExportDialogState, SceneExportConfig, export_scene_to_numdlb, show_scene_export_dialog},
     editors::{
         adj::{add_missing_adj_entries, adj_editor},
         anim::anim_editor,
@@ -351,6 +352,9 @@ pub struct SsbhApp {
     pub animation_gif_to_render: Option<PathBuf>,
     pub animation_image_sequence_to_render: Option<PathBuf>,
     pub export_gltf_path: Option<PathBuf>,
+
+    pub scene_export_dialog: SceneExportDialogState,
+    pub pending_scene_export: Option<(usize, SceneExportConfig)>, // (model_index, config)
 
     pub material_presets: Vec<MatlEntryData>,
     pub default_presets: Vec<MatlEntryData>,
@@ -924,6 +928,27 @@ impl SsbhApp {
             }
             self.export_gltf_path = None;
         }
+
+        // Handle NUMDLB scene export
+        if let Some((model_index, config)) = &self.pending_scene_export {
+            if let Some(model) = self.models.get(*model_index) {
+                match export_scene_to_numdlb(&model.model, config) {
+                    Ok(exported_files) => {
+                        log::info!(
+                            "Successfully exported NUMDLB scene to {}: {:?}", 
+                            config.output_directory.display(),
+                            exported_files
+                        );
+                    }
+                    Err(e) => {
+                        error!("Error exporting NUMDLB scene: {e}");
+                    }
+                }
+            } else {
+                error!("No model selected for export");
+            }
+            self.pending_scene_export = None;
+        }
     }
 
     fn show_windows(&mut self, ctx: &Context, render_state: &mut RenderState) {
@@ -994,6 +1019,16 @@ impl SsbhApp {
         // Don't reopen the window once closed.
         if self.release_info.should_show_update {
             new_release_window(ctx, &mut self.release_info, &mut self.markdown_cache);
+        }
+
+        // Show scene export dialog
+        if let Some(config) = show_scene_export_dialog(ctx, &mut self.scene_export_dialog) {
+            if let Some(selected_index) = self.ui_state.selected_folder_index {
+                self.pending_scene_export = Some((selected_index, config));
+            } else if !self.models.is_empty() {
+                // If no model is selected, export the first one
+                self.pending_scene_export = Some((0, config));
+            }
         }
     }
 }
