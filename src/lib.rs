@@ -25,6 +25,7 @@ use thumbnail::Thumbnail;
 
 pub mod app;
 pub mod capture;
+pub mod convert;
 pub mod editors;
 pub mod export;
 pub mod log;

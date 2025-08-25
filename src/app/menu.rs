@@ -125,6 +125,14 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
                 app.ui_state.preset_editor_open = true;
             }
 
+            ui.separator();
+
+            if ui.button("Convert DAE to SSBH...").clicked() {
+                app.dae_convert_dialog.is_open = true;
+            }
+
+            ui.separator();
+
             if ui.button("⛭ Preferences").clicked() {
                 app.ui_state.preferences_window_open = true;
             }

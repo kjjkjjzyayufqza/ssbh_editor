@@ -234,6 +234,8 @@ fn create_app(
         export_gltf_path: None,
         scene_export_dialog: SceneExportDialogState::default(),
         pending_scene_export: None,
+        dae_convert_dialog: ssbh_editor::convert::dae::DaeConvertDialogState::default(),
+        pending_dae_convert: None,
         markdown_cache: CommonMarkCache::default(),
         previous_viewport_width: 512.0,
         previous_viewport_height: 512.0,

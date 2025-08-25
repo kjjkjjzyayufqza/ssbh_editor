@@ -6,6 +6,7 @@ use crate::{
     app::{anim_list::anim_list, shortcut::format_shortcut, swing_list::swing_list},
     capture::{render_animation_to_gif, render_animation_to_image_sequence, render_screenshot},
     export::numdlb_scene::{SceneExportDialogState, SceneExportConfig, export_scene_to_numdlb, show_scene_export_dialog},
+    convert::dae::{convert_dae_file, show_dae_convert_dialog, DaeConvertDialogState, DaeConvertConfig},
     editors::{
         adj::{add_missing_adj_entries, adj_editor},
         anim::anim_editor,
@@ -355,6 +356,9 @@ pub struct SsbhApp {
 
     pub scene_export_dialog: SceneExportDialogState,
     pub pending_scene_export: Option<(usize, SceneExportConfig)>, // (model_index, config)
+    
+    pub dae_convert_dialog: DaeConvertDialogState,
+    pub pending_dae_convert: Option<(PathBuf, DaeConvertConfig)>, // (dae_file_path, config)
 
     pub material_presets: Vec<MatlEntryData>,
     pub default_presets: Vec<MatlEntryData>,
@@ -949,6 +953,34 @@ impl SsbhApp {
             }
             self.pending_scene_export = None;
         }
+
+        // Handle DAE conversion
+        if let Some((dae_file_path, config)) = &self.pending_dae_convert {
+            match convert_dae_file(dae_file_path, config) {
+                Ok(converted_files) => {
+                    let mut file_list = Vec::new();
+                    if let Some(ref path) = converted_files.numdlb_path {
+                        file_list.push(path.file_name().unwrap_or_default().to_string_lossy().to_string());
+                    }
+                    if let Some(ref path) = converted_files.numshb_path {
+                        file_list.push(path.file_name().unwrap_or_default().to_string_lossy().to_string());
+                    }
+                    if let Some(ref path) = converted_files.numatb_path {
+                        file_list.push(path.file_name().unwrap_or_default().to_string_lossy().to_string());
+                    }
+                    
+                    log::info!(
+                        "Successfully converted DAE to SSBH files in {}: {}",
+                        config.output_directory.display(),
+                        file_list.join(", ")
+                    );
+                }
+                Err(e) => {
+                    log::error!("Error converting DAE file: {e}");
+                }
+            }
+            self.pending_dae_convert = None;
+        }
     }
 
     fn show_windows(&mut self, ctx: &Context, render_state: &mut RenderState) {
@@ -1028,6 +1060,13 @@ impl SsbhApp {
             } else if !self.models.is_empty() {
                 // If no model is selected, export the first one
                 self.pending_scene_export = Some((0, config));
+            }
+        }
+
+        // Show DAE convert dialog
+        if let Some(config) = show_dae_convert_dialog(ctx, &mut self.dae_convert_dialog) {
+            if let Some(ref dae_file) = self.dae_convert_dialog.selected_dae_file {
+                self.pending_dae_convert = Some((dae_file.clone(), config));
             }
         }
     }
