@@ -1,6 +1,6 @@
 use anyhow::{Result, anyhow};
 use ssbh_data::{
-    mesh_data::{MeshData, MeshObjectData, AttributeData, VectorData},
+    mesh_data::{MeshData, MeshObjectData, AttributeData, VectorData, BoneInfluence, VertexWeight},
     modl_data::{ModlData, ModlEntryData},
     matl_data::{MatlData, MatlEntryData, BlendStateParam, BlendStateData, ParamId, BlendFactor},
 };
@@ -60,6 +60,19 @@ pub struct DaeMesh {
     pub uvs: Vec<[f32; 2]>,
     pub indices: Vec<u32>,
     pub material_name: Option<String>,
+    pub bone_influences: Vec<DaeBoneInfluence>,
+}
+
+#[derive(Debug, Clone)]
+pub struct DaeBoneInfluence {
+    pub bone_name: String,
+    pub vertex_weights: Vec<DaeVertexWeight>,
+}
+
+#[derive(Debug, Clone)]
+pub struct DaeVertexWeight {
+    pub vertex_index: u32,
+    pub weight: f32,
 }
 
 #[derive(Debug)]
@@ -107,6 +120,11 @@ pub fn parse_dae_file(file_path: &Path) -> Result<DaeScene> {
     // Parse geometries
     if let Some(lib_geometries) = find_child(&root, "library_geometries") {
         scene.meshes = parse_geometries_from_xml(lib_geometries)?;
+    }
+    
+    // Parse controllers (bone influences and weights)
+    if let Some(lib_controllers) = find_child(&root, "library_controllers") {
+        parse_controllers_and_apply_to_meshes(lib_controllers, &mut scene.meshes)?;
     }
     
     Ok(scene)
@@ -230,15 +248,35 @@ fn validate_dae_scene(dae_scene: &DaeScene) -> Result<()> {
             );
         }
         
+        // Validate bone influences
+        for (bone_idx, bone_influence) in mesh.bone_influences.iter().enumerate() {
+            for vertex_weight in &bone_influence.vertex_weights {
+                if vertex_weight.vertex_index as usize >= mesh.vertices.len() {
+                    log::warn!(
+                        "Mesh '{}': Bone influence {} has vertex weight with invalid vertex index {} (max: {})",
+                        mesh.name, bone_idx, vertex_weight.vertex_index, mesh.vertices.len() - 1
+                    );
+                }
+                
+                if vertex_weight.weight < 0.0 || vertex_weight.weight > 1.0 {
+                    log::warn!(
+                        "Mesh '{}': Bone influence {} has invalid weight {} (should be 0.0-1.0)",
+                        mesh.name, bone_idx, vertex_weight.weight
+                    );
+                }
+            }
+        }
+        
         // Log mesh statistics for debugging
         log::debug!(
-            "Mesh '{}': {} vertices, {} indices ({} triangles), {} normals, {} UVs",
+            "Mesh '{}': {} vertices, {} indices ({} triangles), {} normals, {} UVs, {} bone influences",
             mesh.name,
             mesh.vertices.len(),
             mesh.indices.len(),
             mesh.indices.len() / 3,
             mesh.normals.len(),
-            mesh.uvs.len()
+            mesh.uvs.len(),
+            mesh.bone_influences.len()
         );
     }
     
@@ -462,6 +500,7 @@ fn parse_geometries_from_xml(lib_geometries: &Element) -> Result<Vec<DaeMesh>> {
                     uvs: extract_uvs_from_xml_mesh(mesh_elem)?,
                     indices: extract_indices_from_xml_mesh(mesh_elem)?,
                     material_name: None,
+                    bone_influences: Vec::new(),
                 };
                 
                 // Post-process to ensure indices and vertex data are consistent
@@ -473,6 +512,160 @@ fn parse_geometries_from_xml(lib_geometries: &Element) -> Result<Vec<DaeMesh>> {
     }
     
     Ok(meshes)
+}
+
+/// Parse controllers from DAE and apply bone influences to meshes
+fn parse_controllers_and_apply_to_meshes(lib_controllers: &Element, meshes: &mut [DaeMesh]) -> Result<()> {
+    for controller_elem in find_all_children(lib_controllers, "controller") {
+        if let Some(controller_id) = controller_elem.attributes.get("id") {
+            if let Some(skin_elem) = find_child(controller_elem, "skin") {
+                if let Some(source_attr) = skin_elem.attributes.get("source") {
+                    let geometry_id = source_attr.trim_start_matches('#');
+                    
+                    // Find the mesh that corresponds to this geometry
+                    if let Some(mesh) = meshes.iter_mut().find(|m| m.name == geometry_id) {
+                        parse_skin_data_to_mesh(skin_elem, mesh)?;
+                        log::info!(
+                            "Applied bone influences from controller '{}' to mesh '{}'",
+                            controller_id, geometry_id
+                        );
+                    }
+                }
+            }
+        }
+    }
+    Ok(())
+}
+
+/// Parse skin data from DAE and convert to mesh bone influences
+fn parse_skin_data_to_mesh(skin_elem: &Element, mesh: &mut DaeMesh) -> Result<()> {
+    // Parse joints source
+    let mut joint_names = Vec::new();
+    let mut weights = Vec::new();
+    
+    // Find joints source
+    for source_elem in find_all_children(skin_elem, "source") {
+        if let Some(source_id) = source_elem.attributes.get("id") {
+            if source_id.contains("joints") || source_id.contains("Joint") {
+                if let Some(name_array) = find_child(source_elem, "Name_array") {
+                    if let Some(names_text) = get_element_text(name_array) {
+                        joint_names = names_text.split_whitespace().map(|s| s.to_string()).collect();
+                    }
+                }
+            } else if source_id.contains("weights") || source_id.contains("Weight") {
+                if let Some(float_array) = find_child(source_elem, "float_array") {
+                    if let Some(weights_text) = get_element_text(float_array) {
+                        weights = weights_text
+                            .split_whitespace()
+                            .filter_map(|s| s.parse::<f32>().ok())
+                            .collect();
+                    }
+                }
+            }
+        }
+    }
+    
+    if joint_names.is_empty() || weights.is_empty() {
+        log::warn!("No valid joint names or weights found in skin data");
+        return Ok(());
+    }
+    
+    // Parse vertex weights
+    if let Some(vertex_weights_elem) = find_child(skin_elem, "vertex_weights") {
+        if let Some(count_attr) = vertex_weights_elem.attributes.get("count") {
+            if let Ok(vertex_count) = count_attr.parse::<usize>() {
+                parse_vertex_weights_data(vertex_weights_elem, mesh, &joint_names, &weights, vertex_count)?;
+            }
+        }
+    }
+    
+    Ok(())
+}
+
+/// Parse vertex weights data and convert to bone influences
+fn parse_vertex_weights_data(
+    vertex_weights_elem: &Element,
+    mesh: &mut DaeMesh,
+    joint_names: &[String],
+    weights: &[f32],
+    vertex_count: usize,
+) -> Result<()> {
+    // Parse vcount (weights per vertex)
+    let mut vcounts = Vec::new();
+    if let Some(vcount_elem) = find_child(vertex_weights_elem, "vcount") {
+        if let Some(vcount_text) = get_element_text(vcount_elem) {
+            vcounts = vcount_text
+                .split_whitespace()
+                .filter_map(|s| s.parse::<usize>().ok())
+                .collect();
+        }
+    }
+    
+    // Parse v (joint indices and weight indices)
+    let mut v_data = Vec::new();
+    if let Some(v_elem) = find_child(vertex_weights_elem, "v") {
+        if let Some(v_text) = get_element_text(v_elem) {
+            v_data = v_text
+                .split_whitespace()
+                .filter_map(|s| s.parse::<usize>().ok())
+                .collect();
+        }
+    }
+    
+    if vcounts.len() != vertex_count {
+        log::warn!(
+            "Vertex weight count mismatch: expected {}, got {}",
+            vertex_count, vcounts.len()
+        );
+        return Ok(());
+    }
+    
+    // Group weights by bone
+    let mut bone_influences: HashMap<String, Vec<DaeVertexWeight>> = HashMap::new();
+    
+    let mut v_index = 0;
+    for (vertex_idx, &weight_count) in vcounts.iter().enumerate() {
+        for _ in 0..weight_count {
+            if v_index + 1 < v_data.len() {
+                let joint_idx = v_data[v_index];
+                let weight_idx = v_data[v_index + 1];
+                
+                if joint_idx < joint_names.len() && weight_idx < weights.len() {
+                    let bone_name = &joint_names[joint_idx];
+                    let weight = weights[weight_idx];
+                    
+                    // Only include non-zero weights
+                    if weight > 0.0 {
+                        bone_influences
+                            .entry(bone_name.clone())
+                            .or_insert_with(Vec::new)
+                            .push(DaeVertexWeight {
+                                vertex_index: vertex_idx as u32,
+                                weight,
+                            });
+                    }
+                }
+                v_index += 2;
+            }
+        }
+    }
+    
+    // Convert to mesh bone influences
+    mesh.bone_influences = bone_influences
+        .into_iter()
+        .map(|(bone_name, vertex_weights)| DaeBoneInfluence {
+            bone_name,
+            vertex_weights,
+        })
+        .collect();
+    
+    log::debug!(
+        "Parsed {} bone influences for mesh '{}'",
+        mesh.bone_influences.len(),
+        mesh.name
+    );
+    
+    Ok(())
 }
 
 // Helper functions for extracting specific data from XML mesh structures
@@ -859,31 +1052,38 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
             Vec::new()
         };
         
+        // Convert DAE bone influences to SSBH bone influences
+        let bone_influences = convert_dae_bone_influences_to_ssbh(&dae_mesh.bone_influences);
+        
         let mesh_object = MeshObjectData {
             name: dae_mesh.name.clone(),
             subindex: index as u64,
             positions: vec![AttributeData {
-                name: "Position0".to_string(),
+                //debug: removed string attribute names for numshb export
+                name: String::new(), // "Position0".to_string(),
                 data: VectorData::Vector3(vertices),
             }],
             normals: if !normals.is_empty() {
                 vec![AttributeData {
-                    name: "Normal0".to_string(),
+                    //debug: removed string attribute names for numshb export
+                    name: String::new(), // "Normal0".to_string(),
                     data: VectorData::Vector3(normals),
                 }]
             } else { Vec::new() },
             texture_coordinates: if !uvs.is_empty() {
                 vec![AttributeData {
-                    name: "map1".to_string(),
+                    //debug: removed string attribute names for numshb export
+                    name: String::new(), // "map1".to_string(),
                     data: VectorData::Vector2(uvs),
                 }]
             } else { Vec::new() },
             vertex_indices: dae_mesh.indices.clone(),
+            bone_influences,
             ..Default::default()
         };
         
         log::info!(
-            "Converted mesh '{}': {} vertices, {} normals, {} UVs, {} indices",
+            "Converted mesh '{}': {} vertices, {} normals, {} UVs, {} indices, {} bone influences",
             mesh_object.name,
             if let Some(pos_attr) = mesh_object.positions.first() {
                 if let VectorData::Vector3(verts) = &pos_attr.data { verts.len() } else { 0 }
@@ -894,7 +1094,8 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
             if let Some(uv_attr) = mesh_object.texture_coordinates.first() {
                 if let VectorData::Vector2(uvs) = &uv_attr.data { uvs.len() } else { 0 }
             } else { 0 },
-            mesh_object.vertex_indices.len()
+            mesh_object.vertex_indices.len(),
+            mesh_object.bone_influences.len()
         );
         
         mesh_objects.push(mesh_object);
@@ -1001,6 +1202,32 @@ fn convert_materials_to_ssbh(materials: &[DaeMaterial], _config: &DaeConvertConf
         minor_version: 6,
         entries,
     })
+}
+
+/// Convert DAE bone influences to SSBH bone influences
+fn convert_dae_bone_influences_to_ssbh(dae_influences: &[DaeBoneInfluence]) -> Vec<BoneInfluence> {
+    let mut ssbh_influences = Vec::new();
+    
+    for dae_influence in dae_influences {
+        let vertex_weights: Vec<VertexWeight> = dae_influence
+            .vertex_weights
+            .iter()
+            .map(|dae_weight| VertexWeight {
+                vertex_index: dae_weight.vertex_index,
+                vertex_weight: dae_weight.weight,
+            })
+            .collect();
+        
+        if !vertex_weights.is_empty() {
+            ssbh_influences.push(BoneInfluence {
+                bone_name: dae_influence.bone_name.clone(),
+                vertex_weights,
+            });
+        }
+    }
+    
+    log::debug!("Converted {} bone influences to SSBH format", ssbh_influences.len());
+    ssbh_influences
 }
 
 // Helper functions for coordinate and data transformations
