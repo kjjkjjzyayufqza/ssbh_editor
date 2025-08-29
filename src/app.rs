@@ -6,7 +6,10 @@ use crate::{
     app::{anim_list::anim_list, shortcut::format_shortcut, swing_list::swing_list},
     capture::{render_animation_to_gif, render_animation_to_image_sequence, render_screenshot},
     export::numdlb_scene::{SceneExportDialogState, SceneExportConfig, export_scene_to_numdlb, show_scene_export_dialog},
-    convert::dae::{convert_dae_file, show_dae_convert_dialog, DaeConvertDialogState, DaeConvertConfig},
+    convert::{
+        dae::{show_dae_convert_dialog, DaeConvertDialogState, DaeConvertConfig},
+        ssbh_data_dae::convert_dae_file,
+    },
     editors::{
         adj::{add_missing_adj_entries, adj_editor},
         anim::anim_editor,
@@ -954,7 +957,7 @@ impl SsbhApp {
             self.pending_scene_export = None;
         }
 
-        // Handle DAE conversion
+        // Handle DAE conversion with new ssbh_data integration
         if let Some((dae_file_path, config)) = &self.pending_dae_convert {
             match convert_dae_file(dae_file_path, config) {
                 Ok(converted_files) => {
@@ -965,18 +968,18 @@ impl SsbhApp {
                     if let Some(ref path) = converted_files.numshb_path {
                         file_list.push(path.file_name().unwrap_or_default().to_string_lossy().to_string());
                     }
-                    if let Some(ref path) = converted_files.numatb_path {
+                    if let Some(ref path) = converted_files.nusktb_path {
                         file_list.push(path.file_name().unwrap_or_default().to_string_lossy().to_string());
                     }
                     
                     log::info!(
-                        "Successfully converted DAE to SSBH files in {}: {}",
+                        "Successfully converted DAE to SSBH files using ssbh_data integration in {}: {}",
                         config.output_directory.display(),
                         file_list.join(", ")
                     );
                 }
                 Err(e) => {
-                    log::error!("Error converting DAE file: {e}");
+                    log::error!("Error converting DAE file with ssbh_data integration: {e}");
                 }
             }
             self.pending_dae_convert = None;

@@ -168,6 +168,7 @@ pub struct ConvertedFiles {
     pub numdlb_path: Option<PathBuf>,
     pub numshb_path: Option<PathBuf>,
     pub numatb_path: Option<PathBuf>,
+    pub nusktb_path: Option<PathBuf>,
 }
 
 /// Convert DAE file to SSBH files
@@ -191,7 +192,7 @@ pub fn convert_dae_file(
 }
 
 /// Validate DAE scene data before conversion
-fn validate_dae_scene(dae_scene: &DaeScene) -> Result<()> {
+pub fn validate_dae_scene(dae_scene: &DaeScene) -> Result<()> {
     // Check for empty meshes
     if dae_scene.meshes.is_empty() {
         return Err(anyhow!("DAE file contains no valid meshes"));
@@ -284,7 +285,7 @@ fn validate_dae_scene(dae_scene: &DaeScene) -> Result<()> {
 }
 
 /// Validate converted SSBH files
-fn validate_converted_files(converted_files: &ConvertedFiles) -> Result<()> {
+pub fn validate_converted_files(converted_files: &ConvertedFiles) -> Result<()> {
     // Check that core files were created
     if converted_files.numdlb_path.is_none() {
         return Err(anyhow!("Failed to create .numdlb file"));
@@ -1205,7 +1206,7 @@ fn convert_materials_to_ssbh(materials: &[DaeMaterial], _config: &DaeConvertConf
 }
 
 /// Convert DAE bone influences to SSBH bone influences
-fn convert_dae_bone_influences_to_ssbh(dae_influences: &[DaeBoneInfluence]) -> Vec<BoneInfluence> {
+pub fn convert_dae_bone_influences_to_ssbh(dae_influences: &[DaeBoneInfluence]) -> Vec<BoneInfluence> {
     let mut ssbh_influences = Vec::new();
     
     for dae_influence in dae_influences {
@@ -1231,7 +1232,7 @@ fn convert_dae_bone_influences_to_ssbh(dae_influences: &[DaeBoneInfluence]) -> V
 }
 
 // Helper functions for coordinate and data transformations
-fn apply_transforms(vertices: &[[f32; 3]], config: &DaeConvertConfig) -> Vec<[f32; 3]> {
+pub fn apply_transforms(vertices: &[[f32; 3]], config: &DaeConvertConfig) -> Vec<[f32; 3]> {
     vertices.iter().map(|v| {
         let mut transformed = *v;
         
@@ -1257,7 +1258,7 @@ fn apply_transforms(vertices: &[[f32; 3]], config: &DaeConvertConfig) -> Vec<[f3
     }).collect()
 }
 
-fn apply_normal_transforms(normals: &[[f32; 3]], config: &DaeConvertConfig) -> Vec<[f32; 3]> {
+pub fn apply_normal_transforms(normals: &[[f32; 3]], config: &DaeConvertConfig) -> Vec<[f32; 3]> {
     normals.iter().map(|n| {
         let mut transformed = *n;
         
