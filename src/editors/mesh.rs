@@ -629,12 +629,14 @@ mod tests {
                     ..Default::default()
                 },
             ],
+            is_vs2: true,
         };
 
         let reference = MeshData {
             major_version: 1,
             minor_version: 10,
             objects: Vec::new(),
+            is_vs2: true,
         };
 
         match_mesh_order(&mut mesh, &reference);
@@ -671,6 +673,7 @@ mod tests {
                     ..Default::default()
                 },
             ],
+            is_vs2: true,
         };
 
         let reference = MeshData {
@@ -681,6 +684,7 @@ mod tests {
                 subindex: 0,
                 ..Default::default()
             }],
+            is_vs2: true,
         };
 
         match_mesh_order(&mut mesh, &reference);

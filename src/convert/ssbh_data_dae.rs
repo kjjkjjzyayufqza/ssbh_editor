@@ -131,50 +131,50 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
             subindex: index as u64,
             // Position0 - required
             positions: vec![AttributeData {
-                name: "Position0".to_string(),
+                name: "".to_string(),
                 data: VectorData::Vector3(vertices),
             }],
             // Normal0 - required
             normals: vec![AttributeData {
-                name: "Normal0".to_string(),
+                name: "".to_string(),
                 data: VectorData::Vector3(normals),
             }],
             // Binormal0 and Binormal1 - required (both with same data)
             binormals: vec![
                 AttributeData {
-                    name: "Binormal0".to_string(),
+                    name: "".to_string(),
                     data: VectorData::Vector3(binormals.clone()),
                 },
                 AttributeData {
-                    name: "Binormal1".to_string(),
+                    name: "".to_string(),
                     data: VectorData::Vector3(binormals),
                 },
             ],
             // Tangent0 and Tangent1 - required (both with same data)
             tangents: vec![
                 AttributeData {
-                    name: "Tangent0".to_string(),
+                    name: "".to_string(),
                     data: VectorData::Vector4(tangents.clone()),
                 },
                 AttributeData {
-                    name: "Tangent1".to_string(),
+                    name: "".to_string(),
                     data: VectorData::Vector4(tangents),
                 },
             ],
             // TextureCoordinate0 and HalfFloat2_0 - required
             texture_coordinates: vec![
                 AttributeData {
-                    name: "TextureCoordinate0".to_string(),
+                    name: "".to_string(),
                     data: VectorData::Vector2(uvs.clone()),
                 },
                 AttributeData {
-                    name: "HalfFloat2_0".to_string(),
+                    name: "".to_string(),
                     data: VectorData::Vector2(uvs),
                 },
             ],
             // colorSet1 - required
             color_sets: vec![AttributeData {
-                name: "colorSet1".to_string(),
+                name: "".to_string(),
                 data: VectorData::Vector4(color_sets),
             }],
             vertex_indices: dae_mesh.indices.clone(),
@@ -207,8 +207,9 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
     // Use standard ssbh_data construction with proper version numbers
     Ok(MeshData {
         major_version: 1,
-        minor_version: 10,
+        minor_version: 8, // Use V8 when is_vs2 is true
         objects: mesh_objects,
+        is_vs2: true, // Use VS2 format to avoid attribute name strings
     })
 }
 

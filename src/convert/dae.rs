@@ -1161,6 +1161,7 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
         major_version: 1,
         minor_version: 10,
         objects: mesh_objects,
+        is_vs2: true,
     })
 }
 
