@@ -128,13 +128,14 @@ pub fn parse_dae_file(file_path: &Path) -> Result<DaeScene> {
     }
     
     // Parse geometries
+    let mut geometry_id_to_name_map = std::collections::HashMap::new();
     if let Some(lib_geometries) = find_child(&root, "library_geometries") {
-        scene.meshes = parse_geometries_from_xml(lib_geometries)?;
+        scene.meshes = parse_geometries_from_xml(lib_geometries, &mut geometry_id_to_name_map)?;
     }
     
     // Parse controllers (bone influences and weights)
     if let Some(lib_controllers) = find_child(&root, "library_controllers") {
-        parse_controllers_and_apply_to_meshes(lib_controllers, &mut scene.meshes)?;
+        parse_controllers_and_apply_to_meshes(lib_controllers, &mut scene.meshes, &geometry_id_to_name_map)?;
     }
     
     // Parse visual scenes for bone hierarchy
@@ -517,14 +518,22 @@ fn parse_materials_from_xml(lib_materials: &Element) -> Result<Vec<DaeMaterial>>
     Ok(materials)
 }
 
-fn parse_geometries_from_xml(lib_geometries: &Element) -> Result<Vec<DaeMesh>> {
+fn parse_geometries_from_xml(lib_geometries: &Element, geometry_id_to_name_map: &mut HashMap<String, String>) -> Result<Vec<DaeMesh>> {
     let mut meshes = Vec::new();
     
     for geometry_elem in find_all_children(lib_geometries, "geometry") {
         if let Some(id) = geometry_elem.attributes.get("id") {
             if let Some(mesh_elem) = find_child(geometry_elem, "mesh") {
+                // Use 'name' attribute if available, otherwise fall back to 'id'
+                let mesh_name = geometry_elem.attributes.get("name")
+                    .unwrap_or(id)
+                    .clone();
+                
+                // Store the mapping from geometry id to mesh name
+                geometry_id_to_name_map.insert(id.clone(), mesh_name.clone());
+                
                 let mut dae_mesh = DaeMesh {
-                    name: id.clone(),
+                    name: mesh_name,
                     vertices: extract_vertices_from_xml_mesh(mesh_elem)?,
                     normals: extract_normals_from_xml_mesh(mesh_elem)?,
                     uvs: extract_uvs_from_xml_mesh(mesh_elem)?,
@@ -545,18 +554,31 @@ fn parse_geometries_from_xml(lib_geometries: &Element) -> Result<Vec<DaeMesh>> {
 }
 
 /// Parse controllers from DAE and apply bone influences to meshes
-fn parse_controllers_and_apply_to_meshes(lib_controllers: &Element, meshes: &mut [DaeMesh]) -> Result<()> {
+fn parse_controllers_and_apply_to_meshes(lib_controllers: &Element, meshes: &mut [DaeMesh], geometry_id_to_name_map: &HashMap<String, String>) -> Result<()> {
     for controller_elem in find_all_children(lib_controllers, "controller") {
         if let Some(controller_id) = controller_elem.attributes.get("id") {
             if let Some(skin_elem) = find_child(controller_elem, "skin") {
                 if let Some(source_attr) = skin_elem.attributes.get("source") {
                     let geometry_id = source_attr.trim_start_matches('#');
                     
-                    // Find the mesh that corresponds to this geometry
-                    if let Some(mesh) = meshes.iter_mut().find(|m| m.name == geometry_id) {
-                        parse_skin_data_to_mesh(skin_elem, mesh)?;
-                        log::info!(
-                            "Applied bone influences from controller '{}' to mesh '{}'",
+                    // Use the mapping to find the mesh name from geometry id
+                    if let Some(mesh_name) = geometry_id_to_name_map.get(geometry_id) {
+                        // Find the mesh that corresponds to this geometry
+                        if let Some(mesh) = meshes.iter_mut().find(|m| &m.name == mesh_name) {
+                            parse_skin_data_to_mesh(skin_elem, mesh)?;
+                            log::info!(
+                                "Applied bone influences from controller '{}' to mesh '{}' (geometry id: '{}')",
+                                controller_id, mesh_name, geometry_id
+                            );
+                        } else {
+                            log::warn!(
+                                "Controller '{}' references mesh '{}' (geometry id: '{}') but mesh not found",
+                                controller_id, mesh_name, geometry_id
+                            );
+                        }
+                    } else {
+                        log::warn!(
+                            "Controller '{}' references unknown geometry id: '{}'",
                             controller_id, geometry_id
                         );
                     }
