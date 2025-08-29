@@ -79,76 +79,120 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
         
         // Apply transformations and validate data consistency
         let vertices = apply_transforms(&dae_mesh.vertices, config);
+        let vertex_count = vertices.len();
+        
         let normals = if !dae_mesh.normals.is_empty() {
             let transformed_normals = apply_normal_transforms(&dae_mesh.normals, config);
-            if transformed_normals.len() == vertices.len() {
+            if transformed_normals.len() == vertex_count {
                 transformed_normals
             } else {
                 log::warn!(
-                    "Mesh '{}': Normal count mismatch after transform. Expected {}, got {}. Skipping normals.",
-                    dae_mesh.name, vertices.len(), transformed_normals.len()
+                    "Mesh '{}': Normal count mismatch after transform. Expected {}, got {}. Generating default normals.",
+                    dae_mesh.name, vertex_count, transformed_normals.len()
                 );
-                Vec::new()
+                generate_default_normals(vertex_count)
             }
         } else {
-            Vec::new()
+            log::info!("Mesh '{}': No normals found, generating default normals.", dae_mesh.name);
+            generate_default_normals(vertex_count)
         };
         
         // Validate UV data
         let uvs = if !dae_mesh.uvs.is_empty() {
-            if dae_mesh.uvs.len() == vertices.len() {
+            if dae_mesh.uvs.len() == vertex_count {
                 dae_mesh.uvs.clone()
             } else {
                 log::warn!(
-                    "Mesh '{}': UV count mismatch. Expected {}, got {}. Skipping UVs.",
-                    dae_mesh.name, vertices.len(), dae_mesh.uvs.len()
+                    "Mesh '{}': UV count mismatch. Expected {}, got {}. Generating default UVs.",
+                    dae_mesh.name, vertex_count, dae_mesh.uvs.len()
                 );
-                Vec::new()
+                generate_default_uvs(vertex_count)
             }
         } else {
-            Vec::new()
+            log::info!("Mesh '{}': No UVs found, generating default UVs.", dae_mesh.name);
+            generate_default_uvs(vertex_count)
         };
+        
+        // Generate binormals (required for SSBH format)
+        let binormals = generate_default_binormals(vertex_count);
+        
+        // Generate tangents (required for SSBH format)
+        let tangents = generate_default_tangents(vertex_count);
+        
+        // Generate color sets (required for SSBH format)
+        let color_sets = generate_default_color_sets(vertex_count);
         
         // Convert bone influences using existing functionality
         let bone_influences = convert_dae_bone_influences_to_ssbh(&dae_mesh.bone_influences);
         
-        // Construct MeshObjectData using direct construction (no factory methods available)
+        // Construct MeshObjectData with all required attributes
         let mesh_object = MeshObjectData {
             name: dae_mesh.name.clone(),
             subindex: index as u64,
+            // Position0 - required
             positions: vec![AttributeData {
-                name: String::new(), // ssbh_data uses empty names for standard attributes
+                name: "Position0".to_string(),
                 data: VectorData::Vector3(vertices),
             }],
-            normals: if !normals.is_empty() {
-                vec![AttributeData {
-                    name: String::new(),
-                    data: VectorData::Vector3(normals),
-                }]
-            } else { Vec::new() },
-            texture_coordinates: if !uvs.is_empty() {
-                vec![AttributeData {
-                    name: String::new(),
+            // Normal0 - required
+            normals: vec![AttributeData {
+                name: "Normal0".to_string(),
+                data: VectorData::Vector3(normals),
+            }],
+            // Binormal0 and Binormal1 - required (both with same data)
+            binormals: vec![
+                AttributeData {
+                    name: "Binormal0".to_string(),
+                    data: VectorData::Vector3(binormals.clone()),
+                },
+                AttributeData {
+                    name: "Binormal1".to_string(),
+                    data: VectorData::Vector3(binormals),
+                },
+            ],
+            // Tangent0 and Tangent1 - required (both with same data)
+            tangents: vec![
+                AttributeData {
+                    name: "Tangent0".to_string(),
+                    data: VectorData::Vector4(tangents.clone()),
+                },
+                AttributeData {
+                    name: "Tangent1".to_string(),
+                    data: VectorData::Vector4(tangents),
+                },
+            ],
+            // TextureCoordinate0 and HalfFloat2_0 - required
+            texture_coordinates: vec![
+                AttributeData {
+                    name: "TextureCoordinate0".to_string(),
+                    data: VectorData::Vector2(uvs.clone()),
+                },
+                AttributeData {
+                    name: "HalfFloat2_0".to_string(),
                     data: VectorData::Vector2(uvs),
-                }]
-            } else { Vec::new() },
+                },
+            ],
+            // colorSet1 - required
+            color_sets: vec![AttributeData {
+                name: "colorSet1".to_string(),
+                data: VectorData::Vector4(color_sets),
+            }],
             vertex_indices: dae_mesh.indices.clone(),
             bone_influences,
             ..Default::default()
         };
         
         log::info!(
-            "Converted mesh '{}': {} vertices, {} normals, {} UVs, {} indices, {} bone influences",
+            "Converted mesh '{}': {} vertices, {} normals, {} binormals, {} tangents, {} UVs, {} color sets, {} indices, {} bone influences",
             mesh_object.name,
             if let Some(pos_attr) = mesh_object.positions.first() {
                 if let VectorData::Vector3(verts) = &pos_attr.data { verts.len() } else { 0 }
             } else { 0 },
-            if let Some(norm_attr) = mesh_object.normals.first() {
-                if let VectorData::Vector3(norms) = &norm_attr.data { norms.len() } else { 0 }
-            } else { 0 },
-            if let Some(uv_attr) = mesh_object.texture_coordinates.first() {
-                if let VectorData::Vector2(uvs) = &uv_attr.data { uvs.len() } else { 0 }
-            } else { 0 },
+            mesh_object.normals.len(),
+            mesh_object.binormals.len(),
+            mesh_object.tangents.len(),
+            mesh_object.texture_coordinates.len(),
+            mesh_object.color_sets.len(),
             mesh_object.vertex_indices.len(),
             mesh_object.bone_influences.len()
         );
@@ -271,4 +315,29 @@ fn convert_skeleton_from_dae(dae_bones: &[DaeBone], meshes: &[DaeMesh], _config:
         minor_version: 0,
         bones,
     })
+}
+
+/// Generate default normal vectors pointing up (0, 1, 0)
+fn generate_default_normals(vertex_count: usize) -> Vec<[f32; 3]> {
+    vec![[0.0, 1.0, 0.0]; vertex_count]
+}
+
+/// Generate default UV coordinates (0, 0) for all vertices
+fn generate_default_uvs(vertex_count: usize) -> Vec<[f32; 2]> {
+    vec![[0.0, 0.0]; vertex_count]
+}
+
+/// Generate default binormal vectors pointing right (1, 0, 0)
+fn generate_default_binormals(vertex_count: usize) -> Vec<[f32; 3]> {
+    vec![[1.0, 0.0, 0.0]; vertex_count]
+}
+
+/// Generate default tangent vectors pointing forward (0, 0, 1) with w=1 for handedness
+fn generate_default_tangents(vertex_count: usize) -> Vec<[f32; 4]> {
+    vec![[0.0, 0.0, 1.0, 1.0]; vertex_count]
+}
+
+/// Generate default color sets (white with full alpha)
+fn generate_default_color_sets(vertex_count: usize) -> Vec<[f32; 4]> {
+    vec![[1.0, 1.0, 1.0, 1.0]; vertex_count]
 }
