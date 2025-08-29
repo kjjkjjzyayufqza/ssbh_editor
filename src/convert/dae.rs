@@ -49,6 +49,7 @@ pub struct DaeConvertDialogState {
 pub struct DaeScene {
     pub meshes: Vec<DaeMesh>,
     pub materials: Vec<DaeMaterial>,
+    pub bones: Vec<DaeBone>,
     pub up_axis: UpAxisConversion,
 }
 
@@ -75,6 +76,14 @@ pub struct DaeVertexWeight {
     pub weight: f32,
 }
 
+#[derive(Debug, Clone)]
+pub struct DaeBone {
+    pub name: String,
+    pub parent_index: Option<usize>,
+    pub transform: [[f32; 4]; 4],
+    pub inverse_bind_matrix: Option<[[f32; 4]; 4]>,
+}
+
 #[derive(Debug)]
 pub struct DaeMaterial {
     pub name: String,
@@ -95,6 +104,7 @@ pub fn parse_dae_file(file_path: &Path) -> Result<DaeScene> {
     let mut scene = DaeScene {
         meshes: Vec::new(),
         materials: Vec::new(),
+        bones: Vec::new(),
         up_axis: UpAxisConversion::YUp,
     };
     
@@ -125,6 +135,18 @@ pub fn parse_dae_file(file_path: &Path) -> Result<DaeScene> {
     // Parse controllers (bone influences and weights)
     if let Some(lib_controllers) = find_child(&root, "library_controllers") {
         parse_controllers_and_apply_to_meshes(lib_controllers, &mut scene.meshes)?;
+    }
+    
+    // Parse visual scenes for bone hierarchy
+    if let Some(lib_visual_scenes) = find_child(&root, "library_visual_scenes") {
+        scene.bones = parse_bone_hierarchy_from_visual_scenes(lib_visual_scenes)?;
+    }
+    
+    // If no bones found in visual scenes, try library_nodes
+    if scene.bones.is_empty() {
+        if let Some(lib_nodes) = find_child(&root, "library_nodes") {
+            scene.bones = parse_bone_hierarchy_from_nodes(lib_nodes)?;
+        }
     }
     
     Ok(scene)
@@ -158,6 +180,12 @@ pub fn convert_dae_to_ssbh_files(
     let matl_path = config.output_directory.join(format!("{}.numatb", config.base_filename));
     matl_data.write_to_file(&matl_path)?;
     converted_files.numatb_path = Some(matl_path);
+    
+    // Convert and write skeleton data
+    let skel_data = convert_skeleton_to_ssbh(&dae_scene.bones, &dae_scene.meshes, config)?;
+    let skel_path = config.output_directory.join(format!("{}.nusktb", config.base_filename));
+    skel_data.write_to_file(&skel_path)?;
+    converted_files.nusktb_path = Some(skel_path);
     
     Ok(converted_files)
 }
@@ -403,6 +431,7 @@ pub fn show_dae_convert_dialog(
                     ui.label(format!("• {}.numdlb", state.config.base_filename));
                     ui.label(format!("• {}.numshb", state.config.base_filename));
                     ui.label(format!("• {}.numatb", state.config.base_filename));
+                    ui.label(format!("• {}.nusktb", state.config.base_filename));
                 });
                 
                 ui.separator();
@@ -1139,7 +1168,7 @@ fn convert_model_to_ssbh(meshes: &[DaeMesh], materials: &[DaeMaterial], config: 
         major_version: 1,
         minor_version: 0,
         model_name: config.base_filename.clone(),
-        skeleton_file_name: String::new(),
+        skeleton_file_name: format!("{}.nusktb", config.base_filename),
         material_file_names: vec![format!("{}.numatb", config.base_filename)],
         animation_file_name: None,
         mesh_file_name: format!("{}.numshb", config.base_filename),
@@ -1274,4 +1303,226 @@ pub fn apply_normal_transforms(normals: &[[f32; 3]], config: &DaeConvertConfig) 
         
         transformed
     }).collect()
+}
+
+/// Parse bone hierarchy from library_visual_scenes
+fn parse_bone_hierarchy_from_visual_scenes(lib_visual_scenes: &Element) -> Result<Vec<DaeBone>> {
+    let mut bones = Vec::new();
+    
+    for visual_scene in find_all_children(lib_visual_scenes, "visual_scene") {
+        for node in find_all_children(visual_scene, "node") {
+            parse_node_hierarchy(node, None, &mut bones)?;
+        }
+    }
+    
+    if !bones.is_empty() {
+        let bone_names: Vec<&str> = bones.iter().map(|b| b.name.as_str()).collect();
+        log::info!("Parsed {} bones from visual scenes: {}", bones.len(), bone_names.join(", "));
+    } else {
+        log::info!("No bones found in visual scenes");
+    }
+    Ok(bones)
+}
+
+/// Parse bone hierarchy from library_nodes
+fn parse_bone_hierarchy_from_nodes(lib_nodes: &Element) -> Result<Vec<DaeBone>> {
+    let mut bones = Vec::new();
+    
+    for node in find_all_children(lib_nodes, "node") {
+        parse_node_hierarchy(node, None, &mut bones)?;
+    }
+    
+    if !bones.is_empty() {
+        let bone_names: Vec<&str> = bones.iter().map(|b| b.name.as_str()).collect();
+        log::info!("Parsed {} bones from nodes: {}", bones.len(), bone_names.join(", "));
+    } else {
+        log::info!("No bones found in nodes");
+    }
+    Ok(bones)
+}
+
+/// Recursively parse node hierarchy to extract bone information
+fn parse_node_hierarchy(
+    node: &Element,
+    parent_index: Option<usize>,
+    bones: &mut Vec<DaeBone>,
+) -> Result<()> {
+    if let Some(node_id) = node.attributes.get("id") {
+        // Check if this is a bone/joint node
+        let node_type = node.attributes.get("type").map(|s| s.as_str()).unwrap_or("");
+        let node_name = node.attributes.get("name").unwrap_or(node_id);
+        let node_sid = node.attributes.get("sid").map(|s| s.as_str()).unwrap_or("");
+        
+        let is_bone = node_type == "JOINT" || 
+                     node_id.to_lowercase().contains("bone") || 
+                     node_id.to_lowercase().contains("joint") ||
+                     node_name.to_lowercase().contains("bone") ||
+                     node_name.to_lowercase().contains("joint") ||
+                     node_sid.to_lowercase().contains("bone") ||
+                     node_sid.to_lowercase().contains("joint");
+        
+        if is_bone || parent_index.is_some() {
+            // Use 'name' attribute if available, otherwise fall back to 'id'
+            let bone_name = node.attributes.get("name")
+                .or_else(|| node.attributes.get("sid"))
+                .unwrap_or(node_id)
+                .clone();
+            
+            // Parse transformation matrix
+            let transform = parse_node_transform(node);
+            
+            let bone = DaeBone {
+                name: bone_name.clone(),
+                parent_index,
+                transform,
+                inverse_bind_matrix: None,
+            };
+            
+            let current_index = bones.len();
+            log::debug!("Parsed bone: '{}' (id: '{}', type: '{}')", bone_name, node_id, node_type);
+            bones.push(bone);
+            
+            // Recursively parse child nodes
+            for child_node in find_all_children(node, "node") {
+                parse_node_hierarchy(child_node, Some(current_index), bones)?;
+            }
+        } else {
+            // Not a bone, but check children anyway
+            for child_node in find_all_children(node, "node") {
+                parse_node_hierarchy(child_node, parent_index, bones)?;
+            }
+        }
+    }
+    
+    Ok(())
+}
+
+/// Parse transformation matrix from a node
+fn parse_node_transform(node: &Element) -> [[f32; 4]; 4] {
+    // Look for matrix element first
+    if let Some(matrix_elem) = find_child(node, "matrix") {
+        if let Some(matrix_text) = get_element_text(matrix_elem) {
+            if let Ok(values) = parse_matrix_values(&matrix_text) {
+                if values.len() >= 16 {
+                    return [
+                        [values[0], values[1], values[2], values[3]],
+                        [values[4], values[5], values[6], values[7]],
+                        [values[8], values[9], values[10], values[11]],
+                        [values[12], values[13], values[14], values[15]],
+                    ];
+                }
+            }
+        }
+    }
+    
+    // If no matrix, try to build from translate, rotate, scale
+    let mut transform = [
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0],
+    ];
+    
+    // Apply translation
+    if let Some(translate_elem) = find_child(node, "translate") {
+        if let Some(translate_text) = get_element_text(translate_elem) {
+            if let Ok(values) = parse_matrix_values(&translate_text) {
+                if values.len() >= 3 {
+                    transform[0][3] = values[0];
+                    transform[1][3] = values[1];
+                    transform[2][3] = values[2];
+                }
+            }
+        }
+    }
+    
+    // Note: For full accuracy, we should also handle rotation and scale,
+    // but identity matrix is sufficient for basic skeleton structure
+    
+    transform
+}
+
+/// Parse matrix values from text
+fn parse_matrix_values(text: &str) -> Result<Vec<f32>> {
+    text.split_whitespace()
+        .map(|s| s.parse::<f32>().map_err(|e| anyhow!("Failed to parse float: {}", e)))
+        .collect()
+}
+
+/// Convert DAE bones to SSBH skeleton data
+fn convert_skeleton_to_ssbh(
+    dae_bones: &[DaeBone],
+    meshes: &[DaeMesh],
+    _config: &DaeConvertConfig,
+) -> Result<ssbh_data::skel_data::SkelData> {
+    use ssbh_data::skel_data::{SkelData, BoneData, BillboardType};
+    use std::collections::HashSet;
+    
+    let mut bones = Vec::new();
+    
+    if !dae_bones.is_empty() {
+        // Use bones from DAE hierarchy
+        for dae_bone in dae_bones {
+            let bone_data = BoneData {
+                name: dae_bone.name.clone(),
+                transform: dae_bone.transform,
+                parent_index: dae_bone.parent_index,
+                billboard_type: BillboardType::Disabled,
+            };
+            bones.push(bone_data);
+        }
+        
+        log::info!("Created skeleton with {} bones from DAE hierarchy", bones.len());
+    } else {
+        // Fallback: collect bones from mesh influences
+        let mut bone_names = HashSet::new();
+        for mesh in meshes {
+            for bone_influence in &mesh.bone_influences {
+                bone_names.insert(bone_influence.bone_name.clone());
+            }
+        }
+        
+        let mut bone_names: Vec<String> = bone_names.into_iter().collect();
+        bone_names.sort();
+        
+        for (index, bone_name) in bone_names.iter().enumerate() {
+            let bone_data = BoneData {
+                name: bone_name.clone(),
+                transform: [
+                    [1.0, 0.0, 0.0, 0.0],
+                    [0.0, 1.0, 0.0, 0.0],
+                    [0.0, 0.0, 1.0, 0.0],
+                    [0.0, 0.0, 0.0, 1.0],
+                ],
+                parent_index: if index == 0 { None } else { Some(index - 1) },
+                billboard_type: BillboardType::Disabled,
+            };
+            bones.push(bone_data);
+        }
+        
+        log::info!("Created skeleton with {} bones from mesh influences", bones.len());
+    }
+    
+    // If still no bones found, create a default root bone
+    if bones.is_empty() {
+        let root_bone = BoneData {
+            name: "Root".to_string(),
+            transform: [
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, 1.0, 0.0, 0.0],
+                [0.0, 0.0, 1.0, 0.0],
+                [0.0, 0.0, 0.0, 1.0],
+            ],
+            parent_index: None,
+            billboard_type: BillboardType::Disabled,
+        };
+        bones.push(root_bone);
+        log::info!("No bones found, created default root bone");
+    }
+    
+    Ok(SkelData {
+        major_version: 1,
+        minor_version: 0,
+        bones,
+    })
 }

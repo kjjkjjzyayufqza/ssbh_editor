@@ -9,7 +9,7 @@ use std::collections::HashSet;
 
 // Re-use existing DAE parsing infrastructure
 use super::dae::{
-    DaeScene, DaeMesh, DaeConvertConfig, ConvertedFiles,
+    DaeScene, DaeMesh, DaeBone, DaeConvertConfig, ConvertedFiles,
     parse_dae_file, validate_dae_scene, validate_converted_files,
     convert_dae_bone_influences_to_ssbh, apply_transforms, apply_normal_transforms
 };
@@ -21,8 +21,8 @@ pub fn convert_dae_to_ssbh_files(
 ) -> Result<ConvertedFiles> {
     let mut converted_files = ConvertedFiles::default();
     
-    // Generate skeleton from bone influences found in meshes
-    let skel_data = convert_skeleton_from_meshes(&dae_scene.meshes, config)?;
+    // Generate skeleton from DAE bone hierarchy or mesh influences
+    let skel_data = convert_skeleton_from_dae(&dae_scene.bones, &dae_scene.meshes, config)?;
     
     // Use proper ssbh_data construction with validation
     let mesh_data = convert_meshes_to_ssbh(&dae_scene.meshes, config)?;
@@ -197,42 +197,59 @@ fn convert_model_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resul
     })
 }
 
-/// Convert skeleton data from bone influences found in meshes
-fn convert_skeleton_from_meshes(meshes: &[DaeMesh], _config: &DaeConvertConfig) -> Result<SkelData> {
-    let mut bone_names = HashSet::new();
-    
-    // Collect all unique bone names from mesh bone influences
-    for mesh in meshes {
-        for bone_influence in &mesh.bone_influences {
-            bone_names.insert(bone_influence.bone_name.clone());
-        }
-    }
-    
-    // Convert to sorted vec for consistent bone ordering
-    let mut bone_names: Vec<String> = bone_names.into_iter().collect();
-    bone_names.sort();
-    
-    // Create basic bone data for each bone
+/// Convert skeleton data from DAE bone hierarchy or mesh influences
+fn convert_skeleton_from_dae(dae_bones: &[DaeBone], meshes: &[DaeMesh], _config: &DaeConvertConfig) -> Result<SkelData> {
     let mut bones = Vec::new();
-    for (index, bone_name) in bone_names.iter().enumerate() {
-        // Create identity transform matrix
-        let identity_transform = [
-            [1.0, 0.0, 0.0, 0.0],
-            [0.0, 1.0, 0.0, 0.0],
-            [0.0, 0.0, 1.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0],
-        ];
+    
+    if !dae_bones.is_empty() {
+        // Use bones from DAE hierarchy - this ensures ALL bones are included
+        for dae_bone in dae_bones {
+            let bone_data = BoneData {
+                name: dae_bone.name.clone(),
+                transform: dae_bone.transform,
+                parent_index: dae_bone.parent_index,
+                billboard_type: BillboardType::Disabled,
+            };
+            bones.push(bone_data);
+        }
         
-        let bone_data = BoneData {
-            name: bone_name.clone(),
-            transform: identity_transform,
-            parent_index: if index == 0 { None } else { Some(index - 1) }, // Simple linear hierarchy
-            billboard_type: BillboardType::Disabled,
-        };
-        bones.push(bone_data);
+        log::info!("Created skeleton with {} bones from DAE hierarchy", bones.len());
+        
+        // Log bone names for debugging
+        let bone_names: Vec<&str> = bones.iter().map(|b| b.name.as_str()).collect();
+        log::info!("Bone names: {}", bone_names.join(", "));
+    } else {
+        // Fallback: collect bones from mesh influences (old behavior)
+        let mut bone_names = HashSet::new();
+        
+        for mesh in meshes {
+            for bone_influence in &mesh.bone_influences {
+                bone_names.insert(bone_influence.bone_name.clone());
+            }
+        }
+        
+        let mut bone_names: Vec<String> = bone_names.into_iter().collect();
+        bone_names.sort();
+        
+        for (index, bone_name) in bone_names.iter().enumerate() {
+            let bone_data = BoneData {
+                name: bone_name.clone(),
+                transform: [
+                    [1.0, 0.0, 0.0, 0.0],
+                    [0.0, 1.0, 0.0, 0.0],
+                    [0.0, 0.0, 1.0, 0.0],
+                    [0.0, 0.0, 0.0, 1.0],
+                ],
+                parent_index: if index == 0 { None } else { Some(index - 1) },
+                billboard_type: BillboardType::Disabled,
+            };
+            bones.push(bone_data);
+        }
+        
+        log::warn!("No bone hierarchy found in DAE, falling back to mesh influences: {} bones", bones.len());
     }
     
-    // If no bones found, create a default root bone
+    // If still no bones found, create a default root bone
     if bones.is_empty() {
         let root_bone = BoneData {
             name: "Root".to_string(),
@@ -246,9 +263,7 @@ fn convert_skeleton_from_meshes(meshes: &[DaeMesh], _config: &DaeConvertConfig) 
             billboard_type: BillboardType::Disabled,
         };
         bones.push(root_bone);
-        log::info!("No bones found in DAE meshes, created default root bone");
-    } else {
-        log::info!("Created skeleton with {} bones: {}", bones.len(), bone_names.join(", "));
+        log::info!("No bones found anywhere, created default root bone");
     }
     
     Ok(SkelData {
