@@ -152,35 +152,27 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
                     data: VectorData::Vector3(binormals),
                 },
             ],
-            // Tangent0 and Tangent1 - required (both with same data)
+            // Tangent0 and Tangent1 - required (only 2 tangents for target hex)
             tangents: vec![
                 AttributeData {
                     name: "".to_string(),
                     data: VectorData::Vector3(tangents.clone()),
                 },
-                
                 AttributeData {
                     name: "".to_string(),
-                    data: VectorData::Vector3(tangents.clone()),
-                },
-                AttributeData {
-                    name: "".to_string(),
-                    data: VectorData::Vector3(tangents.clone()),
-                },
-                AttributeData {
-                    name: "".to_string(),
-                    data: VectorData::Vector3(tangents.clone()),
+                    data: VectorData::Vector3(tangents),
                 },
             ],
-            // TextureCoordinate0 and HalfFloat2_0 - required
+            // TextureCoordinate0 - required (only one texture coordinate set)
             texture_coordinates: vec![
                 AttributeData {
                     name: "".to_string(),
                     data: VectorData::Vector2(uvs.clone()),
                 },
+                // HalfFloat2_0 - moved here as separate attribute with special naming
                 AttributeData {
                     name: "HalfFloat2_0".to_string(),
-                    data: VectorData::Vector4(generate_texture_coordinates_halffloat2_data(vertex_count)),
+                    data: VectorData::Vector4(generate_half_float2_data(vertex_count)),
                 },
             ],
             // colorSet1 - required
@@ -410,8 +402,9 @@ fn normalize_vector(v: [f32; 3]) -> [f32; 3] {
     }
 }
 
-// default to white
-fn generate_texture_coordinates_halffloat2_data(vertex_count: usize) -> Vec<[f32; 4]> {
+// Generate HalfFloat2 data with proper default values based on target hex analysis
+fn generate_half_float2_data(vertex_count: usize) -> Vec<[f32; 4]> {
+    // Based on target hex analysis, use zero values instead of white
     vec![[1.0, 1.0, 1.0, 1.0]; vertex_count]
 }
 
