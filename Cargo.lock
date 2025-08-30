@@ -4799,6 +4799,7 @@ dependencies = [
  "serde",
  "serde_json",
  "ssbh_data",
+ "ssbh_lib",
  "ssbh_wgpu",
  "strip-ansi-escapes",
  "strum 0.24.1",

@@ -4,6 +4,7 @@ use ssbh_data::{
     modl_data::{ModlData, ModlEntryData},
     skel_data::{SkelData, BoneData, BillboardType},
 };
+use std::convert::TryFrom;
 use std::path::Path;
 use std::collections::HashSet;
 
@@ -34,9 +35,13 @@ pub fn convert_dae_to_ssbh_files(
     skel_data.write_to_file(&skel_path)?;
     converted_files.nusktb_path = Some(skel_path);
     
-    // Write mesh file
+    // Write mesh file using ssbh_data's conversion pipeline
     let mesh_path = config.output_directory.join(format!("{}.numshb", config.base_filename));
-    mesh_data.write_to_file(&mesh_path)?;
+    
+    // Convert MeshData to Mesh using ssbh_data's internal conversion
+    // This ensures your modifications in mesh_data.rs take effect
+    let mesh = ssbh_lib::formats::mesh::Mesh::try_from(&mesh_data).map_err(|e| anyhow!("Failed to convert MeshData to Mesh: {}", e))?;
+    mesh.write_to_file(&mesh_path)?;
     converted_files.numshb_path = Some(mesh_path);
     
     // Write model file
@@ -73,7 +78,7 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
     
     for (index, dae_mesh) in meshes.iter().enumerate() {
         if dae_mesh.vertices.is_empty() {
-            log::warn!("Skipping mesh '{}' with no vertices", dae_mesh.name);
+            println!("Skipping mesh '{}' with no vertices", dae_mesh.name);
             continue;
         }
         
@@ -86,14 +91,14 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
             if transformed_normals.len() == vertex_count {
                 transformed_normals
             } else {
-                log::warn!(
+                println!(
                     "Mesh '{}': Normal count mismatch after transform. Expected {}, got {}. Generating vertex-based normals.",
                     dae_mesh.name, vertex_count, transformed_normals.len()
                 );
                 generate_vertex_based_normals(&vertices)
             }
         } else {
-            log::info!("Mesh '{}': No normals found, generating vertex-based normals.", dae_mesh.name);
+            println!("Mesh '{}': No normals found, generating vertex-based normals.", dae_mesh.name);
             generate_vertex_based_normals(&vertices)
         };
         
@@ -102,16 +107,17 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
             if dae_mesh.uvs.len() == vertex_count {
                 dae_mesh.uvs.clone()
             } else {
-                log::warn!(
+                println!(
                     "Mesh '{}': UV count mismatch. Expected {}, got {}. Generating default UVs.",
                     dae_mesh.name, vertex_count, dae_mesh.uvs.len()
                 );
                 generate_default_uvs(vertex_count)
             }
         } else {
-            log::info!("Mesh '{}': No UVs found, generating default UVs.", dae_mesh.name);
+            println!("Mesh '{}': No UVs found, generating default UVs.", dae_mesh.name);
             generate_default_uvs(vertex_count)
         };
+        println!("uvs: {:?}", uvs[0]);
         
         // Generate binormals and tangents based on vertex positions (required for SSBH format)
         let (binormals, tangents) = generate_binormals_and_tangents(&vertices, &normals);
@@ -174,7 +180,7 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
                 },
                 AttributeData {
                     name: "HalfFloat2_0".to_string(),
-                    data: VectorData::Vector4(generate_position_based_halffloat2_data(&vertices)),
+                    data: VectorData::Vector4(generate_texture_coordinates_halffloat2_data(vertex_count)),
                 },
             ],
             // colorSet1 - required
@@ -209,13 +215,16 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
         return Err(anyhow!("No valid mesh objects were created from DAE data"));
     }
     
-    // Use standard ssbh_data construction with proper version numbers
-    Ok(MeshData {
+    // Create MeshData and let ssbh_data handle the actual binary format conversion
+    let mesh_data = MeshData {
         major_version: 1,
         minor_version: 8, // Use V8 when is_vs2 is true
         objects: mesh_objects,
         is_vs2: true, // Use VS2 format to avoid attribute name strings
-    })
+    };
+    
+    // This ensures the MeshData goes through ssbh_data's conversion pipeline
+    Ok(mesh_data)
 }
 
 /// Convert DAE model to SSBH ModlData using proper ssbh_data construction
@@ -401,21 +410,11 @@ fn normalize_vector(v: [f32; 3]) -> [f32; 3] {
     }
 }
 
-/// Generate HalfFloat2_0 data based on vertex positions
-/// Based on hex analysis, this should replicate vertex position data
-fn generate_position_based_halffloat2_data(vertices: &[[f32; 3]]) -> Vec<[f32; 4]> {
-    vertices.iter().map(|vertex| {
-        // Use vertex position for first 3 components, add a 4th component
-        [vertex[0], vertex[1], vertex[2], 1.0]
-    }).collect()
-}
-
-/// Generate default HalfFloat2_0 data (Vector4 with white color and full alpha)
-fn generate_default_halffloat2_data(vertex_count: usize) -> Vec<[f32; 4]> {
+// default to white
+fn generate_texture_coordinates_halffloat2_data(vertex_count: usize) -> Vec<[f32; 4]> {
     vec![[1.0, 1.0, 1.0, 1.0]; vertex_count]
 }
 
-/// Generate default colorSet1 data (Vector2 with zero values)
 fn generate_default_colorset1_data(vertex_count: usize) -> Vec<[f32; 2]> {
     vec![[0.0, 0.0]; vertex_count]
 }

@@ -768,7 +768,7 @@ fn extract_vertices_from_xml_mesh(mesh_elem: &Element) -> Result<Vec<[f32; 3]>> 
 fn extract_normals_from_xml_mesh(mesh_elem: &Element) -> Result<Vec<[f32; 3]>> {
     let mut normals = Vec::new();
     
-    // Look for normal data in triangles
+    // First try to find normal data through triangles/input references
     for triangles_elem in find_all_children(mesh_elem, "triangles") {
         for input_elem in find_all_children(triangles_elem, "input") {
             if let Some(semantic) = input_elem.attributes.get("semantic") {
@@ -810,13 +810,56 @@ fn extract_normals_from_xml_mesh(mesh_elem: &Element) -> Result<Vec<[f32; 3]>> {
         }
     }
     
+    // If no normals found through triangles, search for source names containing "Nrm" or "Normal"
+    if normals.is_empty() {
+        for source_elem in find_all_children(mesh_elem, "source") {
+            if let Some(name) = source_elem.attributes.get("name") {
+                // Check if source name contains normal indicators
+                if name.contains("Nrm") || name.contains("Normal") || name.contains("normal") {
+                    if let Some(float_array_elem) = find_child(source_elem, "float_array") {
+                        if let Some(data_text) = get_element_text(float_array_elem) {
+                            let values: Result<Vec<f32>, _> = data_text
+                                .split_whitespace()
+                                .map(|s| s.parse())
+                                .collect();
+                            
+                            if let Ok(values) = values {
+                                // Check if stride is 3 from technique_common/accessor
+                                let mut stride = 3; // Default to 3 for normals
+                                if let Some(technique_elem) = find_child(source_elem, "technique_common") {
+                                    if let Some(accessor_elem) = find_child(technique_elem, "accessor") {
+                                        if let Some(stride_attr) = accessor_elem.attributes.get("stride") {
+                                            if let Ok(parsed_stride) = stride_attr.parse::<usize>() {
+                                                stride = parsed_stride;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                if stride == 3 {
+                                    for chunk in values.chunks(3) {
+                                        if chunk.len() >= 3 {
+                                            normals.push([chunk[0], chunk[1], chunk[2]]);
+                                        }
+                                    }
+                                    println!("Found {} normals from source '{}'", normals.len(), name);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     Ok(normals)
 }
 
 fn extract_uvs_from_xml_mesh(mesh_elem: &Element) -> Result<Vec<[f32; 2]>> {
     let mut uvs = Vec::new();
     
-    // Look for texture coordinate data in triangles
+    // First try to find UV data through triangles/input references
     for triangles_elem in find_all_children(mesh_elem, "triangles") {
         for input_elem in find_all_children(triangles_elem, "input") {
             if let Some(semantic) = input_elem.attributes.get("semantic") {
@@ -855,6 +898,49 @@ fn extract_uvs_from_xml_mesh(mesh_elem: &Element) -> Result<Vec<[f32; 2]>> {
         }
         if !uvs.is_empty() {
             break;
+        }
+    }
+    
+    // If no UVs found through triangles, search for source names containing "UV" or "TexCoord"
+    if uvs.is_empty() {
+        for source_elem in find_all_children(mesh_elem, "source") {
+            if let Some(name) = source_elem.attributes.get("name") {
+                // Check if source name contains UV indicators
+                if name.contains("UV") || name.contains("TexCoord") || name.contains("TextureCoordinate") || name.contains("uv") {
+                    if let Some(float_array_elem) = find_child(source_elem, "float_array") {
+                        if let Some(data_text) = get_element_text(float_array_elem) {
+                            let values: Result<Vec<f32>, _> = data_text
+                                .split_whitespace()
+                                .map(|s| s.parse())
+                                .collect();
+                            
+                            if let Ok(values) = values {
+                                // Check if stride is 2 from technique_common/accessor
+                                let mut stride = 2; // Default to 2 for UVs
+                                if let Some(technique_elem) = find_child(source_elem, "technique_common") {
+                                    if let Some(accessor_elem) = find_child(technique_elem, "accessor") {
+                                        if let Some(stride_attr) = accessor_elem.attributes.get("stride") {
+                                            if let Ok(parsed_stride) = stride_attr.parse::<usize>() {
+                                                stride = parsed_stride;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                if stride == 2 {
+                                    for chunk in values.chunks(2) {
+                                        if chunk.len() >= 2 {
+                                            uvs.push([chunk[0], chunk[1]]);
+                                        }
+                                    }
+                                    println!("Found {} UVs from source '{}'", uvs.len(), name);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     

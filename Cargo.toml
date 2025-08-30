@@ -20,6 +20,7 @@ rfd = "0.14.1"
 ssbh_wgpu =  { path = "E:/research/ssbh_wgpu/ssbh_wgpu" }
 nutexb_wgpu = { git = "https://github.com/ScanMountGoat/ssbh_wgpu" }
 ssbh_data = { path = "E:/research/ssbh_lib/ssbh_data", features = ["strum", "serde"] }
+ssbh_lib = { path = "E:/research/ssbh_lib/ssbh_lib" }
 strum = "0.24.1"
 nutexb = "0.7.0"
 octocrab = "0.43.0"
