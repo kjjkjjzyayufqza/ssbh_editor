@@ -7,6 +7,7 @@ use ssbh_data::{
 use std::convert::TryFrom;
 use std::path::Path;
 use std::collections::HashSet;
+use serde::{Serialize, Deserialize};
 
 // Re-use existing DAE parsing infrastructure
 use super::dae::{
@@ -14,6 +15,57 @@ use super::dae::{
     parse_dae_file, validate_dae_scene, validate_converted_files,
     convert_dae_bone_influences_to_ssbh, apply_transforms, apply_normal_transforms
 };
+
+/// Debug JSON structure for skeleton data that matches example.nusktb.json format
+#[derive(Debug, Serialize, Deserialize)]
+struct DebugSkelData {
+    major_version: u16,
+    minor_version: u16,
+    bones: Vec<DebugBoneData>,
+}
+
+/// Debug JSON structure for bone data that matches example.nusktb.json format
+#[derive(Debug, Serialize, Deserialize)]
+struct DebugBoneData {
+    name: String,
+    transform: [[f32; 4]; 4],
+    parent_index: Option<usize>,
+    billboard_type: String,
+}
+
+/// Convert SkelData to debug JSON format and write to file
+fn write_debug_skeleton_json(skel_data: &SkelData, output_path: &Path) -> Result<()> {
+    // Convert BillboardType to string representation
+    let billboard_type_to_string = |bt: &BillboardType| -> String {
+        match bt {
+            BillboardType::Disabled => "Disabled".to_string(),
+            // Add other variants when they become available in the enum
+            _ => format!("{:?}", bt), // Fallback to debug representation
+        }
+    };
+
+    // Convert to debug format
+    let debug_skel = DebugSkelData {
+        major_version: skel_data.major_version,
+        minor_version: skel_data.minor_version,
+        bones: skel_data.bones.iter().map(|bone| DebugBoneData {
+            name: bone.name.clone(),
+            transform: bone.transform,
+            parent_index: bone.parent_index,
+            billboard_type: billboard_type_to_string(&bone.billboard_type),
+        }).collect(),
+    };
+
+    // Write JSON file with pretty formatting
+    let json_content = serde_json::to_string_pretty(&debug_skel)
+        .map_err(|e| anyhow!("Failed to serialize skeleton data to JSON: {}", e))?;
+    
+    std::fs::write(output_path, json_content)
+        .map_err(|e| anyhow!("Failed to write debug JSON file: {}", e))?;
+
+    log::info!("Debug skeleton JSON written to: {}", output_path.display());
+    Ok(())
+}
 
 /// Convert DAE scene to SSBH files using proper ssbh_data integration
 pub fn convert_dae_to_ssbh_files(
@@ -34,6 +86,13 @@ pub fn convert_dae_to_ssbh_files(
     let skel_path = config.output_directory.join(format!("{}.nusktb", config.base_filename));
     skel_data.write_to_file(&skel_path)?;
     converted_files.nusktb_path = Some(skel_path);
+
+    // Write debug skeleton JSON file for inspection
+    let debug_json_path = config.output_directory.join(format!("{}.nusktb.debug.json", config.base_filename));
+    if let Err(e) = write_debug_skeleton_json(&skel_data, &debug_json_path) {
+        log::warn!("Failed to write debug skeleton JSON: {}", e);
+        // Don't fail the conversion if debug output fails
+    }
     
     // Write mesh file using ssbh_data's conversion pipeline
     let mesh_path = config.output_directory.join(format!("{}.numshb", config.base_filename));
