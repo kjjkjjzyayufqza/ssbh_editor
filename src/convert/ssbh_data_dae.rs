@@ -88,11 +88,11 @@ pub fn convert_dae_to_ssbh_files(
     converted_files.nusktb_path = Some(skel_path);
 
     // Write debug skeleton JSON file for inspection
-    let debug_json_path = config.output_directory.join(format!("{}.nusktb.debug.json", config.base_filename));
-    if let Err(e) = write_debug_skeleton_json(&skel_data, &debug_json_path) {
-        log::warn!("Failed to write debug skeleton JSON: {}", e);
-        // Don't fail the conversion if debug output fails
-    }
+    // let debug_json_path = config.output_directory.join(format!("{}.nusktb.debug.json", config.base_filename));
+    // if let Err(e) = write_debug_skeleton_json(&skel_data, &debug_json_path) {
+    //     log::warn!("Failed to write debug skeleton JSON: {}", e);
+    //     // Don't fail the conversion if debug output fails
+    // }
     
     // Write mesh file using ssbh_data's conversion pipeline
     let mesh_path = config.output_directory.join(format!("{}.numshb", config.base_filename));

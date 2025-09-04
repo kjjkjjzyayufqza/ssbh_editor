@@ -191,11 +191,11 @@ pub fn convert_dae_to_ssbh_files(
     converted_files.nusktb_path = Some(skel_path);
 
     // Write debug skeleton JSON file for inspection (using ssbh_data_dae functionality)
-    let debug_json_path = config.output_directory.join(format!("{}.nusktb.debug.json", config.base_filename));
-    if let Err(e) = write_debug_skeleton_json_legacy(&skel_data, &debug_json_path) {
-        log::warn!("Failed to write debug skeleton JSON: {}", e);
-        // Don't fail the conversion if debug output fails
-    }
+    // let debug_json_path = config.output_directory.join(format!("{}.nusktb.debug.json", config.base_filename));
+    // if let Err(e) = write_debug_skeleton_json_legacy(&skel_data, &debug_json_path) {
+    //     log::warn!("Failed to write debug skeleton JSON: {}", e);
+    //     // Don't fail the conversion if debug output fails
+    // }
     
     Ok(converted_files)
 }
@@ -1522,11 +1522,14 @@ fn parse_node_transform(node: &Element) -> [[f32; 4]; 4] {
         if let Some(matrix_text) = get_element_text(matrix_elem) {
             if let Ok(values) = parse_matrix_values(&matrix_text) {
                 if values.len() >= 16 {
+                    // Convert from row-major (DAE format) to column-major (target format)
+                    // DAE stores matrices in row-major order: [m00, m01, m02, m03, m10, m11, m12, m13, ...]
+                    // Target format expects column-major order: [[col0], [col1], [col2], [col3]]
                     return [
-                        [values[0], values[1], values[2], values[3]],
-                        [values[4], values[5], values[6], values[7]],
-                        [values[8], values[9], values[10], values[11]],
-                        [values[12], values[13], values[14], values[15]],
+                        [values[0], values[4], values[8], values[12]],   // Column 0
+                        [values[1], values[5], values[9], values[13]],   // Column 1
+                        [values[2], values[6], values[10], values[14]],  // Column 2
+                        [values[3], values[7], values[11], values[15]],  // Column 3
                     ];
                 }
             }
@@ -1541,14 +1544,15 @@ fn parse_node_transform(node: &Element) -> [[f32; 4]; 4] {
         [0.0, 0.0, 0.0, 1.0],
     ];
     
-    // Apply translation
+    // Apply translation (using column-major format)
     if let Some(translate_elem) = find_child(node, "translate") {
         if let Some(translate_text) = get_element_text(translate_elem) {
             if let Ok(values) = parse_matrix_values(&translate_text) {
                 if values.len() >= 3 {
-                    transform[0][3] = values[0];
-                    transform[1][3] = values[1];
-                    transform[2][3] = values[2];
+                    // Store translation in the last column (column-major format)
+                    transform[3][0] = values[0];  // X translation
+                    transform[3][1] = values[1];  // Y translation
+                    transform[3][2] = values[2];  // Z translation
                 }
             }
         }
