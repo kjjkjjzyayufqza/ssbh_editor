@@ -89,7 +89,8 @@ fn build_intermediate_scene(
             .get(0)
             .and_then(|a| vector_data_to_vec2(&a.data).ok());
 
-        let influences: Vec<JsonBoneInfluence> = obj
+        // Build influences; include fallback for rigid objects parented to a bone.
+        let mut influences: Vec<JsonBoneInfluence> = obj
             .bone_influences
             .iter()
             .map(|bi| JsonBoneInfluence {
@@ -104,6 +105,19 @@ fn build_intermediate_scene(
                     .collect(),
             })
             .collect();
+
+        // If no per-vertex influences exist but the object is attached to a parent bone,
+        // treat the mesh as rigid skinned to that single bone so that DAE importers
+        // place it correctly relative to the skeleton.
+        if influences.is_empty() && !obj.parent_bone_name.is_empty() {
+            let vertex_count = positions.len() as u32;
+            influences.push(JsonBoneInfluence {
+                bone_name: obj.parent_bone_name.clone(),
+                vertex_weights: (0..vertex_count)
+                    .map(|i| JsonVertexWeight { vertex_index: i, vertex_weight: 1.0 })
+                    .collect(),
+            });
+        }
 
         meshes.push(JsonMeshObject {
             name: obj.name.clone(),
@@ -427,7 +441,7 @@ fn build_controller_element_json(
                                                        0.0, 0.0, 0.0, 1.0])));
     skin.children.push(XMLNode::Element(bsm));
 
-    // JOINTS source (names)
+    // JOINTS source (names). Use bone "sid" strings (original names) to align with node SIDs.
     let joint_names: Vec<String> = bones.iter().map(|b| b.name.clone()).collect();
     let joint_source_id = format!("{}-joints", ctrl_id);
     skin.children.push(XMLNode::Element(build_source_name_array(&joint_source_id, &joint_names)));
@@ -579,10 +593,42 @@ fn build_skeleton_node_recursive_json(
     node.attributes.insert("sid".to_string(), bone.name.clone());
     node.attributes.insert("type".to_string(), "JOINT".to_string());
 
-    let mut matrix = Element::new("matrix");
-    let row_major = mat4_to_row_major(&bone.transform);
-    matrix.children.push(XMLNode::Text(matrix_to_string(&row_major)));
-    node.children.push(XMLNode::Element(matrix));
+    // Prefer SRT decomposition to ensure DCCs like Maya populate translate/rotate/scale channels.
+    let m = glam::Mat4::from_cols_array_2d(&bone.transform);
+    let (s, r, t) = m.to_scale_rotation_translation();
+
+    // <translate>
+    let mut translate = Element::new("translate");
+    translate.children.push(XMLNode::Text(format!(
+        "{} {} {}",
+        format_float(t.x),
+        format_float(t.y),
+        format_float(t.z)
+    )));
+    node.children.push(XMLNode::Element(translate));
+
+    // <rotate> as axis-angle in degrees
+    let (axis, angle_rad) = r.to_axis_angle();
+    let angle_deg: f32 = angle_rad.to_degrees();
+    let mut rotate = Element::new("rotate");
+    rotate.children.push(XMLNode::Text(format!(
+        "{} {} {} {}",
+        format_float(axis.x),
+        format_float(axis.y),
+        format_float(axis.z),
+        format_float(angle_deg)
+    )));
+    node.children.push(XMLNode::Element(rotate));
+
+    // <scale>
+    let mut scale = Element::new("scale");
+    scale.children.push(XMLNode::Text(format!(
+        "{} {} {}",
+        format_float(s.x),
+        format_float(s.y),
+        format_float(s.z)
+    )));
+    node.children.push(XMLNode::Element(scale));
 
     if let Some(children) = children_map.get(&Some(bone_index)) {
         for &child_index in children {
@@ -618,13 +664,21 @@ fn compute_inverse_bind_matrices_from_json(bones: &[JsonBone]) -> Vec<[f32; 16]>
         calc(i, bones, &mut world, &mut calculated);
     }
 
+    // COLLADA skin sources are commonly interpreted as row-major float arrays by DCC tools like Maya.
+    // Convert each inverse bind matrix to row-major ordering when flattening.
+    fn col_major_to_row_major(c: &[f32; 16]) -> [f32; 16] {
+        [
+            c[0], c[4], c[8],  c[12],
+            c[1], c[5], c[9],  c[13],
+            c[2], c[6], c[10], c[14],
+            c[3], c[7], c[11], c[15],
+        ]
+    }
+
     world
         .iter()
-        .map(|m| {
-            let inv = m.inverse();
-            inv.to_cols_array()
-        })
-        .map(|col_major| col_major_to_row_major(&col_major))
+        .map(|m| m.inverse().to_cols_array())
+        .map(|c| col_major_to_row_major(&c))
         .collect()
 }
 
@@ -821,25 +875,7 @@ fn vector_data_to_vec2(data: &VectorData) -> Result<Vec<[f32; 2]>> {
 }
 
 
-fn mat4_to_row_major(m: &[[f32; 4]; 4]) -> [f32; 16] {
-    // Convert 4x4 column-major array_2d to row-major flat 16
-    let col_major = [
-        m[0][0], m[1][0], m[2][0], m[3][0],
-        m[0][1], m[1][1], m[2][1], m[3][1],
-        m[0][2], m[1][2], m[2][2], m[3][2],
-        m[0][3], m[1][3], m[2][3], m[3][3],
-    ];
-    col_major_to_row_major(&col_major)
-}
-
-fn col_major_to_row_major(c: &[f32; 16]) -> [f32; 16] {
-    [
-        c[0], c[4], c[8],  c[12],
-        c[1], c[5], c[9],  c[13],
-        c[2], c[6], c[10], c[14],
-        c[3], c[7], c[11], c[15],
-    ]
-}
+// Removed unused row/column-major conversion helpers after switching to column-major output.
 
 fn matrix_to_string(m: &[f32; 16]) -> String {
     m.iter().map(|v| format_float(*v)).collect::<Vec<_>>().join(" ")
