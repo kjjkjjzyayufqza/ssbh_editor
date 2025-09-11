@@ -356,6 +356,7 @@ pub struct SsbhApp {
     pub animation_gif_to_render: Option<PathBuf>,
     pub animation_image_sequence_to_render: Option<PathBuf>,
     pub export_gltf_path: Option<PathBuf>,
+    pub export_dae_path: Option<PathBuf>,
 
     pub scene_export_dialog: SceneExportDialogState,
     pub pending_scene_export: Option<(usize, SceneExportConfig)>, // (model_index, config)
@@ -934,6 +935,30 @@ impl SsbhApp {
                 error!("No models available to export");
             }
             self.export_gltf_path = None;
+        }
+
+        // Handle DAE export
+        if let Some(file) = &self.export_dae_path {
+            if let Some(selected_model) = self.ui_state.selected_folder_index
+                .and_then(|i| self.models.get(i))
+            {
+                let config = crate::export::dae::DaeExportConfig::default();
+                if let Err(e) = crate::export::dae::export_scene_to_dae(&selected_model.model, file, &config) {
+                    error!("Error exporting DAE to {file:?}: {e}");
+                } else {
+                    log::info!("Successfully exported scene to DAE: {file:?}");
+                }
+            } else if !self.models.is_empty() {
+                let config = crate::export::dae::DaeExportConfig::default();
+                if let Err(e) = crate::export::dae::export_scene_to_dae(&self.models[0].model, file, &config) {
+                    error!("Error exporting DAE to {file:?}: {e}");
+                } else {
+                    log::info!("Successfully exported scene to DAE: {file:?}");
+                }
+            } else {
+                error!("No models available to export");
+            }
+            self.export_dae_path = None;
         }
 
         // Handle NUMDLB scene export

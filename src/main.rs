@@ -232,6 +232,7 @@ fn create_app(
         animation_gif_to_render: None,
         animation_image_sequence_to_render: None,
         export_gltf_path: None,
+        export_dae_path: None,
         scene_export_dialog: SceneExportDialogState::default(),
         pending_scene_export: None,
         dae_convert_dialog: ssbh_editor::convert::dae::DaeConvertDialogState::default(),

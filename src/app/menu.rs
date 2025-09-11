@@ -103,6 +103,15 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
                     }
                 }
                 
+                if button(ui, "Export Scene to DAE...").clicked() {
+                    if let Some(file) = FileDialog::new()
+                        .add_filter("DAE", &["dae"])
+                        .save_file()
+                    {
+                        app.export_dae_path = Some(file);
+                    }
+                }
+                
                 ui.separator();
                 
                 if button(ui, "Export NUMDLB Scene...").clicked() {
