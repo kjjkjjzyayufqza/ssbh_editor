@@ -659,9 +659,12 @@ impl SsbhApp {
         self.animation_state
             .animations
             .extend(new_models.iter().enumerate().map(|(i, (_, model))| {
-                if let Some(anim_index) = model.anims.iter().position(|(f, _)| f == "model.nuanmb")
-                {
-                    // The model.nuanmb always plays, so assign it automatically.
+                // Try to find model.nuanmb first, then fall back to the first available animation
+                let anim_index = model.anims.iter().position(|(f, _)| f == "model.nuanmb")
+                    .or_else(|| model.anims.iter().position(|(_, anim)| anim.is_some()));
+
+                if let Some(anim_index) = anim_index {
+                    // The model.nuanmb or first available animation always plays, so assign it automatically.
                     vec![AnimationSlot {
                         is_enabled: true,
                         animation: Some(AnimationIndex {
@@ -1743,13 +1746,39 @@ fn find_file<'a, T>(files: &'a [(String, FileResult<T>)], name: &str) -> Option<
         .iter()
         .find(|(f, _)| f == name)
         .and_then(|(_, m)| m.as_ref())
+        .or_else(|| {
+            files
+                .iter()
+                .find_map(|(_, m)| m.as_ref())
+        })
 }
 
 fn find_file_mut<'a, T>(files: &'a mut [(String, FileResult<T>)], name: &str) -> Option<&'a mut T> {
-    files
-        .iter_mut()
-        .find(|(f, _)| f == name)
-        .and_then(|(_, m)| m.as_mut())
+    // First try to find the specific file by index
+    let mut target_index = None;
+    for i in 0..files.len() {
+        if files[i].0 == name {
+            target_index = Some(i);
+            break;
+        }
+    }
+
+    // If not found, find the first available file by index
+    if target_index.is_none() {
+        for i in 0..files.len() {
+            if files[i].1.is_some() {
+                target_index = Some(i);
+                break;
+            }
+        }
+    }
+
+    // Now borrow the target element
+    if let Some(index) = target_index {
+        files[index].1.as_mut()
+    } else {
+        None
+    }
 }
 
 pub fn warning_icon_text(name: &str) -> RichText {
