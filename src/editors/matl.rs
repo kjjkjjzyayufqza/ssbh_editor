@@ -69,6 +69,17 @@ pub fn matl_editor(
                 );
                 changed |= menu_changed;
                 saved |= menu_saved;
+                
+                // Add large reminder text
+                ui.horizontal(|ui| {
+                    ui.add_space(ui.available_width() * 0.1); // Center the text
+                    ui.label(
+                        RichText::new("TODO: The model's numatb needs to be converted through ssbh_lib")
+                            .size(24.0)
+                            .color(egui::Color32::RED)
+                            .strong()
+                    );
+                });
             });
 
             SidePanel::left("matl_left_panel")
