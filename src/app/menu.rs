@@ -81,6 +81,34 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
             if let Some(recent) = recent {
                 app.add_folder_to_workspace(Path::new(&recent), false);
             }
+
+            ui.separator();
+
+            if ui.button("Convert DAE to SSBH...").clicked() {
+                app.dae_convert_dialog.is_open = true;
+            }
+
+            ui.menu_button("Export", |ui| {
+                if button(ui, "Export Scene to GLTF...").clicked() {
+                    if let Some(file) = FileDialog::new().add_filter("GLTF", &["gltf"]).save_file()
+                    {
+                        app.export_gltf_path = Some(file);
+                    }
+                }
+
+                if button(ui, "Export Scene to DAE...").clicked() {
+                    if let Some(file) = FileDialog::new().add_filter("DAE", &["dae"]).save_file() {
+                        app.export_dae_path = Some(file);
+                    }
+                }
+
+                ui.separator();
+
+                if button(ui, "Export NUMDLB Scene...").clicked() {
+                    app.scene_export_dialog.is_open = true;
+                }
+            });
+
             ui.separator();
 
             if shortcut_button(ui, "Reload Workspace", &RELOAD_SHORTCUT).clicked() {
@@ -90,34 +118,6 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
             if button(ui, "Clear Workspace").clicked() {
                 app.clear_workspace();
             }
-
-            ui.separator();
-
-            ui.menu_button("Export", |ui| {
-                if button(ui, "Export Scene to GLTF...").clicked() {
-                    if let Some(file) = FileDialog::new()
-                        .add_filter("GLTF", &["gltf"])
-                        .save_file()
-                    {
-                        app.export_gltf_path = Some(file);
-                    }
-                }
-                
-                if button(ui, "Export Scene to DAE...").clicked() {
-                    if let Some(file) = FileDialog::new()
-                        .add_filter("DAE", &["dae"])
-                        .save_file()
-                    {
-                        app.export_dae_path = Some(file);
-                    }
-                }
-                
-                ui.separator();
-                
-                if button(ui, "Export NUMDLB Scene...").clicked() {
-                    app.scene_export_dialog.is_open = true;
-                }
-            });
         });
 
         // TODO: Add icons?
@@ -132,12 +132,6 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
 
             if ui.button("Material Presets").clicked() {
                 app.ui_state.preset_editor_open = true;
-            }
-
-            ui.separator();
-
-            if ui.button("Convert DAE to SSBH...").clicked() {
-                app.dae_convert_dialog.is_open = true;
             }
 
             ui.separator();
