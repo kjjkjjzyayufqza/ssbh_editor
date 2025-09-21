@@ -322,6 +322,13 @@ pub enum RenderAction {
     // TODO: thumbnails
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Default)]
+pub enum BatchExportType {
+    #[default]
+    Gltf,
+    Dae,
+}
+
 #[derive(Debug, PartialEq, Clone)]
 pub enum RenderModelAction {
     Update(usize),
@@ -452,7 +459,6 @@ pub fn plasma_colormap(ui: &mut Ui) -> Response {
     )
 }
 
-#[derive(Default)]
 pub struct UiState {
     // TODO: Allow more than one open editor of each type?
     pub material_editor_open: bool,
@@ -488,6 +494,53 @@ pub struct UiState {
     pub nutexb: NutexbViewerState,
     pub hlpb_editor: HlpbEditorState,
     pub mesh_editor: MeshEditorState,
+
+    // Batch export dialog state
+    pub batch_export_dialog_open: bool,
+    pub batch_export_type: BatchExportType,
+    pub batch_export_selected_models: Vec<bool>, // Checkbox state for each model
+    pub batch_export_base_path: Option<PathBuf>, // Base directory for export
+    pub batch_export_base_filename: String, // Base filename for export
+}
+
+impl Default for UiState {
+    fn default() -> Self {
+        Self {
+            material_editor_open: false,
+            render_settings_open: false,
+            camera_settings_open: false,
+            stage_lighting_open: false,
+            preset_editor_open: false,
+            right_panel_tab: PanelTab::Mesh,
+            log_window_open: false,
+            preferences_window_open: false,
+            device_info_window_open: false,
+            selected_folder_index: None,
+            open_skel: None,
+            open_hlpb: None,
+            open_matl: None,
+            open_modl: None,
+            open_mesh: None,
+            open_nutexb: None,
+            open_adj: None,
+            open_anim: None,
+            open_meshex: None,
+            matl_editor: Default::default(),
+            preset_editor: Default::default(),
+            anim_editor: Default::default(),
+            skel_editor: Default::default(),
+            modl_editor: Default::default(),
+            stage_lighting: Default::default(),
+            nutexb: Default::default(),
+            hlpb_editor: Default::default(),
+            mesh_editor: Default::default(),
+            batch_export_dialog_open: false,
+            batch_export_type: BatchExportType::Dae,
+            batch_export_selected_models: Vec::new(),
+            batch_export_base_path: None,
+            batch_export_base_filename: "scene".to_string(),
+        }
+    }
 }
 
 pub struct NutexbViewerState {
@@ -917,8 +970,12 @@ impl SsbhApp {
             render_state.update_clear_color(self.preferences.viewport_color);
         }
 
-        // Handle GLTF export
+        // Handle GLTF export (single model case)
         if let Some(file) = &self.export_gltf_path {
+            let models_with_mesh: Vec<_> = self.models.iter()
+                .filter(|m| !m.model.meshes.is_empty())
+                .collect();
+
             if let Some(selected_model) = self.ui_state.selected_folder_index
                 .and_then(|i| self.models.get(i))
                 .filter(|model| !model.model.meshes.is_empty())
@@ -930,7 +987,7 @@ impl SsbhApp {
                 }
             } else {
                 // Find the first model with mesh data
-                if let Some(model) = self.models.iter().find(|m| !m.model.meshes.is_empty()) {
+                if let Some(model) = models_with_mesh.first() {
                     if let Err(e) = crate::export::gltf::export_scene_to_gltf(&model.model, file) {
                         error!("Error exporting GLTF to {file:?}: {e}");
                     } else {
@@ -943,8 +1000,12 @@ impl SsbhApp {
             self.export_gltf_path = None;
         }
 
-        // Handle DAE export
+        // Handle DAE export (single model case)
         if let Some(file) = &self.export_dae_path {
+            let models_with_mesh: Vec<_> = self.models.iter()
+                .filter(|m| !m.model.meshes.is_empty())
+                .collect();
+
             if let Some(selected_model) = self.ui_state.selected_folder_index
                 .and_then(|i| self.models.get(i))
                 .filter(|model| !model.model.meshes.is_empty())
@@ -957,7 +1018,7 @@ impl SsbhApp {
                 }
             } else {
                 // Find the first model with mesh data
-                if let Some(model) = self.models.iter().find(|m| !m.model.meshes.is_empty()) {
+                if let Some(model) = models_with_mesh.first() {
                     let config = crate::export::dae::DaeExportConfig::default();
                     if let Err(e) = crate::export::dae::export_scene_to_dae(&model.model, file, &config) {
                         error!("Error exporting DAE to {file:?}: {e}");
@@ -1018,6 +1079,127 @@ impl SsbhApp {
                 }
             }
             self.pending_dae_convert = None;
+        }
+    }
+
+    fn show_batch_export_dialog(&mut self, ctx: &Context) {
+        if !self.ui_state.batch_export_dialog_open {
+            return;
+        }
+
+        let mut should_export = false;
+        let mut should_close = false;
+        let models_with_mesh: Vec<_> = self.models.iter()
+            .filter(|m| !m.model.meshes.is_empty())
+            .collect();
+
+        egui::Window::new("Batch Export")
+            .open(&mut self.ui_state.batch_export_dialog_open)
+            .show(ctx, |ui| {
+                ui.label("Select models to export:");
+
+                ui.separator();
+
+                // Output path selection
+                ui.horizontal(|ui| {
+                    ui.label("Output Directory:");
+                    if let Some(path) = &self.ui_state.batch_export_base_path {
+                        ui.label(path.display().to_string());
+                    } else {
+                        ui.label("(Not set)");
+                    }
+                    if ui.button("Browse...").clicked() {
+                        if let Some(folder) = rfd::FileDialog::new().pick_folder() {
+                            self.ui_state.batch_export_base_path = Some(folder);
+                        }
+                    }
+                });
+
+                // Filename input
+                ui.horizontal(|ui| {
+                    ui.label("Base Filename:");
+                    ui.text_edit_singleline(&mut self.ui_state.batch_export_base_filename);
+                });
+
+                ui.separator();
+
+                egui::ScrollArea::vertical().show(ui, |ui| {
+                    for (i, model) in models_with_mesh.iter().enumerate() {
+                        let folder_name = model.folder_path.file_name()
+                            .and_then(|n| n.to_str())
+                            .unwrap_or("model");
+
+                        let display_name = format!("Model {} ({})", i, folder_name);
+                        ui.checkbox(&mut self.ui_state.batch_export_selected_models[i], display_name);
+                    }
+                });
+
+                ui.separator();
+
+                ui.horizontal(|ui| {
+                    if ui.button("Export Selected").clicked() {
+                        if self.ui_state.batch_export_base_path.is_some() && !self.ui_state.batch_export_base_filename.is_empty() {
+                            should_export = true;
+                        }
+                    }
+
+                    if ui.button("Cancel").clicked() {
+                        should_close = true;
+                    }
+                });
+
+                // Validation messages
+                if self.ui_state.batch_export_base_path.is_none() {
+                    ui.colored_label(egui::Color32::RED, "Please select an output directory");
+                }
+                if self.ui_state.batch_export_base_filename.is_empty() {
+                    ui.colored_label(egui::Color32::RED, "Please enter a base filename");
+                }
+            });
+
+        if should_export {
+            self.perform_batch_export();
+            self.ui_state.batch_export_dialog_open = false;
+        } else if should_close {
+            self.ui_state.batch_export_dialog_open = false;
+        }
+    }
+
+    fn perform_batch_export(&mut self) {
+        if let Some(base_dir) = &self.ui_state.batch_export_base_path {
+            let models_with_mesh: Vec<_> = self.models.iter()
+                .filter(|m| !m.model.meshes.is_empty())
+                .collect();
+
+            let selected_indices: Vec<usize> = self.ui_state.batch_export_selected_models.iter()
+                .enumerate()
+                .filter(|(_, &selected)| selected)
+                .map(|(i, _)| i)
+                .collect();
+
+            for (export_index, &model_index) in selected_indices.iter().enumerate() {
+                if let Some(model) = models_with_mesh.get(model_index) {
+                    let extension = match self.ui_state.batch_export_type {
+                        BatchExportType::Gltf => "gltf",
+                        BatchExportType::Dae => "dae",
+                    };
+
+                    let export_path = base_dir.join(format!("{}_{}.{}", self.ui_state.batch_export_base_filename, export_index, extension));
+
+                    let result = match self.ui_state.batch_export_type {
+                        BatchExportType::Gltf => crate::export::gltf::export_scene_to_gltf(&model.model, &export_path),
+                        BatchExportType::Dae => {
+                            let config = crate::export::dae::DaeExportConfig::default();
+                            crate::export::dae::export_scene_to_dae(&model.model, &export_path, &config)
+                        }
+                    };
+
+                    match result {
+                        Ok(_) => log::info!("Successfully exported to {:?}", export_path),
+                        Err(e) => error!("Error exporting to {:?}: {}", export_path, e),
+                    }
+                }
+            }
         }
     }
 
@@ -1107,6 +1289,9 @@ impl SsbhApp {
                 self.pending_dae_convert = Some((dae_file.clone(), config));
             }
         }
+
+        // Show batch export dialog
+        self.show_batch_export_dialog(ctx);
     }
 }
 

@@ -90,15 +90,42 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
 
             ui.menu_button("Export", |ui| {
                 if button(ui, "Export Scene to GLTF...").clicked() {
-                    if let Some(file) = FileDialog::new().add_filter("GLTF", &["gltf"]).save_file()
-                    {
-                        app.export_gltf_path = Some(file);
+                    let models_with_mesh: Vec<_> = app.models.iter()
+                        .filter(|m| !m.model.meshes.is_empty())
+                        .collect();
+
+                    if models_with_mesh.len() > 1 {
+                        // Multiple models available, show batch export dialog
+                        app.ui_state.batch_export_dialog_open = true;
+                        app.ui_state.batch_export_type = super::BatchExportType::Gltf;
+                        app.ui_state.batch_export_selected_models = vec![true; models_with_mesh.len()];
+                        app.ui_state.batch_export_base_path = None; // Will be set in the dialog
+                        app.ui_state.batch_export_base_filename = "scene".to_string();
+                    } else {
+                        // Single model, show file dialog
+                        if let Some(file) = FileDialog::new().add_filter("GLTF", &["gltf"]).save_file() {
+                            app.export_gltf_path = Some(file);
+                        }
                     }
                 }
 
                 if button(ui, "Export Scene to DAE...").clicked() {
-                    if let Some(file) = FileDialog::new().add_filter("DAE", &["dae"]).save_file() {
-                        app.export_dae_path = Some(file);
+                    let models_with_mesh: Vec<_> = app.models.iter()
+                        .filter(|m| !m.model.meshes.is_empty())
+                        .collect();
+
+                    if models_with_mesh.len() > 1 {
+                        // Multiple models available, show batch export dialog
+                        app.ui_state.batch_export_dialog_open = true;
+                        app.ui_state.batch_export_type = super::BatchExportType::Dae;
+                        app.ui_state.batch_export_selected_models = vec![true; models_with_mesh.len()];
+                        app.ui_state.batch_export_base_path = None; // Will be set in the dialog
+                        app.ui_state.batch_export_base_filename = "scene".to_string();
+                    } else {
+                        // Single model, show file dialog
+                        if let Some(file) = FileDialog::new().add_filter("DAE", &["dae"]).save_file() {
+                            app.export_dae_path = Some(file);
+                        }
                     }
                 }
 
