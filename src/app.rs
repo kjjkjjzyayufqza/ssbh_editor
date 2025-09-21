@@ -921,21 +921,24 @@ impl SsbhApp {
         if let Some(file) = &self.export_gltf_path {
             if let Some(selected_model) = self.ui_state.selected_folder_index
                 .and_then(|i| self.models.get(i))
+                .filter(|model| !model.model.meshes.is_empty())
             {
                 if let Err(e) = crate::export::gltf::export_scene_to_gltf(&selected_model.model, file) {
                     error!("Error exporting GLTF to {file:?}: {e}");
                 } else {
                     log::info!("Successfully exported scene to GLTF: {file:?}");
                 }
-            } else if !self.models.is_empty() {
-                // If no model is selected, export the first one
-                if let Err(e) = crate::export::gltf::export_scene_to_gltf(&self.models[0].model, file) {
-                    error!("Error exporting GLTF to {file:?}: {e}");
-                } else {
-                    log::info!("Successfully exported scene to GLTF: {file:?}");
-                }
             } else {
-                error!("No models available to export");
+                // Find the first model with mesh data
+                if let Some(model) = self.models.iter().find(|m| !m.model.meshes.is_empty()) {
+                    if let Err(e) = crate::export::gltf::export_scene_to_gltf(&model.model, file) {
+                        error!("Error exporting GLTF to {file:?}: {e}");
+                    } else {
+                        log::info!("Successfully exported scene to GLTF: {file:?}");
+                    }
+                } else {
+                    error!("No models with mesh data available to export");
+                }
             }
             self.export_gltf_path = None;
         }
@@ -944,6 +947,7 @@ impl SsbhApp {
         if let Some(file) = &self.export_dae_path {
             if let Some(selected_model) = self.ui_state.selected_folder_index
                 .and_then(|i| self.models.get(i))
+                .filter(|model| !model.model.meshes.is_empty())
             {
                 let config = crate::export::dae::DaeExportConfig::default();
                 if let Err(e) = crate::export::dae::export_scene_to_dae(&selected_model.model, file, &config) {
@@ -951,15 +955,18 @@ impl SsbhApp {
                 } else {
                     log::info!("Successfully exported scene to DAE: {file:?}");
                 }
-            } else if !self.models.is_empty() {
-                let config = crate::export::dae::DaeExportConfig::default();
-                if let Err(e) = crate::export::dae::export_scene_to_dae(&self.models[0].model, file, &config) {
-                    error!("Error exporting DAE to {file:?}: {e}");
-                } else {
-                    log::info!("Successfully exported scene to DAE: {file:?}");
-                }
             } else {
-                error!("No models available to export");
+                // Find the first model with mesh data
+                if let Some(model) = self.models.iter().find(|m| !m.model.meshes.is_empty()) {
+                    let config = crate::export::dae::DaeExportConfig::default();
+                    if let Err(e) = crate::export::dae::export_scene_to_dae(&model.model, file, &config) {
+                        error!("Error exporting DAE to {file:?}: {e}");
+                    } else {
+                        log::info!("Successfully exported scene to DAE: {file:?}");
+                    }
+                } else {
+                    error!("No models with mesh data available to export");
+                }
             }
             self.export_dae_path = None;
         }
