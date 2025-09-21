@@ -176,7 +176,7 @@ fn convert_meshes_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resu
             println!("Mesh '{}': No UVs found, generating default UVs.", dae_mesh.name);
             generate_default_uvs(vertex_count)
         };
-        println!("uvs: {:?}", uvs[0]);
+        // println!("uvs: {:?}", uvs[0]);
         
         // Generate binormals and tangents based on vertex positions (required for SSBH format)
         let (binormals, tangents) = generate_binormals_and_tangents(&vertices, &normals);
