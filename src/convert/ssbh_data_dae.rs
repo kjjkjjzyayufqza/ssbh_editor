@@ -288,7 +288,7 @@ fn convert_model_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resul
         
         let entry = ModlEntryData {
             mesh_object_name: mesh.name.clone(),
-            mesh_object_subindex: mesh_index as u64,
+            mesh_object_subindex: 0, // for vs2 format, all meshes is 0
             material_label,
         };
         entries.push(entry);
@@ -308,7 +308,7 @@ fn convert_model_to_ssbh(meshes: &[DaeMesh], config: &DaeConvertConfig) -> Resul
 }
 
 /// Convert skeleton data from DAE bone hierarchy or mesh influences
-fn convert_skeleton_from_dae(dae_bones: &[DaeBone], meshes: &[DaeMesh], _config: &DaeConvertConfig) -> Result<SkelData> {
+fn convert_skeleton_from_dae(dae_bones: &[DaeBone], meshes: &[DaeMesh], config: &DaeConvertConfig) -> Result<SkelData> {
     let mut bones = Vec::new();
     
     if !dae_bones.is_empty() {
@@ -357,23 +357,6 @@ fn convert_skeleton_from_dae(dae_bones: &[DaeBone], meshes: &[DaeMesh], _config:
         }
         
         log::warn!("No bone hierarchy found in DAE, falling back to mesh influences: {} bones", bones.len());
-    }
-    
-    // If still no bones found, create a default root bone
-    if bones.is_empty() {
-        let root_bone = BoneData {
-            name: "Root".to_string(),
-            transform: [
-                [1.0, 0.0, 0.0, 0.0],
-                [0.0, 1.0, 0.0, 0.0],
-                [0.0, 0.0, 1.0, 0.0],
-                [0.0, 0.0, 0.0, 1.0],
-            ],
-            parent_index: None,
-            billboard_type: BillboardType::Disabled,
-        };
-        bones.push(root_bone);
-        log::info!("No bones found anywhere, created default root bone");
     }
     
     Ok(SkelData {
