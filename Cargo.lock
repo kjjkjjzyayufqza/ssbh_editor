@@ -3106,8 +3106,7 @@ dependencies = [
 [[package]]
 name = "nutexb"
 version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d4b1f32aa48bc74ec799cd2ecdd811984d3ee2caf5bbb07f2f0026771a3a0862"
+source = "git+https://github.com/kjjkjjzyayufqza/nutexb#35c2cdaaff9c211f146df9ece0235db15968b6bc"
 dependencies = [
  "binrw 0.13.3",
  "tegra_swizzle",
@@ -3116,19 +3115,6 @@ dependencies = [
 [[package]]
 name = "nutexb_wgpu"
 version = "0.1.0"
-dependencies = [
- "bytemuck",
- "log",
- "nutexb",
- "thiserror 1.0.69",
- "wgpu",
- "wgsl_to_wgpu",
-]
-
-[[package]]
-name = "nutexb_wgpu"
-version = "0.1.0"
-source = "git+https://github.com/ScanMountGoat/ssbh_wgpu#6a74ec8f96ac5ca2a061d08356924a9e2ee2a23b"
 dependencies = [
  "bytemuck",
  "log",
@@ -4789,7 +4775,7 @@ dependencies = [
  "image",
  "log",
  "nutexb",
- "nutexb_wgpu 0.1.0 (git+https://github.com/ScanMountGoat/ssbh_wgpu)",
+ "nutexb_wgpu",
  "octocrab",
  "once_cell",
  "open",
@@ -4833,7 +4819,7 @@ dependencies = [
  "image",
  "indexmap 1.9.3",
  "log",
- "nutexb_wgpu 0.1.0",
+ "nutexb_wgpu",
  "prc-rs",
  "rayon",
  "serde_json",

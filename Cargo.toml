@@ -18,11 +18,11 @@ wgpu = "25.0.0"
 glam = { version = "0.28.0", features = ["mint", "bytemuck", "serde"] }
 rfd = "0.14.1"
 ssbh_wgpu =  { path = "E:/research/ssbh_wgpu/ssbh_wgpu" }
-nutexb_wgpu = { git = "https://github.com/ScanMountGoat/ssbh_wgpu" }
+nutexb_wgpu = { path = "E:/research/ssbh_wgpu/nutexb_wgpu" }
 ssbh_data = { path = "E:/research/ssbh_lib/ssbh_data", features = ["strum", "serde"] }
 ssbh_lib = { path = "E:/research/ssbh_lib/ssbh_lib" }
 strum = "0.24.1"
-nutexb = "0.7.0"
+nutexb = { git = "https://github.com/kjjkjjzyayufqza/nutexb" }
 octocrab = "0.43.0"
 tokio = { version = "1", features = ["rt", "rt-multi-thread"] }
 open = "5.2.0"
