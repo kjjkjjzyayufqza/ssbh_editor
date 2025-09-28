@@ -1093,8 +1093,14 @@ impl SsbhApp {
             .filter(|m| !m.model.meshes.is_empty())
             .collect();
 
+        let window_height = (ctx.screen_rect().height() * 0.8).min(600.0);
+        let content_height = window_height - 200.0; // Reserve space for header, footer and margins
+
         egui::Window::new("Batch Export")
             .open(&mut self.ui_state.batch_export_dialog_open)
+            .default_height(window_height)
+            .max_height(window_height)
+            .default_width(500.0)
             .show(ctx, |ui| {
                 ui.label("Select models to export:");
 
@@ -1123,14 +1129,35 @@ impl SsbhApp {
 
                 ui.separator();
 
-                egui::ScrollArea::vertical().show(ui, |ui| {
-                    for (i, model) in models_with_mesh.iter().enumerate() {
-                        let folder_name = model.folder_path.file_name()
-                            .and_then(|n| n.to_str())
-                            .unwrap_or("model");
+                // Model selection with fixed height scroll area
+                ui.label(format!("Available models: {}", models_with_mesh.len()));
+                egui::ScrollArea::vertical()
+                    .max_height(content_height)
+                    .auto_shrink([false, false])
+                    .show(ui, |ui| {
+                        for (i, model) in models_with_mesh.iter().enumerate() {
+                            let folder_name = model.folder_path.file_name()
+                                .and_then(|n| n.to_str())
+                                .unwrap_or("model");
 
-                        let display_name = format!("Model {} ({})", i, folder_name);
-                        ui.checkbox(&mut self.ui_state.batch_export_selected_models[i], display_name);
+                            let display_name = format!("Model {} ({})", i, folder_name);
+                            ui.checkbox(&mut self.ui_state.batch_export_selected_models[i], display_name);
+                        }
+                    });
+
+                ui.separator();
+
+                // Select All / Deselect All buttons
+                ui.horizontal(|ui| {
+                    if ui.button("Select All").clicked() {
+                        for selected in &mut self.ui_state.batch_export_selected_models {
+                            *selected = true;
+                        }
+                    }
+                    if ui.button("Deselect All").clicked() {
+                        for selected in &mut self.ui_state.batch_export_selected_models {
+                            *selected = false;
+                        }
                     }
                 });
 
