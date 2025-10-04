@@ -3114,12 +3114,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "nutexb"
+version = "0.7.0"
+source = "git+https://github.com/kjjkjjzyayufqza/nutexb#35c2cdaaff9c211f146df9ece0235db15968b6bc"
+dependencies = [
+ "binrw 0.13.3",
+ "tegra_swizzle",
+]
+
+[[package]]
 name = "nutexb_wgpu"
 version = "0.1.0"
 dependencies = [
  "bytemuck",
  "log",
- "nutexb",
+ "nutexb 0.7.0 (git+https://github.com/kjjkjjzyayufqza/nutexb)",
  "thiserror 1.0.69",
  "wgpu",
  "wgsl_to_wgpu",
@@ -3132,7 +3141,7 @@ source = "git+https://github.com/ScanMountGoat/ssbh_wgpu#6a74ec8f96ac5ca2a061d08
 dependencies = [
  "bytemuck",
  "log",
- "nutexb",
+ "nutexb 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "thiserror 1.0.69",
  "wgpu",
  "wgsl_to_wgpu",
@@ -4788,7 +4797,7 @@ dependencies = [
  "gltf-json",
  "image",
  "log",
- "nutexb",
+ "nutexb 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "nutexb_wgpu 0.1.0 (git+https://github.com/ScanMountGoat/ssbh_wgpu)",
  "octocrab",
  "once_cell",
