@@ -163,7 +163,7 @@ class NuanmbToMayaConverter:
                     attribute_name=attr,
                     object_name=bone_name,
                     input_type=0,
-                    output_type=1,  # Angular
+                    output_type=0,  # Use 0 to match reference file structure, rely on writer for text output
                     index=curve_index,
                     keys=keys
                 )
@@ -230,7 +230,7 @@ class NuanmbToMayaConverter:
     
     def _create_rotation_keys(self, track: Track, final_frame: float) -> Dict[str, List[MayaKeyframe]]:
         """
-        Create rotation keyframes (convert quaternion to Euler).
+        Create rotation keyframes (convert quaternion to Euler) with continuity correction.
         
         Args:
             track: Animation track
@@ -239,9 +239,22 @@ class NuanmbToMayaConverter:
         Returns:
             Dictionary mapping axis ('x', 'y', 'z') to keyframe lists (without duplicates)
         """
+        
+        def _correct_rotation_winding(current: float, previous: float) -> float:
+            """Adjusts current rotation value to maintain continuity relative to previous value."""
+            # Correct rotation winding to ensure smooth curve (minimal 360 degree difference)
+            while current - previous > 180.0:
+                current -= 360.0
+            while current - previous < -180.0:
+                current += 360.0
+            return current
+
         euler_keys = {'x': [], 'y': [], 'z': []}
         values = track.values
         last_maya_frame = -1
+        
+        # Track previous Euler angles for continuity
+        prev_euler_x, prev_euler_y, prev_euler_z = 0.0, 0.0, 0.0
         
         for frame_idx, transform in enumerate(values):
             # Convert frame from 60fps to Maya fps
@@ -255,6 +268,15 @@ class NuanmbToMayaConverter:
             
             # Convert quaternion to Euler angles (in degrees)
             euler = quat_to_euler(transform.rotation, order='XYZ')
+            
+            # Apply continuity correction relative to the previous frame's stored value
+            if frame_idx > 0:
+                euler.x = _correct_rotation_winding(euler.x, prev_euler_x)
+                euler.y = _correct_rotation_winding(euler.y, prev_euler_y)
+                euler.z = _correct_rotation_winding(euler.z, prev_euler_z)
+            
+            # Update previous Euler angles for the next iteration
+            prev_euler_x, prev_euler_y, prev_euler_z = euler.x, euler.y, euler.z
             
             euler_keys['x'].append(MayaKeyframe(frame=maya_frame, value=euler.x))
             euler_keys['y'].append(MayaKeyframe(frame=maya_frame, value=euler.y))
@@ -303,4 +325,3 @@ class NuanmbToMayaConverter:
             ))
         
         return keys
-

@@ -1,0 +1,7 @@
+*.pyc
+*.sh
+*.bat
+test/temp.zip
+test/*.zip
+__pycache__
+.vscode/*

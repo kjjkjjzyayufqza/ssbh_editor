@@ -88,13 +88,15 @@ class MayaAnimWriter:
         f.write("animData {\n")
         f.write("  input time;\n")
         
-        # Output type determines the output value type
-        if curve.output_type == 1:
-            f.write("  output angular;\n")
-        elif curve.output_type == 0:
-            f.write("  output linear;\n")
-        else:
-            f.write("  output unitless;\n")
+        # Output type text is determined by the attribute path based on Maya conventions
+        output_type_text = "unitless"
+        if "rotate" in curve.attribute_path:
+            output_type_text = "angular"
+        elif "translate" in curve.attribute_path:
+            output_type_text = "linear"
+        # If not rotate or translate, keep as "unitless" (for scale and others)
+        
+        f.write(f"  output {output_type_text};\n")
         
         f.write("  weighted 0;\n")
         f.write("  preInfinity constant;\n")
@@ -167,4 +169,3 @@ class MayaAnimWriter:
             return (0, 1)
         
         return (int(min_frame), int(max_frame))
-

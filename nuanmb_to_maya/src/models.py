@@ -93,10 +93,10 @@ class MayaKeyframe:
     """Single keyframe in Maya animation curve"""
     frame: int
     value: float
-    in_tangent: str = "fixed"
-    out_tangent: str = "fixed"
+    in_tangent: str = "auto"
+    out_tangent: str = "auto"
     lock: int = 1
-    weight_lock: int = 1
+    weight_lock: int = 0 # Match working example.anim format
     breakdown: int = 0
 
 
@@ -110,4 +110,3 @@ class MayaAnimCurve:
     output_type: int         # 1 = angular, 2 = linear
     index: int               # Curve index
     keys: List[MayaKeyframe]
-
