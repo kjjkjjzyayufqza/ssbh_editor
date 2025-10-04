@@ -14,7 +14,6 @@ use nutexb_wgpu::TextureRenderer;
 use ssbh_editor::{
     AnimationState, CameraState, RenderState, SwingState,
     app::{RenderAction, SsbhApp, UiState},
-    export::numdlb_scene::SceneExportDialogState,
     checkerboard_texture, default_fonts, default_text_styles,
     material::load_material_presets,
     path::{PROJECT_DIR, presets_file},
@@ -75,7 +74,7 @@ fn main() {
             renderer: eframe::Renderer::Wgpu,
             viewport: ViewportBuilder::default()
                 .with_icon(icon)
-                .with_inner_size([1620.0, 880.0]),
+                .with_inner_size([1280.0, 720.0]),
             wgpu_options: WgpuConfiguration {
                 wgpu_setup: WgpuSetup::CreateNew(WgpuSetupCreateNew {
                     instance_descriptor: wgpu::InstanceDescriptor {
@@ -211,7 +210,7 @@ fn create_app(
     SsbhApp {
         models: Vec::new(),
         default_thumbnails,
-        render_actions: [RenderAction::UpdateClearColor, RenderAction::UpdateRenderSettings].into(),
+        render_actions: [RenderAction::UpdateClearColor].into(),
         release_info,
         should_validate_models: false,
         should_update_thumbnails: false,
@@ -232,11 +231,6 @@ fn create_app(
         screenshot_to_render: None,
         animation_gif_to_render: None,
         animation_image_sequence_to_render: None,
-        export_gltf_path: None,
-        scene_export_dialog: SceneExportDialogState::default(),
-        pending_scene_export: None,
-        dae_convert_dialog: ssbh_editor::convert::dae::DaeConvertDialogState::default(),
-        pending_dae_convert: None,
         markdown_cache: CommonMarkCache::default(),
         previous_viewport_width: 512.0,
         previous_viewport_height: 512.0,

@@ -17,10 +17,9 @@ egui_commonmark = "0.21.0"
 wgpu = "25.0.0"
 glam = { version = "0.28.0", features = ["mint", "bytemuck", "serde"] }
 rfd = "0.14.1"
-ssbh_wgpu =  { path = "E:/research/ssbh_wgpu/ssbh_wgpu" }
+ssbh_wgpu = { git = "https://github.com/ScanMountGoat/ssbh_wgpu" }
 nutexb_wgpu = { git = "https://github.com/ScanMountGoat/ssbh_wgpu" }
-ssbh_data = { path = "E:/research/ssbh_lib/ssbh_data", features = ["strum", "serde"] }
-ssbh_lib = { path = "E:/research/ssbh_lib/ssbh_lib" }
+ssbh_data = { version = "0.19.0", features = ["strum", "serde"] }
 strum = "0.24.1"
 nutexb = "0.7.0"
 octocrab = "0.43.0"
@@ -36,19 +35,11 @@ serde = { version = "1.0", features = ["derive"] }
 xmltree = "0.10.3"
 anyhow = "1.0"
 thiserror = "1.0"
-
 futures-intrusive = "0.4.0" # TODO: Avoid these dependencies?
 futures = "0.3"
 pico-args = "0.5.0"
 reqwest = { version = "0.12.5", features = ["blocking"] }
 approx = "0.5.1"
-gltf = "1.4.1"
-gltf-json = "1.4.1"
-
-[patch.crates-io]
-ssbh_data = { path = "E:/research/ssbh_lib/ssbh_data" }
-ssbh_lib = { path = "E:/research/ssbh_lib/ssbh_lib" }
-ssbh_write = { path = "E:/research/ssbh_lib/ssbh_write" }
 
 [profile.release-lto]
 inherits = "release"
