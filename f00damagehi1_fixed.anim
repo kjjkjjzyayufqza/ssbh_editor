@@ -45,12 +45,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ArmL 0 0 3;
@@ -77,12 +77,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 19.978356167487455 auto auto 1 0 0;
-    1 7.166863934402572 auto auto 1 0 0;
-    2 6.930251587499857 auto auto 1 0 0;
-    3 8.875632058953551 auto auto 1 0 0;
-    4 5.509664370790164 auto auto 1 0 0;
-    5 -0.05085392743585011 auto auto 1 0 0;
+    0 80.11939659117016 auto auto 1 0 0;
+    1 20.044656143608577 auto auto 1 0 0;
+    2 34.4721875414531 auto auto 1 0 0;
+    3 47.725649807248494 auto auto 1 0 0;
+    4 50.77177617654124 auto auto 1 0 0;
+    5 42.383206080965444 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ArmL 0 0 5;
@@ -93,12 +93,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 80.11939659117016 auto auto 1 0 0;
-    1 20.044656143608577 auto auto 1 0 0;
-    2 34.4721875414531 auto auto 1 0 0;
-    3 47.725649807248494 auto auto 1 0 0;
-    4 50.77177617654124 auto auto 1 0 0;
-    5 42.383206080965444 auto auto 1 0 0;
+    0 -19.978356167487455 auto auto 1 0 0;
+    1 -7.166863934402572 auto auto 1 0 0;
+    2 -6.930251587499857 auto auto 1 0 0;
+    3 -8.875632058953551 auto auto 1 0 0;
+    4 -5.509664370790164 auto auto 1 0 0;
+    5 0.05085392743585011 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ArmL 0 0 6;
@@ -189,12 +189,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ArmR 0 0 3;
@@ -221,12 +221,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -12.031136474251674 auto auto 1 0 0;
-    1 6.314168983404254 auto auto 1 0 0;
-    2 -6.305294258239205 auto auto 1 0 0;
-    3 -9.386681883204133 auto auto 1 0 0;
-    4 -2.778520023732996 auto auto 1 0 0;
-    5 1.7474764471633144 auto auto 1 0 0;
+    0 97.27934797688654 auto auto 1 0 0;
+    1 102.78107322881375 auto auto 1 0 0;
+    2 120.64839940254026 auto auto 1 0 0;
+    3 104.83428934758739 auto auto 1 0 0;
+    4 60.93895025264752 auto auto 1 0 0;
+    5 48.91675497423923 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ArmR 0 0 5;
@@ -237,12 +237,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 97.27934797688654 auto auto 1 0 0;
-    1 102.78107322881375 auto auto 1 0 0;
-    2 120.64839940254026 auto auto 1 0 0;
-    3 104.83428934758739 auto auto 1 0 0;
-    4 60.93895025264752 auto auto 1 0 0;
-    5 48.91675497423923 auto auto 1 0 0;
+    0 12.031136474251674 auto auto 1 0 0;
+    1 -6.314168983404254 auto auto 1 0 0;
+    2 6.305294258239205 auto auto 1 0 0;
+    3 9.386681883204133 auto auto 1 0 0;
+    4 2.778520023732996 auto auto 1 0 0;
+    5 -1.7474764471633144 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ArmR 0 0 6;
@@ -333,12 +333,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Bust 0 0 3;
@@ -365,12 +365,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 17.01662686065569 auto auto 1 0 0;
-    1 15.238939130101798 auto auto 1 0 0;
-    2 4.2224315157441685 auto auto 1 0 0;
-    3 -1.0139870475588113 auto auto 1 0 0;
-    4 -1.3945509887697758 auto auto 1 0 0;
-    5 -0.09505538667692853 auto auto 1 0 0;
+    0 13.275225418135257 auto auto 1 0 0;
+    1 -17.344746381798426 auto auto 1 0 0;
+    2 1.0653854003900443 auto auto 1 0 0;
+    3 8.152852741541729 auto auto 1 0 0;
+    4 2.594520958328777 auto auto 1 0 0;
+    5 -4.162173941052557 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Bust 0 0 5;
@@ -381,12 +381,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 13.275225418135257 auto auto 1 0 0;
-    1 -17.344746381798426 auto auto 1 0 0;
-    2 1.0653854003900443 auto auto 1 0 0;
-    3 8.152852741541729 auto auto 1 0 0;
-    4 2.594520958328777 auto auto 1 0 0;
-    5 -4.162173941052557 auto auto 1 0 0;
+    0 -17.01662686065569 auto auto 1 0 0;
+    1 -15.238939130101798 auto auto 1 0 0;
+    2 -4.2224315157441685 auto auto 1 0 0;
+    3 1.0139870475588113 auto auto 1 0 0;
+    4 1.3945509887697758 auto auto 1 0 0;
+    5 0.09505538667692853 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Bust 0 0 6;
@@ -467,7 +467,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ClavicleC 0 0 3;
@@ -489,7 +489,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ClavicleC 0 0 5;
@@ -555,7 +555,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 0.6 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ ClavicleL 0 0 2;
@@ -566,7 +566,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.6 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ClavicleL 0 0 3;
@@ -588,7 +588,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -89.99991897149933 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ClavicleL 0 0 5;
@@ -599,7 +599,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 89.99991897149933 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ClavicleL 0 0 6;
@@ -654,7 +654,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.6 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ ClavicleR 0 0 2;
@@ -665,7 +665,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.6 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ClavicleR 0 0 3;
@@ -687,7 +687,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 89.99991897149933 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ClavicleR 0 0 5;
@@ -698,7 +698,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -89.99991897149933 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ClavicleR 0 0 6;
@@ -764,7 +764,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX DownlipC 0 0 3;
@@ -786,7 +786,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ DownlipC 0 0 5;
@@ -863,7 +863,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX DownlipL 0 0 3;
@@ -885,7 +885,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ DownlipL 0 0 5;
@@ -962,7 +962,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX DownlipR 0 0 3;
@@ -984,7 +984,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ DownlipR 0 0 5;
@@ -1050,7 +1050,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.573253 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ Face 0 0 2;
@@ -1061,7 +1061,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 0.573253 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Face 0 0 3;
@@ -1083,7 +1083,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -69.04242724190746 auto auto 1 0 0;
+    0 89.9998716165664 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Face 0 0 5;
@@ -1094,7 +1094,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 89.9998716165664 auto auto 1 0 0;
+    0 69.04242724190746 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Face 0 0 6;
@@ -1149,7 +1149,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.00548211 auto auto 1 0 0;
+    0 -0.379398 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL10 0 0 2;
@@ -1160,7 +1160,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.379398 auto auto 1 0 0;
+    0 -0.00548211 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL10 0 0 3;
@@ -1182,7 +1182,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL10 0 0 5;
@@ -1253,12 +1253,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.361425 auto auto 1 0 0;
-    1 -0.361425 auto auto 1 0 0;
-    2 -0.361425 auto auto 1 0 0;
-    3 -0.361425 auto auto 1 0 0;
-    4 -0.361425 auto auto 1 0 0;
-    5 -0.361425 auto auto 1 0 0;
+    0 -0.386431 auto auto 1 0 0;
+    1 -0.386431 auto auto 1 0 0;
+    2 -0.386431 auto auto 1 0 0;
+    3 -0.386431 auto auto 1 0 0;
+    4 -0.386431 auto auto 1 0 0;
+    5 -0.386431 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL11 0 0 2;
@@ -1269,12 +1269,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.386431 auto auto 1 0 0;
-    1 -0.386431 auto auto 1 0 0;
-    2 -0.386431 auto auto 1 0 0;
-    3 -0.386431 auto auto 1 0 0;
-    4 -0.386431 auto auto 1 0 0;
-    5 -0.386431 auto auto 1 0 0;
+    0 0.361425 auto auto 1 0 0;
+    1 0.361425 auto auto 1 0 0;
+    2 0.361425 auto auto 1 0 0;
+    3 0.361425 auto auto 1 0 0;
+    4 0.361425 auto auto 1 0 0;
+    5 0.361425 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL11 0 0 3;
@@ -1301,12 +1301,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.7517789540691918 auto auto 1 0 0;
-    1 12.371491989240043 auto auto 1 0 0;
-    2 12.246319914247545 auto auto 1 0 0;
-    3 12.070871880778373 auto auto 1 0 0;
-    4 11.828642256134161 auto auto 1 0 0;
-    5 11.452218473550463 auto auto 1 0 0;
+    0 54.06002239036075 auto auto 1 0 0;
+    1 22.50740358483429 auto auto 1 0 0;
+    2 23.094349231866808 auto auto 1 0 0;
+    3 19.706423619566745 auto auto 1 0 0;
+    4 12.31608062347302 auto auto 1 0 0;
+    5 3.951984945264371 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL11 0 0 5;
@@ -1317,12 +1317,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 54.06002239036075 auto auto 1 0 0;
-    1 22.50740358483429 auto auto 1 0 0;
-    2 23.094349231866808 auto auto 1 0 0;
-    3 19.706423619566745 auto auto 1 0 0;
-    4 12.31608062347302 auto auto 1 0 0;
-    5 3.951984945264371 auto auto 1 0 0;
+    0 0.7517789540691918 auto auto 1 0 0;
+    1 -12.371491989240043 auto auto 1 0 0;
+    2 -12.246319914247545 auto auto 1 0 0;
+    3 -12.070871880778373 auto auto 1 0 0;
+    4 -11.828642256134161 auto auto 1 0 0;
+    5 -11.452218473550463 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL11 0 0 6;
@@ -1413,12 +1413,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL12 0 0 3;
@@ -1445,12 +1445,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 100.43732453402869 auto auto 1 0 0;
+    1 28.113334181177635 auto auto 1 0 0;
+    2 28.71748504180944 auto auto 1 0 0;
+    3 25.179459135448397 auto auto 1 0 0;
+    4 17.39358388043263 auto auto 1 0 0;
+    5 9.096684529585268 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL12 0 0 5;
@@ -1461,12 +1461,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 100.43732453402869 auto auto 1 0 0;
-    1 28.113334181177635 auto auto 1 0 0;
-    2 28.71748504180944 auto auto 1 0 0;
-    3 25.179459135448397 auto auto 1 0 0;
-    4 17.39358388043263 auto auto 1 0 0;
-    5 9.096684529585268 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL12 0 0 6;
@@ -1557,12 +1557,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL13 0 0 3;
@@ -1589,12 +1589,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 25.109331828305347 auto auto 1 0 0;
+    1 7.0282563468498145 auto auto 1 0 0;
+    2 7.179136170021986 auto auto 1 0 0;
+    3 6.294787367173214 auto auto 1 0 0;
+    4 4.348805552536146 auto auto 1 0 0;
+    5 2.274184405310151 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL13 0 0 5;
@@ -1605,12 +1605,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 25.109331828305347 auto auto 1 0 0;
-    1 7.0282563468498145 auto auto 1 0 0;
-    2 7.179136170021986 auto auto 1 0 0;
-    3 6.294787367173214 auto auto 1 0 0;
-    4 4.348805552536146 auto auto 1 0 0;
-    5 2.274184405310151 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL13 0 0 6;
@@ -1680,7 +1680,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 0.340058 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL20 0 0 2;
@@ -1691,7 +1691,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.340058 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL20 0 0 3;
@@ -1713,7 +1713,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL20 0 0 5;
@@ -1784,12 +1784,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.439024 auto auto 1 0 0;
-    1 -0.439024 auto auto 1 0 0;
-    2 -0.439024 auto auto 1 0 0;
-    3 -0.439024 auto auto 1 0 0;
-    4 -0.439024 auto auto 1 0 0;
-    5 -0.439024 auto auto 1 0 0;
+    0 -0.0516182 auto auto 1 0 0;
+    1 -0.0516182 auto auto 1 0 0;
+    2 -0.0516182 auto auto 1 0 0;
+    3 -0.0516182 auto auto 1 0 0;
+    4 -0.0516182 auto auto 1 0 0;
+    5 -0.0516182 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL21 0 0 2;
@@ -1800,12 +1800,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0516182 auto auto 1 0 0;
-    1 -0.0516182 auto auto 1 0 0;
-    2 -0.0516182 auto auto 1 0 0;
-    3 -0.0516182 auto auto 1 0 0;
-    4 -0.0516182 auto auto 1 0 0;
-    5 -0.0516182 auto auto 1 0 0;
+    0 0.439024 auto auto 1 0 0;
+    1 0.439024 auto auto 1 0 0;
+    2 0.439024 auto auto 1 0 0;
+    3 0.439024 auto auto 1 0 0;
+    4 0.439024 auto auto 1 0 0;
+    5 0.439024 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL21 0 0 3;
@@ -1832,12 +1832,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -4.986005165055274 auto auto 1 0 0;
-    1 -5.598325548603699 auto auto 1 0 0;
-    2 -5.548178005346102 auto auto 1 0 0;
-    3 -4.697429576017977 auto auto 1 0 0;
-    4 -2.956307954783688 auto auto 1 0 0;
-    5 -0.8489523522015445 auto auto 1 0 0;
+    0 52.80204025745115 auto auto 1 0 0;
+    1 50.01535427537004 auto auto 1 0 0;
+    2 51.303485337261705 auto auto 1 0 0;
+    3 43.74117956061826 auto auto 1 0 0;
+    4 27.114793210996055 auto auto 1 0 0;
+    5 9.41833508329435 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL21 0 0 5;
@@ -1848,12 +1848,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 52.80204025745115 auto auto 1 0 0;
-    1 50.01535427537004 auto auto 1 0 0;
-    2 51.303485337261705 auto auto 1 0 0;
-    3 43.74117956061826 auto auto 1 0 0;
-    4 27.114793210996055 auto auto 1 0 0;
-    5 9.41833508329435 auto auto 1 0 0;
+    0 4.986005165055274 auto auto 1 0 0;
+    1 5.598325548603699 auto auto 1 0 0;
+    2 5.548178005346102 auto auto 1 0 0;
+    3 4.697429576017977 auto auto 1 0 0;
+    4 2.956307954783688 auto auto 1 0 0;
+    5 0.8489523522015445 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL21 0 0 6;
@@ -1944,12 +1944,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL22 0 0 3;
@@ -1976,12 +1976,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 83.07589971046838 auto auto 1 0 0;
+    1 25.30683697945004 auto auto 1 0 0;
+    2 25.445050483670233 auto auto 1 0 0;
+    3 24.010901397556218 auto auto 1 0 0;
+    4 20.594301750114482 auto auto 1 0 0;
+    5 16.740460226973077 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL22 0 0 5;
@@ -1992,12 +1992,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 83.07589971046838 auto auto 1 0 0;
-    1 25.30683697945004 auto auto 1 0 0;
-    2 25.445050483670233 auto auto 1 0 0;
-    3 24.010901397556218 auto auto 1 0 0;
-    4 20.594301750114482 auto auto 1 0 0;
-    5 16.740460226973077 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL22 0 0 6;
@@ -2088,12 +2088,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL23 0 0 3;
@@ -2120,12 +2120,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 20.768992959196993 auto auto 1 0 0;
+    1 6.326866003503789 auto auto 1 0 0;
+    2 6.361101870369666 auto auto 1 0 0;
+    3 6.00266191484268 auto auto 1 0 0;
+    4 5.148073416702755 auto auto 1 0 0;
+    5 4.185115078284932 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL23 0 0 5;
@@ -2136,12 +2136,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 20.768992959196993 auto auto 1 0 0;
-    1 6.326866003503789 auto auto 1 0 0;
-    2 6.361101870369666 auto auto 1 0 0;
-    3 6.00266191484268 auto auto 1 0 0;
-    4 5.148073416702755 auto auto 1 0 0;
-    5 4.185115078284932 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL23 0 0 6;
@@ -2211,7 +2211,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 0.365474 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL30 0 0 2;
@@ -2222,7 +2222,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.365474 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL30 0 0 3;
@@ -2244,7 +2244,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL30 0 0 5;
@@ -2315,12 +2315,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.427457 auto auto 1 0 0;
-    1 -0.427457 auto auto 1 0 0;
-    2 -0.427457 auto auto 1 0 0;
-    3 -0.427457 auto auto 1 0 0;
-    4 -0.427457 auto auto 1 0 0;
-    5 -0.427457 auto auto 1 0 0;
+    0 0.231798 auto auto 1 0 0;
+    1 0.231798 auto auto 1 0 0;
+    2 0.231798 auto auto 1 0 0;
+    3 0.231798 auto auto 1 0 0;
+    4 0.231798 auto auto 1 0 0;
+    5 0.231798 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL31 0 0 2;
@@ -2331,12 +2331,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.231798 auto auto 1 0 0;
-    1 0.231798 auto auto 1 0 0;
-    2 0.231798 auto auto 1 0 0;
-    3 0.231798 auto auto 1 0 0;
-    4 0.231798 auto auto 1 0 0;
-    5 0.231798 auto auto 1 0 0;
+    0 0.427457 auto auto 1 0 0;
+    1 0.427457 auto auto 1 0 0;
+    2 0.427457 auto auto 1 0 0;
+    3 0.427457 auto auto 1 0 0;
+    4 0.427457 auto auto 1 0 0;
+    5 0.427457 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL31 0 0 3;
@@ -2363,12 +2363,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.0163172759674572 auto auto 1 0 0;
-    1 -5.005834935089837 auto auto 1 0 0;
-    2 -4.943811318914322 auto auto 1 0 0;
-    3 -4.2067677250455064 auto auto 1 0 0;
-    4 -2.7225196462950407 auto auto 1 0 0;
-    5 -1.1445395123828723 auto auto 1 0 0;
+    0 63.18278914645865 auto auto 1 0 0;
+    1 64.83521030253299 auto auto 1 0 0;
+    2 66.53967020178786 auto auto 1 0 0;
+    3 57.272465675286426 auto auto 1 0 0;
+    4 36.5848053953315 auto auto 1 0 0;
+    5 14.526673263936866 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL31 0 0 5;
@@ -2379,12 +2379,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 63.18278914645865 auto auto 1 0 0;
-    1 64.83521030253299 auto auto 1 0 0;
-    2 66.53967020178786 auto auto 1 0 0;
-    3 57.272465675286426 auto auto 1 0 0;
-    4 36.5848053953315 auto auto 1 0 0;
-    5 14.526673263936866 auto auto 1 0 0;
+    0 1.0163172759674572 auto auto 1 0 0;
+    1 5.005834935089837 auto auto 1 0 0;
+    2 4.943811318914322 auto auto 1 0 0;
+    3 4.2067677250455064 auto auto 1 0 0;
+    4 2.7225196462950407 auto auto 1 0 0;
+    5 1.1445395123828723 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL31 0 0 6;
@@ -2475,12 +2475,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL32 0 0 3;
@@ -2507,12 +2507,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 93.74227621068704 auto auto 1 0 0;
+    1 54.65519782039364 auto auto 1 0 0;
+    2 55.544925557656434 auto auto 1 0 0;
+    3 50.33999646410153 auto auto 1 0 0;
+    4 38.88959859325747 auto auto 1 0 0;
+    5 26.68540710538778 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL32 0 0 5;
@@ -2523,12 +2523,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 93.74227621068704 auto auto 1 0 0;
-    1 54.65519782039364 auto auto 1 0 0;
-    2 55.544925557656434 auto auto 1 0 0;
-    3 50.33999646410153 auto auto 1 0 0;
-    4 38.88959859325747 auto auto 1 0 0;
-    5 26.68540710538778 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL32 0 0 6;
@@ -2619,12 +2619,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL33 0 0 3;
@@ -2651,12 +2651,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 23.435540799435692 auto auto 1 0 0;
+    1 13.664013848129837 auto auto 1 0 0;
+    2 13.886573555455508 auto auto 1 0 0;
+    3 12.584606602766302 auto auto 1 0 0;
+    4 9.721904021315837 auto auto 1 0 0;
+    5 6.671346497917537 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL33 0 0 5;
@@ -2667,12 +2667,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 23.435540799435692 auto auto 1 0 0;
-    1 13.664013848129837 auto auto 1 0 0;
-    2 13.886573555455508 auto auto 1 0 0;
-    3 12.584606602766302 auto auto 1 0 0;
-    4 9.721904021315837 auto auto 1 0 0;
-    5 6.671346497917537 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL33 0 0 6;
@@ -2742,7 +2742,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 0.370261 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL40 0 0 2;
@@ -2753,7 +2753,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.370261 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL40 0 0 3;
@@ -2775,7 +2775,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL40 0 0 5;
@@ -2846,12 +2846,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.354675 auto auto 1 0 0;
-    1 -0.354675 auto auto 1 0 0;
-    2 -0.354675 auto auto 1 0 0;
-    3 -0.354675 auto auto 1 0 0;
-    4 -0.354675 auto auto 1 0 0;
-    5 -0.354675 auto auto 1 0 0;
+    0 0.516245 auto auto 1 0 0;
+    1 0.516245 auto auto 1 0 0;
+    2 0.516245 auto auto 1 0 0;
+    3 0.516245 auto auto 1 0 0;
+    4 0.516245 auto auto 1 0 0;
+    5 0.516245 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL41 0 0 2;
@@ -2862,12 +2862,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.516245 auto auto 1 0 0;
-    1 0.516245 auto auto 1 0 0;
-    2 0.516245 auto auto 1 0 0;
-    3 0.516245 auto auto 1 0 0;
-    4 0.516245 auto auto 1 0 0;
-    5 0.516245 auto auto 1 0 0;
+    0 0.354675 auto auto 1 0 0;
+    1 0.354675 auto auto 1 0 0;
+    2 0.354675 auto auto 1 0 0;
+    3 0.354675 auto auto 1 0 0;
+    4 0.354675 auto auto 1 0 0;
+    5 0.354675 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL41 0 0 3;
@@ -2894,12 +2894,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -5.065613446292927 auto auto 1 0 0;
-    1 -4.7882825124134385 auto auto 1 0 0;
-    2 -4.7165608278310085 auto auto 1 0 0;
-    3 -6.3554015563018735 auto auto 1 0 0;
-    4 -9.79648805486653 auto auto 1 0 0;
-    5 -13.719211533814923 auto auto 1 0 0;
+    0 70.15443832963602 auto auto 1 0 0;
+    1 71.17938520991292 auto auto 1 0 0;
+    2 73.05785104304714 auto auto 1 0 0;
+    3 62.80085921036694 auto auto 1 0 0;
+    4 39.90960761694062 auto auto 1 0 0;
+    5 15.519014515482967 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL41 0 0 5;
@@ -2910,12 +2910,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 70.15443832963602 auto auto 1 0 0;
-    1 71.17938520991292 auto auto 1 0 0;
-    2 73.05785104304714 auto auto 1 0 0;
-    3 62.80085921036694 auto auto 1 0 0;
-    4 39.90960761694062 auto auto 1 0 0;
-    5 15.519014515482967 auto auto 1 0 0;
+    0 5.065613446292927 auto auto 1 0 0;
+    1 4.7882825124134385 auto auto 1 0 0;
+    2 4.7165608278310085 auto auto 1 0 0;
+    3 6.3554015563018735 auto auto 1 0 0;
+    4 9.79648805486653 auto auto 1 0 0;
+    5 13.719211533814923 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL41 0 0 6;
@@ -3006,12 +3006,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL42 0 0 3;
@@ -3038,12 +3038,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 83.34976971416307 auto auto 1 0 0;
+    1 56.00336327002932 auto auto 1 0 0;
+    2 57.060041326641 auto auto 1 0 0;
+    3 50.87202998282481 auto auto 1 0 0;
+    4 37.25630073711665 auto auto 1 0 0;
+    5 22.745721934377148 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL42 0 0 5;
@@ -3054,12 +3054,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 83.34976971416307 auto auto 1 0 0;
-    1 56.00336327002932 auto auto 1 0 0;
-    2 57.060041326641 auto auto 1 0 0;
-    3 50.87202998282481 auto auto 1 0 0;
-    4 37.25630073711665 auto auto 1 0 0;
-    5 22.745721934377148 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL42 0 0 6;
@@ -3150,12 +3150,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL43 0 0 3;
@@ -3182,12 +3182,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 20.837383084403218 auto auto 1 0 0;
+    1 14.000574427048587 auto auto 1 0 0;
+    2 14.265115490145124 auto auto 1 0 0;
+    3 12.717756847671383 auto auto 1 0 0;
+    4 9.313792926912159 auto auto 1 0 0;
+    5 5.686430117328256 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL43 0 0 5;
@@ -3198,12 +3198,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 20.837383084403218 auto auto 1 0 0;
-    1 14.000574427048587 auto auto 1 0 0;
-    2 14.265115490145124 auto auto 1 0 0;
-    3 12.717756847671383 auto auto 1 0 0;
-    4 9.313792926912159 auto auto 1 0 0;
-    5 5.686430117328256 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL43 0 0 6;
@@ -3278,12 +3278,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.152771 auto auto 1 0 0;
-    1 0.152771 auto auto 1 0 0;
-    2 0.152771 auto auto 1 0 0;
-    3 0.152771 auto auto 1 0 0;
-    4 0.152771 auto auto 1 0 0;
-    5 0.152771 auto auto 1 0 0;
+    0 -0.313357 auto auto 1 0 0;
+    1 -0.313357 auto auto 1 0 0;
+    2 -0.313357 auto auto 1 0 0;
+    3 -0.313357 auto auto 1 0 0;
+    4 -0.313357 auto auto 1 0 0;
+    5 -0.313357 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerL51 0 0 2;
@@ -3294,12 +3294,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.313357 auto auto 1 0 0;
-    1 -0.313357 auto auto 1 0 0;
-    2 -0.313357 auto auto 1 0 0;
-    3 -0.313357 auto auto 1 0 0;
-    4 -0.313357 auto auto 1 0 0;
-    5 -0.313357 auto auto 1 0 0;
+    0 -0.152771 auto auto 1 0 0;
+    1 -0.152771 auto auto 1 0 0;
+    2 -0.152771 auto auto 1 0 0;
+    3 -0.152771 auto auto 1 0 0;
+    4 -0.152771 auto auto 1 0 0;
+    5 -0.152771 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL51 0 0 3;
@@ -3326,12 +3326,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 24.234286628778968 auto auto 1 0 0;
-    1 40.28572678901782 auto auto 1 0 0;
-    2 40.660377469765606 auto auto 1 0 0;
-    3 37.802307598765765 auto auto 1 0 0;
-    4 29.556320377893098 auto auto 1 0 0;
-    5 18.057131770169242 auto auto 1 0 0;
+    0 45.32672287593495 auto auto 1 0 0;
+    1 48.572078235402344 auto auto 1 0 0;
+    2 49.51587378926328 auto auto 1 0 0;
+    3 44.152752500497286 auto auto 1 0 0;
+    4 34.3389810914994 auto auto 1 0 0;
+    5 26.958512095252427 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL51 0 0 5;
@@ -3342,12 +3342,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 45.32672287593495 auto auto 1 0 0;
-    1 48.572078235402344 auto auto 1 0 0;
-    2 49.51587378926328 auto auto 1 0 0;
-    3 44.152752500497286 auto auto 1 0 0;
-    4 34.3389810914994 auto auto 1 0 0;
-    5 26.958512095252427 auto auto 1 0 0;
+    0 -24.234286628778968 auto auto 1 0 0;
+    1 -40.28572678901782 auto auto 1 0 0;
+    2 -40.660377469765606 auto auto 1 0 0;
+    3 -37.802307598765765 auto auto 1 0 0;
+    4 -29.556320377893098 auto auto 1 0 0;
+    5 -18.057131770169242 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL51 0 0 6;
@@ -3438,12 +3438,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL52 0 0 3;
@@ -3470,12 +3470,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -8.499129668692982 auto auto 1 0 0;
-    1 -9.572215186329034 auto auto 1 0 0;
-    2 -9.810063092149637 auto auto 1 0 0;
-    3 -8.3935044358041 auto auto 1 0 0;
-    4 -5.454163235263604 auto auto 1 0 0;
-    5 -2.0747417799208003 auto auto 1 0 0;
+    0 21.553628731282657 auto auto 1 0 0;
+    1 2.251332976005535 auto auto 1 0 0;
+    2 2.2454245961127226 auto auto 1 0 0;
+    3 2.686410764009002 auto auto 1 0 0;
+    4 3.498827728266371 auto auto 1 0 0;
+    5 4.392293222592187 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL52 0 0 5;
@@ -3486,12 +3486,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 21.553628731282657 auto auto 1 0 0;
-    1 2.251332976005535 auto auto 1 0 0;
-    2 2.2454245961127226 auto auto 1 0 0;
-    3 2.686410764009002 auto auto 1 0 0;
-    4 3.498827728266371 auto auto 1 0 0;
-    5 4.392293222592187 auto auto 1 0 0;
+    0 8.499129668692982 auto auto 1 0 0;
+    1 9.572215186329034 auto auto 1 0 0;
+    2 9.810063092149637 auto auto 1 0 0;
+    3 8.3935044358041 auto auto 1 0 0;
+    4 5.454163235263604 auto auto 1 0 0;
+    5 2.0747417799208003 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL52 0 0 6;
@@ -3582,12 +3582,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerL53 0 0 3;
@@ -3614,12 +3614,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 64.66083415894452 auto auto 1 0 0;
+    1 6.752687037134685 auto auto 1 0 0;
+    2 6.736817176579407 auto auto 1 0 0;
+    3 8.059510832113665 auto auto 1 0 0;
+    4 10.495608588618426 auto auto 1 0 0;
+    5 13.175660681604096 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerL53 0 0 5;
@@ -3630,12 +3630,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 64.66083415894452 auto auto 1 0 0;
-    1 6.752687037134685 auto auto 1 0 0;
-    2 6.736817176579407 auto auto 1 0 0;
-    3 8.059510832113665 auto auto 1 0 0;
-    4 10.495608588618426 auto auto 1 0 0;
-    5 13.175660681604096 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerL53 0 0 6;
@@ -3705,7 +3705,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.00548211 auto auto 1 0 0;
+    0 0.379398 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR10 0 0 2;
@@ -3716,7 +3716,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.379398 auto auto 1 0 0;
+    0 -0.00548211 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR10 0 0 3;
@@ -3738,7 +3738,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR10 0 0 5;
@@ -3809,12 +3809,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.361425 auto auto 1 0 0;
-    1 -0.361425 auto auto 1 0 0;
-    2 -0.361425 auto auto 1 0 0;
-    3 -0.361425 auto auto 1 0 0;
-    4 -0.361425 auto auto 1 0 0;
-    5 -0.361425 auto auto 1 0 0;
+    0 0.386 auto auto 1 0 0;
+    1 0.386 auto auto 1 0 0;
+    2 0.386 auto auto 1 0 0;
+    3 0.386 auto auto 1 0 0;
+    4 0.386 auto auto 1 0 0;
+    5 0.386 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR11 0 0 2;
@@ -3825,12 +3825,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.386 auto auto 1 0 0;
-    1 0.386 auto auto 1 0 0;
-    2 0.386 auto auto 1 0 0;
-    3 0.386 auto auto 1 0 0;
-    4 0.386 auto auto 1 0 0;
-    5 0.386 auto auto 1 0 0;
+    0 0.361425 auto auto 1 0 0;
+    1 0.361425 auto auto 1 0 0;
+    2 0.361425 auto auto 1 0 0;
+    3 0.361425 auto auto 1 0 0;
+    4 0.361425 auto auto 1 0 0;
+    5 0.361425 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR11 0 0 3;
@@ -3857,12 +3857,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.252085806424267 auto auto 1 0 0;
-    1 -0.673831411720955 auto auto 1 0 0;
-    2 -0.6954021716715336 auto auto 1 0 0;
-    3 -2.551229409764018 auto auto 1 0 0;
-    4 -6.261350976456772 auto auto 1 0 0;
-    5 -10.056044427037518 auto auto 1 0 0;
+    0 56.32047469742657 auto auto 1 0 0;
+    1 58.2271309378805 auto auto 1 0 0;
+    2 59.43409945509312 auto auto 1 0 0;
+    3 49.05646106472863 auto auto 1 0 0;
+    4 26.723490950744136 auto auto 1 0 0;
+    5 2.8171736832397225 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR11 0 0 5;
@@ -3873,12 +3873,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 56.32047469742657 auto auto 1 0 0;
-    1 58.2271309378805 auto auto 1 0 0;
-    2 59.43409945509312 auto auto 1 0 0;
-    3 49.05646106472863 auto auto 1 0 0;
-    4 26.723490950744136 auto auto 1 0 0;
-    5 2.8171736832397225 auto auto 1 0 0;
+    0 1.252085806424267 auto auto 1 0 0;
+    1 0.673831411720955 auto auto 1 0 0;
+    2 0.6954021716715336 auto auto 1 0 0;
+    3 2.551229409764018 auto auto 1 0 0;
+    4 6.261350976456772 auto auto 1 0 0;
+    5 10.056044427037518 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR11 0 0 6;
@@ -3969,12 +3969,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR12 0 0 3;
@@ -4001,12 +4001,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 97.50137301450881 auto auto 1 0 0;
+    1 100.74163473453507 auto auto 1 0 0;
+    2 102.99145196062739 auto auto 1 0 0;
+    3 85.22537504537195 auto auto 1 0 0;
+    4 47.58719810486847 auto auto 1 0 0;
+    5 7.505578040686316 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR12 0 0 5;
@@ -4017,12 +4017,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 97.50137301450881 auto auto 1 0 0;
-    1 100.74163473453507 auto auto 1 0 0;
-    2 102.99145196062739 auto auto 1 0 0;
-    3 85.22537504537195 auto auto 1 0 0;
-    4 47.58719810486847 auto auto 1 0 0;
-    5 7.505578040686316 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR12 0 0 6;
@@ -4113,12 +4113,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR13 0 0 3;
@@ -4145,12 +4145,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 24.374986808641726 auto auto 1 0 0;
+    1 25.1851022447169 auto auto 1 0 0;
+    2 25.74812453068011 auto auto 1 0 0;
+    3 21.30669140322268 auto auto 1 0 0;
+    4 11.896980660562551 auto auto 1 0 0;
+    5 1.8763831009147856 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR13 0 0 5;
@@ -4161,12 +4161,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 24.374986808641726 auto auto 1 0 0;
-    1 25.1851022447169 auto auto 1 0 0;
-    2 25.74812453068011 auto auto 1 0 0;
-    3 21.30669140322268 auto auto 1 0 0;
-    4 11.896980660562551 auto auto 1 0 0;
-    5 1.8763831009147856 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR13 0 0 6;
@@ -4236,7 +4236,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.340058 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR20 0 0 2;
@@ -4247,7 +4247,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.340058 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR20 0 0 3;
@@ -4269,7 +4269,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.00011459155901684459 auto auto 1 0 0;
+    0 -0.001031324031208668 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR20 0 0 5;
@@ -4280,7 +4280,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.001031324031208668 auto auto 1 0 0;
+    0 -0.00011459155901684459 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR20 0 0 6;
@@ -4340,12 +4340,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.439024 auto auto 1 0 0;
-    1 -0.439024 auto auto 1 0 0;
-    2 -0.439024 auto auto 1 0 0;
-    3 -0.439024 auto auto 1 0 0;
-    4 -0.439024 auto auto 1 0 0;
-    5 -0.439024 auto auto 1 0 0;
+    0 0.0516182 auto auto 1 0 0;
+    1 0.0516182 auto auto 1 0 0;
+    2 0.0516182 auto auto 1 0 0;
+    3 0.0516182 auto auto 1 0 0;
+    4 0.0516182 auto auto 1 0 0;
+    5 0.0516182 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR21 0 0 2;
@@ -4356,12 +4356,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0516182 auto auto 1 0 0;
-    1 0.0516182 auto auto 1 0 0;
-    2 0.0516182 auto auto 1 0 0;
-    3 0.0516182 auto auto 1 0 0;
-    4 0.0516182 auto auto 1 0 0;
-    5 0.0516182 auto auto 1 0 0;
+    0 0.439024 auto auto 1 0 0;
+    1 0.439024 auto auto 1 0 0;
+    2 0.439024 auto auto 1 0 0;
+    3 0.439024 auto auto 1 0 0;
+    4 0.439024 auto auto 1 0 0;
+    5 0.439024 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR21 0 0 3;
@@ -4388,12 +4388,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.0905148133397957 auto auto 1 0 0;
-    1 -2.2465426668295905 auto auto 1 0 0;
-    2 -2.2018105282032225 auto auto 1 0 0;
-    3 -1.5135007049344544 auto auto 1 0 0;
-    4 -0.060935373825409894 auto auto 1 0 0;
-    5 1.4469993972359 auto auto 1 0 0;
+    0 54.263000143727645 auto auto 1 0 0;
+    1 55.85028530101523 auto auto 1 0 0;
+    2 56.846145009131675 auto auto 1 0 0;
+    3 48.24751611192557 auto auto 1 0 0;
+    4 29.790283989501727 auto auto 1 0 0;
+    5 10.116999845476515 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR21 0 0 5;
@@ -4404,12 +4404,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 54.263000143727645 auto auto 1 0 0;
-    1 55.85028530101523 auto auto 1 0 0;
-    2 56.846145009131675 auto auto 1 0 0;
-    3 48.24751611192557 auto auto 1 0 0;
-    4 29.790283989501727 auto auto 1 0 0;
-    5 10.116999845476515 auto auto 1 0 0;
+    0 2.0905148133397957 auto auto 1 0 0;
+    1 2.2465426668295905 auto auto 1 0 0;
+    2 2.2018105282032225 auto auto 1 0 0;
+    3 1.5135007049344544 auto auto 1 0 0;
+    4 0.060935373825409894 auto auto 1 0 0;
+    5 -1.4469993972359 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR21 0 0 6;
@@ -4500,12 +4500,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR22 0 0 3;
@@ -4532,12 +4532,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 87.13476977869152 auto auto 1 0 0;
+    1 89.52027766434296 auto auto 1 0 0;
+    2 91.01158551658497 auto auto 1 0 0;
+    3 78.09459119978295 auto auto 1 0 0;
+    4 50.37734591247541 auto auto 1 0 0;
+    5 20.860452434575663 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR22 0 0 5;
@@ -4548,12 +4548,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 87.13476977869152 auto auto 1 0 0;
-    1 89.52027766434296 auto auto 1 0 0;
-    2 91.01158551658497 auto auto 1 0 0;
-    3 78.09459119978295 auto auto 1 0 0;
-    4 50.37734591247541 auto auto 1 0 0;
-    5 20.860452434575663 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR22 0 0 6;
@@ -4644,12 +4644,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR23 0 0 3;
@@ -4676,12 +4676,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 21.783643493667764 auto auto 1 0 0;
+    1 22.379787497904314 auto auto 1 0 0;
+    2 22.75336734571123 auto auto 1 0 0;
+    3 19.523361560122193 auto auto 1 0 0;
+    4 12.594480873159082 auto auto 1 0 0;
+    5 5.215120010642938 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR23 0 0 5;
@@ -4692,12 +4692,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 21.783643493667764 auto auto 1 0 0;
-    1 22.379787497904314 auto auto 1 0 0;
-    2 22.75336734571123 auto auto 1 0 0;
-    3 19.523361560122193 auto auto 1 0 0;
-    4 12.594480873159082 auto auto 1 0 0;
-    5 5.215120010642938 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR23 0 0 6;
@@ -4767,7 +4767,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.365474 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR30 0 0 2;
@@ -4778,7 +4778,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.365474 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR30 0 0 3;
@@ -4800,7 +4800,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0002864788975648149 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR30 0 0 5;
@@ -4811,7 +4811,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0002864788975648149 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR30 0 0 6;
@@ -4871,12 +4871,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.427457 auto auto 1 0 0;
-    1 -0.427457 auto auto 1 0 0;
-    2 -0.427457 auto auto 1 0 0;
-    3 -0.427457 auto auto 1 0 0;
-    4 -0.427457 auto auto 1 0 0;
-    5 -0.427457 auto auto 1 0 0;
+    0 -0.232 auto auto 1 0 0;
+    1 -0.232 auto auto 1 0 0;
+    2 -0.232 auto auto 1 0 0;
+    3 -0.232 auto auto 1 0 0;
+    4 -0.232 auto auto 1 0 0;
+    5 -0.232 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR31 0 0 2;
@@ -4887,12 +4887,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.232 auto auto 1 0 0;
-    1 -0.232 auto auto 1 0 0;
-    2 -0.232 auto auto 1 0 0;
-    3 -0.232 auto auto 1 0 0;
-    4 -0.232 auto auto 1 0 0;
-    5 -0.232 auto auto 1 0 0;
+    0 0.427457 auto auto 1 0 0;
+    1 0.427457 auto auto 1 0 0;
+    2 0.427457 auto auto 1 0 0;
+    3 0.427457 auto auto 1 0 0;
+    4 0.427457 auto auto 1 0 0;
+    5 0.427457 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR31 0 0 3;
@@ -4919,12 +4919,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 4.886359387786435 auto auto 1 0 0;
-    1 4.94785114130152 auto auto 1 0 0;
-    2 4.986961870948984 auto auto 1 0 0;
-    3 4.658997020286163 auto auto 1 0 0;
-    4 4.058026309834126 auto auto 1 0 0;
-    5 3.6471029194536615 auto auto 1 0 0;
+    0 65.91966553331368 auto auto 1 0 0;
+    1 67.77784772492684 auto auto 1 0 0;
+    2 68.93887947900019 auto auto 1 0 0;
+    3 58.88285757135463 auto auto 1 0 0;
+    4 37.31525160282435 auto auto 1 0 0;
+    5 14.357779226591914 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR31 0 0 5;
@@ -4935,12 +4935,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 65.91966553331368 auto auto 1 0 0;
-    1 67.77784772492684 auto auto 1 0 0;
-    2 68.93887947900019 auto auto 1 0 0;
-    3 58.88285757135463 auto auto 1 0 0;
-    4 37.31525160282435 auto auto 1 0 0;
-    5 14.357779226591914 auto auto 1 0 0;
+    0 -4.886359387786435 auto auto 1 0 0;
+    1 -4.94785114130152 auto auto 1 0 0;
+    2 -4.986961870948984 auto auto 1 0 0;
+    3 -4.658997020286163 auto auto 1 0 0;
+    4 -4.058026309834126 auto auto 1 0 0;
+    5 -3.6471029194536615 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR31 0 0 6;
@@ -5031,12 +5031,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR32 0 0 3;
@@ -5063,12 +5063,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 89.16185270709322 auto auto 1 0 0;
+    1 91.65497484003092 auto auto 1 0 0;
+    2 93.21487764994862 auto auto 1 0 0;
+    3 79.71354181533343 auto auto 1 0 0;
+    4 50.74334213354895 auto auto 1 0 0;
+    5 19.89340332395217 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR32 0 0 5;
@@ -5079,12 +5079,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 89.16185270709322 auto auto 1 0 0;
-    1 91.65497484003092 auto auto 1 0 0;
-    2 93.21487764994862 auto auto 1 0 0;
-    3 79.71354181533343 auto auto 1 0 0;
-    4 50.74334213354895 auto auto 1 0 0;
-    5 19.89340332395217 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR32 0 0 6;
@@ -5175,12 +5175,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR33 0 0 3;
@@ -5207,12 +5207,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 22.291161701266223 auto auto 1 0 0;
+    1 22.91464021251287 auto auto 1 0 0;
+    2 23.304237350818333 auto auto 1 0 0;
+    3 19.92876004206806 auto auto 1 0 0;
+    4 12.686356045840844 auto auto 1 0 0;
+    5 4.973620346940054 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR33 0 0 5;
@@ -5223,12 +5223,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 22.291161701266223 auto auto 1 0 0;
-    1 22.91464021251287 auto auto 1 0 0;
-    2 23.304237350818333 auto auto 1 0 0;
-    3 19.92876004206806 auto auto 1 0 0;
-    4 12.686356045840844 auto auto 1 0 0;
-    5 4.973620346940054 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR33 0 0 6;
@@ -5303,12 +5303,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.370261 auto auto 1 0 0;
+    1 -0.370261 auto auto 1 0 0;
+    2 -0.370261 auto auto 1 0 0;
+    3 -0.370261 auto auto 1 0 0;
+    4 -0.370261 auto auto 1 0 0;
+    5 -0.370261 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR40 0 0 2;
@@ -5319,12 +5319,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.370261 auto auto 1 0 0;
-    1 -0.370261 auto auto 1 0 0;
-    2 -0.370261 auto auto 1 0 0;
-    3 -0.370261 auto auto 1 0 0;
-    4 -0.370261 auto auto 1 0 0;
-    5 -0.370261 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR40 0 0 3;
@@ -5351,12 +5351,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.00011459155902612644 auto auto 1 0 0;
+    1 -0.00011459155902612644 auto auto 1 0 0;
+    2 -0.0001718873385391181 auto auto 1 0 0;
+    3 -0.0001718873385391181 auto auto 1 0 0;
+    4 -0.00011459155902612644 auto auto 1 0 0;
+    5 -0.00011459155902612644 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR40 0 0 5;
@@ -5367,12 +5367,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.00011459155902612644 auto auto 1 0 0;
-    1 -0.00011459155902612644 auto auto 1 0 0;
-    2 -0.0001718873385391181 auto auto 1 0 0;
-    3 -0.0001718873385391181 auto auto 1 0 0;
-    4 -0.00011459155902612644 auto auto 1 0 0;
-    5 -0.00011459155902612644 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR40 0 0 6;
@@ -5447,12 +5447,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.355 auto auto 1 0 0;
-    1 -0.355 auto auto 1 0 0;
-    2 -0.355 auto auto 1 0 0;
-    3 -0.355 auto auto 1 0 0;
-    4 -0.355 auto auto 1 0 0;
-    5 -0.355 auto auto 1 0 0;
+    0 -0.516 auto auto 1 0 0;
+    1 -0.516 auto auto 1 0 0;
+    2 -0.516 auto auto 1 0 0;
+    3 -0.516 auto auto 1 0 0;
+    4 -0.516 auto auto 1 0 0;
+    5 -0.516 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR41 0 0 2;
@@ -5463,12 +5463,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.516 auto auto 1 0 0;
-    1 -0.516 auto auto 1 0 0;
-    2 -0.516 auto auto 1 0 0;
-    3 -0.516 auto auto 1 0 0;
-    4 -0.516 auto auto 1 0 0;
-    5 -0.516 auto auto 1 0 0;
+    0 0.355 auto auto 1 0 0;
+    1 0.355 auto auto 1 0 0;
+    2 0.355 auto auto 1 0 0;
+    3 0.355 auto auto 1 0 0;
+    4 0.355 auto auto 1 0 0;
+    5 0.355 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR41 0 0 3;
@@ -5495,12 +5495,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 2.1075355836715683 auto auto 1 0 0;
-    1 1.5790597899530026 auto auto 1 0 0;
-    2 1.5904909692136115 auto auto 1 0 0;
-    3 3.3430007394322896 auto auto 1 0 0;
-    4 6.728497652711307 auto auto 1 0 0;
-    5 10.55731685786306 auto auto 1 0 0;
+    0 65.52834929924772 auto auto 1 0 0;
+    1 67.29785407109712 auto auto 1 0 0;
+    2 68.40364735031402 auto auto 1 0 0;
+    3 58.823553773130435 auto auto 1 0 0;
+    4 38.26862655376153 auto auto 1 0 0;
+    5 16.382429590624405 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR41 0 0 5;
@@ -5511,12 +5511,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 65.52834929924772 auto auto 1 0 0;
-    1 67.29785407109712 auto auto 1 0 0;
-    2 68.40364735031402 auto auto 1 0 0;
-    3 58.823553773130435 auto auto 1 0 0;
-    4 38.26862655376153 auto auto 1 0 0;
-    5 16.382429590624405 auto auto 1 0 0;
+    0 -2.1075355836715683 auto auto 1 0 0;
+    1 -1.5790597899530026 auto auto 1 0 0;
+    2 -1.5904909692136115 auto auto 1 0 0;
+    3 -3.3430007394322896 auto auto 1 0 0;
+    4 -6.728497652711307 auto auto 1 0 0;
+    5 -10.55731685786306 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR41 0 0 6;
@@ -5607,12 +5607,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR42 0 0 3;
@@ -5639,12 +5639,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 81.93940415803216 auto auto 1 0 0;
+    1 84.31774217216693 auto auto 1 0 0;
+    2 85.80394709467093 auto auto 1 0 0;
+    3 72.92879885126206 auto auto 1 0 0;
+    4 45.30231310756544 auto auto 1 0 0;
+    5 15.882543297201543 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR42 0 0 5;
@@ -5655,12 +5655,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 81.93940415803216 auto auto 1 0 0;
-    1 84.31774217216693 auto auto 1 0 0;
-    2 85.80394709467093 auto auto 1 0 0;
-    3 72.92879885126206 auto auto 1 0 0;
-    4 45.30231310756544 auto auto 1 0 0;
-    5 15.882543297201543 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR42 0 0 6;
@@ -5751,12 +5751,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR43 0 0 3;
@@ -5783,12 +5783,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 20.484864374751254 auto auto 1 0 0;
+    1 21.079633187575013 auto auto 1 0 0;
+    2 21.451651539090467 auto auto 1 0 0;
+    3 18.23247149670829 auto auto 1 0 0;
+    4 11.325611840806664 auto auto 1 0 0;
+    5 3.970945479062406 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR43 0 0 5;
@@ -5799,12 +5799,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 20.484864374751254 auto auto 1 0 0;
-    1 21.079633187575013 auto auto 1 0 0;
-    2 21.451651539090467 auto auto 1 0 0;
-    3 18.23247149670829 auto auto 1 0 0;
-    4 11.325611840806664 auto auto 1 0 0;
-    5 3.970945479062406 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR43 0 0 6;
@@ -5879,12 +5879,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.152771 auto auto 1 0 0;
-    1 0.152771 auto auto 1 0 0;
-    2 0.152771 auto auto 1 0 0;
-    3 0.152771 auto auto 1 0 0;
-    4 0.152771 auto auto 1 0 0;
-    5 0.152771 auto auto 1 0 0;
+    0 0.313357 auto auto 1 0 0;
+    1 0.313357 auto auto 1 0 0;
+    2 0.313357 auto auto 1 0 0;
+    3 0.313357 auto auto 1 0 0;
+    4 0.313357 auto auto 1 0 0;
+    5 0.313357 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ FingerR51 0 0 2;
@@ -5895,12 +5895,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.313357 auto auto 1 0 0;
-    1 0.313357 auto auto 1 0 0;
-    2 0.313357 auto auto 1 0 0;
-    3 0.313357 auto auto 1 0 0;
-    4 0.313357 auto auto 1 0 0;
-    5 0.313357 auto auto 1 0 0;
+    0 -0.152771 auto auto 1 0 0;
+    1 -0.152771 auto auto 1 0 0;
+    2 -0.152771 auto auto 1 0 0;
+    3 -0.152771 auto auto 1 0 0;
+    4 -0.152771 auto auto 1 0 0;
+    5 -0.152771 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR51 0 0 3;
@@ -5927,12 +5927,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -30.02209159961605 auto auto 1 0 0;
-    1 -30.300520796396942 auto auto 1 0 0;
-    2 -30.307254068436094 auto auto 1 0 0;
-    3 -29.259590294129147 auto auto 1 0 0;
-    4 -25.482275273534487 auto auto 1 0 0;
-    5 -18.78276533272482 auto auto 1 0 0;
+    0 55.520468913865656 auto auto 1 0 0;
+    1 56.530697147613765 auto auto 1 0 0;
+    2 56.69463944746137 auto auto 1 0 0;
+    3 52.43797527693054 auto auto 1 0 0;
+    4 43.485205989951716 auto auto 1 0 0;
+    5 35.06549328496218 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR51 0 0 5;
@@ -5943,12 +5943,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 55.520468913865656 auto auto 1 0 0;
-    1 56.530697147613765 auto auto 1 0 0;
-    2 56.69463944746137 auto auto 1 0 0;
-    3 52.43797527693054 auto auto 1 0 0;
-    4 43.485205989951716 auto auto 1 0 0;
-    5 35.06549328496218 auto auto 1 0 0;
+    0 30.02209159961605 auto auto 1 0 0;
+    1 30.300520796396942 auto auto 1 0 0;
+    2 30.307254068436094 auto auto 1 0 0;
+    3 29.259590294129147 auto auto 1 0 0;
+    4 25.482275273534487 auto auto 1 0 0;
+    5 18.78276533272482 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR51 0 0 6;
@@ -6039,12 +6039,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR52 0 0 3;
@@ -6071,12 +6071,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 1.4261799614545168 auto auto 1 0 0;
-    1 -3.264189918163001 auto auto 1 0 0;
-    2 -5.883518125146618 auto auto 1 0 0;
-    3 13.009594939506224 auto auto 1 0 0;
-    4 10.924662852387963 auto auto 1 0 0;
-    5 1.517468546547369 auto auto 1 0 0;
+    0 21.917943742803214 auto auto 1 0 0;
+    1 22.024134396833794 auto auto 1 0 0;
+    2 22.163594837017037 auto auto 1 0 0;
+    3 19.356898080913318 auto auto 1 0 0;
+    4 5.292796585482579 auto auto 1 0 0;
+    5 4.060111765409731 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR52 0 0 5;
@@ -6087,12 +6087,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 21.917943742803214 auto auto 1 0 0;
-    1 22.024134396833794 auto auto 1 0 0;
-    2 22.163594837017037 auto auto 1 0 0;
-    3 19.356898080913318 auto auto 1 0 0;
-    4 5.292796585482579 auto auto 1 0 0;
-    5 4.060111765409731 auto auto 1 0 0;
+    0 -1.4261799614545168 auto auto 1 0 0;
+    1 3.264189918163001 auto auto 1 0 0;
+    2 5.883518125146618 auto auto 1 0 0;
+    3 -13.009594939506224 auto auto 1 0 0;
+    4 -10.924662852387963 auto auto 1 0 0;
+    5 -1.517468546547369 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR52 0 0 6;
@@ -6183,12 +6183,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FingerR53 0 0 3;
@@ -6215,12 +6215,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
-    1 -0.0 auto auto 1 0 0;
-    2 -0.0 auto auto 1 0 0;
-    3 -0.0 auto auto 1 0 0;
-    4 -0.0 auto auto 1 0 0;
-    5 -0.0 auto auto 1 0 0;
+    0 65.75393640045083 auto auto 1 0 0;
+    1 66.07372436235617 auto auto 1 0 0;
+    2 66.48928637685366 auto auto 1 0 0;
+    3 58.071876452278694 auto auto 1 0 0;
+    4 15.877785763566312 auto auto 1 0 0;
+    5 12.180861165458674 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FingerR53 0 0 5;
@@ -6231,12 +6231,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 65.75393640045083 auto auto 1 0 0;
-    1 66.07372436235617 auto auto 1 0 0;
-    2 66.48928637685366 auto auto 1 0 0;
-    3 58.071876452278694 auto auto 1 0 0;
-    4 15.877785763566312 auto auto 1 0 0;
-    5 12.180861165458674 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FingerR53 0 0 6;
@@ -6327,12 +6327,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FootL 0 0 3;
@@ -6359,12 +6359,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.2977289016042308 auto auto 1 0 0;
-    1 34.74183784935914 auto auto 1 0 0;
-    2 45.95463198852454 auto auto 1 0 0;
-    3 29.000736794288105 auto auto 1 0 0;
-    4 15.890280003428249 auto auto 1 0 0;
-    5 15.278486868603409 auto auto 1 0 0;
+    0 -55.746274140154874 auto auto 1 0 0;
+    1 -25.757731903214335 auto auto 1 0 0;
+    2 -24.051078536833934 auto auto 1 0 0;
+    3 -18.70169588284527 auto auto 1 0 0;
+    4 -23.639694395384964 auto auto 1 0 0;
+    5 -15.08238626329135 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FootL 0 0 5;
@@ -6375,12 +6375,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -55.746274140154874 auto auto 1 0 0;
-    1 -25.757731903214335 auto auto 1 0 0;
-    2 -24.051078536833934 auto auto 1 0 0;
-    3 -18.70169588284527 auto auto 1 0 0;
-    4 -23.639694395384964 auto auto 1 0 0;
-    5 -15.08238626329135 auto auto 1 0 0;
+    0 1.2977289016042308 auto auto 1 0 0;
+    1 -34.74183784935914 auto auto 1 0 0;
+    2 -45.95463198852454 auto auto 1 0 0;
+    3 -29.000736794288105 auto auto 1 0 0;
+    4 -15.890280003428249 auto auto 1 0 0;
+    5 -15.278486868603409 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FootL 0 0 6;
@@ -6471,12 +6471,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX FootR 0 0 3;
@@ -6503,12 +6503,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -36.277568048685495 auto auto 1 0 0;
-    1 -4.080076820434867 auto auto 1 0 0;
-    2 -8.774098187066537 auto auto 1 0 0;
-    3 -23.303189168894974 auto auto 1 0 0;
-    4 -15.376562173929356 auto auto 1 0 0;
-    5 -19.85420692630848 auto auto 1 0 0;
+    0 -31.774851545756434 auto auto 1 0 0;
+    1 -36.78901459764611 auto auto 1 0 0;
+    2 -36.36736847707738 auto auto 1 0 0;
+    3 -17.983743585963506 auto auto 1 0 0;
+    4 -5.528280681592662 auto auto 1 0 0;
+    5 -14.634995822953126 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ FootR 0 0 5;
@@ -6519,12 +6519,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -31.774851545756434 auto auto 1 0 0;
-    1 -36.78901459764611 auto auto 1 0 0;
-    2 -36.36736847707738 auto auto 1 0 0;
-    3 -17.983743585963506 auto auto 1 0 0;
-    4 -5.528280681592662 auto auto 1 0 0;
-    5 -14.634995822953126 auto auto 1 0 0;
+    0 36.277568048685495 auto auto 1 0 0;
+    1 4.080076820434867 auto auto 1 0 0;
+    2 8.774098187066537 auto auto 1 0 0;
+    3 23.303189168894974 auto auto 1 0 0;
+    4 15.376562173929356 auto auto 1 0 0;
+    5 19.85420692630848 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX FootR 0 0 6;
@@ -6615,12 +6615,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX HandL 0 0 3;
@@ -6647,12 +6647,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.5937820650149255 auto auto 1 0 0;
-    1 44.3255463946323 auto auto 1 0 0;
-    2 39.20669281006121 auto auto 1 0 0;
-    3 49.72049299785767 auto auto 1 0 0;
-    4 39.89473908177267 auto auto 1 0 0;
-    5 -0.8613558765306123 auto auto 1 0 0;
+    0 54.539816523596336 auto auto 1 0 0;
+    1 -17.811501957541243 auto auto 1 0 0;
+    2 14.409219941988436 auto auto 1 0 0;
+    3 31.209550296878604 auto auto 1 0 0;
+    4 15.00950680723767 auto auto 1 0 0;
+    5 0.8086771859016912 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ HandL 0 0 5;
@@ -6663,12 +6663,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 54.539816523596336 auto auto 1 0 0;
-    1 -17.811501957541243 auto auto 1 0 0;
-    2 14.409219941988436 auto auto 1 0 0;
-    3 31.209550296878604 auto auto 1 0 0;
-    4 15.00950680723767 auto auto 1 0 0;
-    5 0.8086771859016912 auto auto 1 0 0;
+    0 2.5937820650149255 auto auto 1 0 0;
+    1 -44.3255463946323 auto auto 1 0 0;
+    2 -39.20669281006121 auto auto 1 0 0;
+    3 -49.72049299785767 auto auto 1 0 0;
+    4 -39.89473908177267 auto auto 1 0 0;
+    5 0.8613558765306123 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX HandL 0 0 6;
@@ -6759,12 +6759,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX HandR 0 0 3;
@@ -6791,12 +6791,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 29.458089464700077 auto auto 1 0 0;
-    1 -7.523733110981819 auto auto 1 0 0;
-    2 1.7570445779910264 auto auto 1 0 0;
-    3 -14.59466198385057 auto auto 1 0 0;
-    4 -21.20797127186379 auto auto 1 0 0;
-    5 4.268882738008151 auto auto 1 0 0;
+    0 7.708222866399304 auto auto 1 0 0;
+    1 -39.47196438871145 auto auto 1 0 0;
+    2 -9.294738978576472 auto auto 1 0 0;
+    3 2.9434020283731224 auto auto 1 0 0;
+    4 -8.846031905025317 auto auto 1 0 0;
+    5 11.898420352968456 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ HandR 0 0 5;
@@ -6807,12 +6807,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 7.708222866399304 auto auto 1 0 0;
-    1 -39.47196438871145 auto auto 1 0 0;
-    2 -9.294738978576472 auto auto 1 0 0;
-    3 2.9434020283731224 auto auto 1 0 0;
-    4 -8.846031905025317 auto auto 1 0 0;
-    5 11.898420352968456 auto auto 1 0 0;
+    0 -29.458089464700077 auto auto 1 0 0;
+    1 7.523733110981819 auto auto 1 0 0;
+    2 -1.7570445779910264 auto auto 1 0 0;
+    3 14.59466198385057 auto auto 1 0 0;
+    4 21.20797127186379 auto auto 1 0 0;
+    5 -4.268882738008151 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX HandR 0 0 6;
@@ -6882,7 +6882,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.279881 auto auto 1 0 0;
+    0 0.046482 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ HaveL 0 0 2;
@@ -6893,7 +6893,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.046482 auto auto 1 0 0;
+    0 -0.279881 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX HaveL 0 0 3;
@@ -6915,7 +6915,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 -90.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ HaveL 0 0 5;
@@ -6926,7 +6926,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -90.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX HaveL 0 0 6;
@@ -6948,7 +6948,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 1.0 auto auto 1 0 0;
+    0 0.999999 auto auto 1 0 0;
   }
 }
 anim scale.scaleZ scaleZ HaveL 0 0 8;
@@ -6959,7 +6959,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.999999 auto auto 1 0 0;
+    0 1.0 auto auto 1 0 0;
   }
 }
 anim translate.translateX translateX HaveR 0 0 0;
@@ -6981,7 +6981,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.293274 auto auto 1 0 0;
+    0 -0.042051 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ HaveR 0 0 2;
@@ -6992,7 +6992,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.042051 auto auto 1 0 0;
+    0 -0.293274 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX HaveR 0 0 3;
@@ -7014,7 +7014,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.3131905001270576 auto auto 1 0 0;
+    0 90.00005665030592 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ HaveR 0 0 5;
@@ -7025,7 +7025,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 90.00005665030592 auto auto 1 0 0;
+    0 1.3131905001270576 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX HaveR 0 0 6;
@@ -7047,7 +7047,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 1.0 auto auto 1 0 0;
+    0 0.999999 auto auto 1 0 0;
   }
 }
 anim scale.scaleZ scaleZ HaveR 0 0 8;
@@ -7058,7 +7058,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.999999 auto auto 1 0 0;
+    0 1.0 auto auto 1 0 0;
   }
 }
 anim translate.translateX translateX Head 0 0 0;
@@ -7101,12 +7101,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Head 0 0 3;
@@ -7133,12 +7133,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0002884374964916777 auto auto 1 0 0;
+    1 -0.00029048866247992117 auto auto 1 0 0;
+    2 -0.0002963686074749449 auto auto 1 0 0;
+    3 -0.00028748031319913823 auto auto 1 0 0;
+    4 -0.00028310454284450405 auto auto 1 0 0;
+    5 -0.00028460870602573993 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Head 0 0 5;
@@ -7149,12 +7149,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0002884374964916777 auto auto 1 0 0;
-    1 -0.00029048866247992117 auto auto 1 0 0;
-    2 -0.0002963686074749449 auto auto 1 0 0;
-    3 -0.00028748031319913823 auto auto 1 0 0;
-    4 -0.00028310454284450405 auto auto 1 0 0;
-    5 -0.00028460870602573993 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Head 0 0 6;
@@ -7229,12 +7229,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.86925 auto auto 1 0 0;
-    1 -1.2255726 auto auto 1 0 0;
-    2 -1.8782971 auto auto 1 0 0;
-    3 -1.3542296 auto auto 1 0 0;
-    4 -0.6140363 auto auto 1 0 0;
-    5 -0.364681 auto auto 1 0 0;
+    0 0.839685 auto auto 1 0 0;
+    1 -2.729102 auto auto 1 0 0;
+    2 -2.3399408 auto auto 1 0 0;
+    3 -0.96869856 auto auto 1 0 0;
+    4 0.27631485 auto auto 1 0 0;
+    5 0.23989153 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ Hip 0 0 2;
@@ -7245,12 +7245,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.839685 auto auto 1 0 0;
-    1 -2.729102 auto auto 1 0 0;
-    2 -2.3399408 auto auto 1 0 0;
-    3 -0.96869856 auto auto 1 0 0;
-    4 0.27631485 auto auto 1 0 0;
-    5 0.23989153 auto auto 1 0 0;
+    0 2.86925 auto auto 1 0 0;
+    1 1.2255726 auto auto 1 0 0;
+    2 1.8782971 auto auto 1 0 0;
+    3 1.3542296 auto auto 1 0 0;
+    4 0.6140363 auto auto 1 0 0;
+    5 0.364681 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Hip 0 0 3;
@@ -7277,12 +7277,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 4.698962758141458 auto auto 1 0 0;
-    1 11.935564646931995 auto auto 1 0 0;
-    2 2.3982782035186845 auto auto 1 0 0;
-    3 -5.60254854962587 auto auto 1 0 0;
-    4 -8.657627754638604 auto auto 1 0 0;
-    5 -5.138248226872609 auto auto 1 0 0;
+    0 85.52041370282058 auto auto 1 0 0;
+    1 66.16426244614173 auto auto 1 0 0;
+    2 67.93904355531247 auto auto 1 0 0;
+    3 75.48263174823154 auto auto 1 0 0;
+    4 86.48621321145542 auto auto 1 0 0;
+    5 95.17674177637865 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Hip 0 0 5;
@@ -7293,12 +7293,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 85.52041370282058 auto auto 1 0 0;
-    1 66.16426244614173 auto auto 1 0 0;
-    2 67.93904355531247 auto auto 1 0 0;
-    3 75.48263174823154 auto auto 1 0 0;
-    4 86.48621321145542 auto auto 1 0 0;
-    5 95.17674177637865 auto auto 1 0 0;
+    0 -4.698962758141458 auto auto 1 0 0;
+    1 -11.935564646931995 auto auto 1 0 0;
+    2 -2.3982782035186845 auto auto 1 0 0;
+    3 5.60254854962587 auto auto 1 0 0;
+    4 8.657627754638604 auto auto 1 0 0;
+    5 5.138248226872609 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Hip 0 0 6;
@@ -7379,7 +7379,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Jaw 0 0 3;
@@ -7401,7 +7401,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Jaw 0 0 5;
@@ -7488,12 +7488,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX KneeL 0 0 3;
@@ -7520,12 +7520,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -4.49923723147861 auto auto 1 0 0;
-    1 -5.785848645752329 auto auto 1 0 0;
-    2 -14.010009055249705 auto auto 1 0 0;
-    3 -10.252300481670432 auto auto 1 0 0;
-    4 3.282679061115106 auto auto 1 0 0;
-    5 6.535474285789158 auto auto 1 0 0;
+    0 124.36428124989753 auto auto 1 0 0;
+    1 32.716540307116894 auto auto 1 0 0;
+    2 55.38770297558167 auto auto 1 0 0;
+    3 74.359055782417 auto auto 1 0 0;
+    4 58.95697351026425 auto auto 1 0 0;
+    5 39.324132351829 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ KneeL 0 0 5;
@@ -7536,12 +7536,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 124.36428124989753 auto auto 1 0 0;
-    1 32.716540307116894 auto auto 1 0 0;
-    2 55.38770297558167 auto auto 1 0 0;
-    3 74.359055782417 auto auto 1 0 0;
-    4 58.95697351026425 auto auto 1 0 0;
-    5 39.324132351829 auto auto 1 0 0;
+    0 4.49923723147861 auto auto 1 0 0;
+    1 5.785848645752329 auto auto 1 0 0;
+    2 14.010009055249705 auto auto 1 0 0;
+    3 10.252300481670432 auto auto 1 0 0;
+    4 -3.282679061115106 auto auto 1 0 0;
+    5 -6.535474285789158 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX KneeL 0 0 6;
@@ -7632,12 +7632,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX KneeR 0 0 3;
@@ -7664,12 +7664,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 20.362705065268962 auto auto 1 0 0;
-    1 0.33166928707351984 auto auto 1 0 0;
-    2 0.44345796874569493 auto auto 1 0 0;
-    3 0.7999274842619587 auto auto 1 0 0;
-    4 0.1994595316051934 auto auto 1 0 0;
-    5 0.47133403193341405 auto auto 1 0 0;
+    0 113.08181291197762 auto auto 1 0 0;
+    1 78.09035572525576 auto auto 1 0 0;
+    2 94.17794783137309 auto auto 1 0 0;
+    3 60.65059796310756 auto auto 1 0 0;
+    4 34.819139190131665 auto auto 1 0 0;
+    5 24.66856846841171 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ KneeR 0 0 5;
@@ -7680,12 +7680,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 113.08181291197762 auto auto 1 0 0;
-    1 78.09035572525576 auto auto 1 0 0;
-    2 94.17794783137309 auto auto 1 0 0;
-    3 60.65059796310756 auto auto 1 0 0;
-    4 34.819139190131665 auto auto 1 0 0;
-    5 24.66856846841171 auto auto 1 0 0;
+    0 -20.362705065268962 auto auto 1 0 0;
+    1 -0.33166928707351984 auto auto 1 0 0;
+    2 -0.44345796874569493 auto auto 1 0 0;
+    3 -0.7999274842619587 auto auto 1 0 0;
+    4 -0.1994595316051934 auto auto 1 0 0;
+    5 -0.47133403193341405 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX KneeR 0 0 6;
@@ -7755,7 +7755,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0714121 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ LegC 0 0 2;
@@ -7766,7 +7766,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0714121 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX LegC 0 0 3;
@@ -7788,7 +7788,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ LegC 0 0 5;
@@ -7859,12 +7859,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 0.66 auto auto 1 0 0;
+    1 0.66 auto auto 1 0 0;
+    2 0.66 auto auto 1 0 0;
+    3 0.66 auto auto 1 0 0;
+    4 0.66 auto auto 1 0 0;
+    5 0.66 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ LegL 0 0 2;
@@ -7875,12 +7875,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.66 auto auto 1 0 0;
-    1 0.66 auto auto 1 0 0;
-    2 0.66 auto auto 1 0 0;
-    3 0.66 auto auto 1 0 0;
-    4 0.66 auto auto 1 0 0;
-    5 0.66 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX LegL 0 0 3;
@@ -7907,12 +7907,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -3.183251377467379 auto auto 1 0 0;
-    1 -50.2666112757241 auto auto 1 0 0;
-    2 -57.45234719532244 auto auto 1 0 0;
-    3 -45.65091197721065 auto auto 1 0 0;
-    4 -32.6974262248279 auto auto 1 0 0;
-    5 -21.81819972250913 auto auto 1 0 0;
+    0 124.97437633881911 auto auto 1 0 0;
+    1 189.55454467480817 auto auto 1 0 0;
+    2 158.89665824120263 auto auto 1 0 0;
+    3 136.40216819039642 auto auto 1 0 0;
+    4 149.84362791596047 auto auto 1 0 0;
+    5 157.61961664426101 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ LegL 0 0 5;
@@ -7923,12 +7923,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 124.97437633881911 auto auto 1 0 0;
-    1 189.55454467480817 auto auto 1 0 0;
-    2 158.89665824120263 auto auto 1 0 0;
-    3 136.40216819039642 auto auto 1 0 0;
-    4 149.84362791596047 auto auto 1 0 0;
-    5 157.61961664426101 auto auto 1 0 0;
+    0 3.183251377467379 auto auto 1 0 0;
+    1 50.2666112757241 auto auto 1 0 0;
+    2 57.45234719532244 auto auto 1 0 0;
+    3 45.65091197721065 auto auto 1 0 0;
+    4 32.6974262248279 auto auto 1 0 0;
+    5 21.81819972250913 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX LegL 0 0 6;
@@ -8003,12 +8003,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.66 auto auto 1 0 0;
+    1 -0.66 auto auto 1 0 0;
+    2 -0.66 auto auto 1 0 0;
+    3 -0.66 auto auto 1 0 0;
+    4 -0.66 auto auto 1 0 0;
+    5 -0.66 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ LegR 0 0 2;
@@ -8019,12 +8019,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.66 auto auto 1 0 0;
-    1 -0.66 auto auto 1 0 0;
-    2 -0.66 auto auto 1 0 0;
-    3 -0.66 auto auto 1 0 0;
-    4 -0.66 auto auto 1 0 0;
-    5 -0.66 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX LegR 0 0 3;
@@ -8051,12 +8051,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 51.954453063153025 auto auto 1 0 0;
-    1 27.81489041361953 auto auto 1 0 0;
-    2 29.709362580922072 auto auto 1 0 0;
-    3 28.959009926787825 auto auto 1 0 0;
-    4 20.614949170499074 auto auto 1 0 0;
-    5 17.7777736255028 auto auto 1 0 0;
+    0 125.9009938180215 auto auto 1 0 0;
+    1 171.2815469529131 auto auto 1 0 0;
+    2 152.63774132942385 auto auto 1 0 0;
+    3 161.73453392061046 auto auto 1 0 0;
+    4 163.62654271101619 auto auto 1 0 0;
+    5 167.33436051172802 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ LegR 0 0 5;
@@ -8067,12 +8067,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 125.9009938180215 auto auto 1 0 0;
-    1 171.2815469529131 auto auto 1 0 0;
-    2 152.63774132942385 auto auto 1 0 0;
-    3 161.73453392061046 auto auto 1 0 0;
-    4 163.62654271101619 auto auto 1 0 0;
-    5 167.33436051172802 auto auto 1 0 0;
+    0 -51.954453063153025 auto auto 1 0 0;
+    1 -27.81489041361953 auto auto 1 0 0;
+    2 -29.709362580922072 auto auto 1 0 0;
+    3 -28.959009926787825 auto auto 1 0 0;
+    4 -20.614949170499074 auto auto 1 0 0;
+    5 -17.7777736255028 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX LegR 0 0 6;
@@ -8153,7 +8153,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Mouth_group 0 0 3;
@@ -8175,7 +8175,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Mouth_group 0 0 5;
@@ -8262,12 +8262,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Neck 0 0 3;
@@ -8294,12 +8294,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -68.13708503622368 auto auto 1 0 0;
-    1 -32.52830318112779 auto auto 1 0 0;
-    2 5.262488609879767 auto auto 1 0 0;
-    3 -2.9893270540855075 auto auto 1 0 0;
-    4 -16.281014865598546 auto auto 1 0 0;
-    5 -4.4108993298580215 auto auto 1 0 0;
+    0 -5.464406040798134 auto auto 1 0 0;
+    1 9.256812018669645 auto auto 1 0 0;
+    2 5.9337943515701985 auto auto 1 0 0;
+    3 20.14055653292036 auto auto 1 0 0;
+    4 11.060258568674856 auto auto 1 0 0;
+    5 5.486264430915116 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Neck 0 0 5;
@@ -8310,12 +8310,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -5.464406040798134 auto auto 1 0 0;
-    1 9.256812018669645 auto auto 1 0 0;
-    2 5.9337943515701985 auto auto 1 0 0;
-    3 20.14055653292036 auto auto 1 0 0;
-    4 11.060258568674856 auto auto 1 0 0;
-    5 5.486264430915116 auto auto 1 0 0;
+    0 68.13708503622368 auto auto 1 0 0;
+    1 32.52830318112779 auto auto 1 0 0;
+    2 -5.262488609879767 auto auto 1 0 0;
+    3 2.9893270540855075 auto auto 1 0 0;
+    4 16.281014865598546 auto auto 1 0 0;
+    5 4.4108993298580215 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Neck 0 0 6;
@@ -8385,7 +8385,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 8.04976 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ Rot 0 0 2;
@@ -8396,7 +8396,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -8.04976 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Rot 0 0 3;
@@ -8418,7 +8418,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Rot 0 0 5;
@@ -8484,7 +8484,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.00806 auto auto 1 0 0;
+    0 0.603256 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_FinL1 0 0 2;
@@ -8495,7 +8495,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.603256 auto auto 1 0 0;
+    0 1.00806 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_FinL1 0 0 3;
@@ -8517,7 +8517,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -15.43657484795749 auto auto 1 0 0;
+    0 -139.50660920060415 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_FinL1 0 0 5;
@@ -8528,7 +8528,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -139.50660920060415 auto auto 1 0 0;
+    0 15.43657484795749 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_FinL1 0 0 6;
@@ -8583,7 +8583,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.00806 auto auto 1 0 0;
+    0 -0.603 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_FinR1 0 0 2;
@@ -8594,7 +8594,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.603 auto auto 1 0 0;
+    0 1.00806 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_FinR1 0 0 3;
@@ -8616,7 +8616,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 15.437018402761584 auto auto 1 0 0;
+    0 -139.50667971291435 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_FinR1 0 0 5;
@@ -8627,7 +8627,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -139.50667971291435 auto auto 1 0 0;
+    0 -15.437018402761584 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_FinR1 0 0 6;
@@ -8687,12 +8687,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.445014 auto auto 1 0 0;
-    1 -0.445014 auto auto 1 0 0;
-    2 -0.445014 auto auto 1 0 0;
-    3 -0.445014 auto auto 1 0 0;
-    4 -0.445014 auto auto 1 0 0;
-    5 -0.445014 auto auto 1 0 0;
+    0 1.4355 auto auto 1 0 0;
+    1 1.4355 auto auto 1 0 0;
+    2 1.4355 auto auto 1 0 0;
+    3 1.4355 auto auto 1 0 0;
+    4 1.4355 auto auto 1 0 0;
+    5 1.4355 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_StingBL1 0 0 2;
@@ -8703,12 +8703,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 1.4355 auto auto 1 0 0;
-    1 1.4355 auto auto 1 0 0;
-    2 1.4355 auto auto 1 0 0;
-    3 1.4355 auto auto 1 0 0;
-    4 1.4355 auto auto 1 0 0;
-    5 1.4355 auto auto 1 0 0;
+    0 0.445014 auto auto 1 0 0;
+    1 0.445014 auto auto 1 0 0;
+    2 0.445014 auto auto 1 0 0;
+    3 0.445014 auto auto 1 0 0;
+    4 0.445014 auto auto 1 0 0;
+    5 0.445014 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingBL1 0 0 3;
@@ -8735,12 +8735,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -10.946811843241132 auto auto 1 0 0;
-    1 -18.722826641616322 auto auto 1 0 0;
-    2 -19.249891817563732 auto auto 1 0 0;
-    3 -19.075839058051958 auto auto 1 0 0;
-    4 -18.49100356513686 auto auto 1 0 0;
-    5 -17.298798860866437 auto auto 1 0 0;
+    0 -100.82525616851959 auto auto 1 0 0;
+    1 -84.35003637939666 auto auto 1 0 0;
+    2 -82.77371114635332 auto auto 1 0 0;
+    3 -84.41889092235719 auto auto 1 0 0;
+    4 -88.62234612877472 auto auto 1 0 0;
+    5 -93.33980274611869 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingBL1 0 0 5;
@@ -8751,12 +8751,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -100.82525616851959 auto auto 1 0 0;
-    1 -84.35003637939666 auto auto 1 0 0;
-    2 -82.77371114635332 auto auto 1 0 0;
-    3 -84.41889092235719 auto auto 1 0 0;
-    4 -88.62234612877472 auto auto 1 0 0;
-    5 -93.33980274611869 auto auto 1 0 0;
+    0 10.946811843241132 auto auto 1 0 0;
+    1 18.722826641616322 auto auto 1 0 0;
+    2 19.249891817563732 auto auto 1 0 0;
+    3 19.075839058051958 auto auto 1 0 0;
+    4 18.49100356513686 auto auto 1 0 0;
+    5 17.298798860866437 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingBL1 0 0 6;
@@ -8847,12 +8847,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingBL2 0 0 3;
@@ -8879,12 +8879,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.41292742829704177 auto auto 1 0 0;
-    1 -3.907781540072649 auto auto 1 0 0;
-    2 -6.643404998601434 auto auto 1 0 0;
-    3 -6.588785389278577 auto auto 1 0 0;
-    4 -3.451733572874105 auto auto 1 0 0;
-    5 0.4130456193185444 auto auto 1 0 0;
+    0 -38.8393737620367 auto auto 1 0 0;
+    1 -49.68266759679806 auto auto 1 0 0;
+    2 -48.57722744202522 auto auto 1 0 0;
+    3 -43.44857621724342 auto auto 1 0 0;
+    4 -34.46905028654362 auto auto 1 0 0;
+    5 -24.55787642677086 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingBL2 0 0 5;
@@ -8895,12 +8895,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -38.8393737620367 auto auto 1 0 0;
-    1 -49.68266759679806 auto auto 1 0 0;
-    2 -48.57722744202522 auto auto 1 0 0;
-    3 -43.44857621724342 auto auto 1 0 0;
-    4 -34.46905028654362 auto auto 1 0 0;
-    5 -24.55787642677086 auto auto 1 0 0;
+    0 -0.41292742829704177 auto auto 1 0 0;
+    1 3.907781540072649 auto auto 1 0 0;
+    2 6.643404998601434 auto auto 1 0 0;
+    3 6.588785389278577 auto auto 1 0 0;
+    4 3.451733572874105 auto auto 1 0 0;
+    5 -0.4130456193185444 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingBL2 0 0 6;
@@ -8975,12 +8975,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.445014 auto auto 1 0 0;
-    1 -0.445014 auto auto 1 0 0;
-    2 -0.445014 auto auto 1 0 0;
-    3 -0.445014 auto auto 1 0 0;
-    4 -0.445014 auto auto 1 0 0;
-    5 -0.445014 auto auto 1 0 0;
+    0 -1.435 auto auto 1 0 0;
+    1 -1.435 auto auto 1 0 0;
+    2 -1.435 auto auto 1 0 0;
+    3 -1.435 auto auto 1 0 0;
+    4 -1.435 auto auto 1 0 0;
+    5 -1.435 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_StingBR1 0 0 2;
@@ -8991,12 +8991,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.435 auto auto 1 0 0;
-    1 -1.435 auto auto 1 0 0;
-    2 -1.435 auto auto 1 0 0;
-    3 -1.435 auto auto 1 0 0;
-    4 -1.435 auto auto 1 0 0;
-    5 -1.435 auto auto 1 0 0;
+    0 0.445014 auto auto 1 0 0;
+    1 0.445014 auto auto 1 0 0;
+    2 0.445014 auto auto 1 0 0;
+    3 0.445014 auto auto 1 0 0;
+    4 0.445014 auto auto 1 0 0;
+    5 0.445014 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingBR1 0 0 3;
@@ -9023,12 +9023,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 24.15962157730688 auto auto 1 0 0;
-    1 21.002526462499056 auto auto 1 0 0;
-    2 19.454737607955146 auto auto 1 0 0;
-    3 18.544240041421858 auto auto 1 0 0;
-    4 17.941986594332228 auto auto 1 0 0;
-    5 17.302891935940227 auto auto 1 0 0;
+    0 -99.38662910531158 auto auto 1 0 0;
+    1 -91.58004321313675 auto auto 1 0 0;
+    2 -89.0899849909901 auto auto 1 0 0;
+    3 -88.79156358282768 auto auto 1 0 0;
+    4 -90.80552938426789 auto auto 1 0 0;
+    5 -93.34009812067976 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingBR1 0 0 5;
@@ -9039,12 +9039,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -99.38662910531158 auto auto 1 0 0;
-    1 -91.58004321313675 auto auto 1 0 0;
-    2 -89.0899849909901 auto auto 1 0 0;
-    3 -88.79156358282768 auto auto 1 0 0;
-    4 -90.80552938426789 auto auto 1 0 0;
-    5 -93.34009812067976 auto auto 1 0 0;
+    0 -24.15962157730688 auto auto 1 0 0;
+    1 -21.002526462499056 auto auto 1 0 0;
+    2 -19.454737607955146 auto auto 1 0 0;
+    3 -18.544240041421858 auto auto 1 0 0;
+    4 -17.941986594332228 auto auto 1 0 0;
+    5 -17.302891935940227 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingBR1 0 0 6;
@@ -9135,12 +9135,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingBR2 0 0 3;
@@ -9167,12 +9167,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.3634171573303153e-05 auto auto 1 0 0;
-    1 -4.940709220100412 auto auto 1 0 0;
-    2 -8.066149640189204 auto auto 1 0 0;
-    3 -8.004151015296658 auto auto 1 0 0;
-    4 -4.418267745523107 auto auto 1 0 0;
-    5 -1.4462686142473074e-05 auto auto 1 0 0;
+    0 -40.67874331675029 auto auto 1 0 0;
+    1 -51.47991739960307 auto auto 1 0 0;
+    2 -49.33339396820202 auto auto 1 0 0;
+    3 -43.592841246183134 auto auto 1 0 0;
+    4 -34.46569871468128 auto auto 1 0 0;
+    5 -24.56101860104018 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingBR2 0 0 5;
@@ -9183,12 +9183,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -40.67874331675029 auto auto 1 0 0;
-    1 -51.47991739960307 auto auto 1 0 0;
-    2 -49.33339396820202 auto auto 1 0 0;
-    3 -43.592841246183134 auto auto 1 0 0;
-    4 -34.46569871468128 auto auto 1 0 0;
-    5 -24.56101860104018 auto auto 1 0 0;
+    0 2.3634171573303153e-05 auto auto 1 0 0;
+    1 4.940709220100412 auto auto 1 0 0;
+    2 8.066149640189204 auto auto 1 0 0;
+    3 8.004151015296658 auto auto 1 0 0;
+    4 4.418267745523107 auto auto 1 0 0;
+    5 1.4462686142473074e-05 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingBR2 0 0 6;
@@ -9263,12 +9263,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.24499 auto auto 1 0 0;
-    1 -2.24499 auto auto 1 0 0;
-    2 -2.24499 auto auto 1 0 0;
-    3 -2.24499 auto auto 1 0 0;
-    4 -2.24499 auto auto 1 0 0;
-    5 -2.24499 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_StingD1 0 0 2;
@@ -9279,12 +9279,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 2.24499 auto auto 1 0 0;
+    1 2.24499 auto auto 1 0 0;
+    2 2.24499 auto auto 1 0 0;
+    3 2.24499 auto auto 1 0 0;
+    4 2.24499 auto auto 1 0 0;
+    5 2.24499 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingD1 0 0 3;
@@ -9311,12 +9311,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 6.66826496668282 auto auto 1 0 0;
-    1 5.946113253454654 auto auto 1 0 0;
-    2 5.50980283723885 auto auto 1 0 0;
-    3 4.314872193661547 auto auto 1 0 0;
-    4 2.2391860460732875 auto auto 1 0 0;
-    5 -0.0003172859806878216 auto auto 1 0 0;
+    0 -134.38090922617812 auto auto 1 0 0;
+    1 -128.85178188982675 auto auto 1 0 0;
+    2 -126.21220863848039 auto auto 1 0 0;
+    3 -125.38813866385098 auto auto 1 0 0;
+    4 -126.0762663479845 auto auto 1 0 0;
+    5 -127.16935106902616 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingD1 0 0 5;
@@ -9327,12 +9327,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -134.38090922617812 auto auto 1 0 0;
-    1 -128.85178188982675 auto auto 1 0 0;
-    2 -126.21220863848039 auto auto 1 0 0;
-    3 -125.38813866385098 auto auto 1 0 0;
-    4 -126.0762663479845 auto auto 1 0 0;
-    5 -127.16935106902616 auto auto 1 0 0;
+    0 -6.66826496668282 auto auto 1 0 0;
+    1 -5.946113253454654 auto auto 1 0 0;
+    2 -5.50980283723885 auto auto 1 0 0;
+    3 -4.314872193661547 auto auto 1 0 0;
+    4 -2.2391860460732875 auto auto 1 0 0;
+    5 0.0003172859806878216 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingD1 0 0 6;
@@ -9423,12 +9423,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingD2 0 0 3;
@@ -9455,12 +9455,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.00015413027251394882 auto auto 1 0 0;
-    1 -5.495405166860658 auto auto 1 0 0;
-    2 -8.975062362618582 auto auto 1 0 0;
-    3 -8.906013766720482 auto auto 1 0 0;
-    4 -4.914448971713184 auto auto 1 0 0;
-    5 -7.924872874035042e-05 auto auto 1 0 0;
+    0 -31.170673597108607 auto auto 1 0 0;
+    1 -41.90814220609111 auto auto 1 0 0;
+    2 -40.54523428251734 auto auto 1 0 0;
+    3 -35.13558823946143 auto auto 1 0 0;
+    4 -25.985973992953138 auto auto 1 0 0;
+    5 -15.880807660428248 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingD2 0 0 5;
@@ -9471,12 +9471,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -31.170673597108607 auto auto 1 0 0;
-    1 -41.90814220609111 auto auto 1 0 0;
-    2 -40.54523428251734 auto auto 1 0 0;
-    3 -35.13558823946143 auto auto 1 0 0;
-    4 -25.985973992953138 auto auto 1 0 0;
-    5 -15.880807660428248 auto auto 1 0 0;
+    0 0.00015413027251394882 auto auto 1 0 0;
+    1 5.495405166860658 auto auto 1 0 0;
+    2 8.975062362618582 auto auto 1 0 0;
+    3 8.906013766720482 auto auto 1 0 0;
+    4 4.914448971713184 auto auto 1 0 0;
+    5 7.924872874035042e-05 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingD2 0 0 6;
@@ -9551,12 +9551,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.321942 auto auto 1 0 0;
-    1 -0.321942 auto auto 1 0 0;
-    2 -0.321942 auto auto 1 0 0;
-    3 -0.321942 auto auto 1 0 0;
-    4 -0.321942 auto auto 1 0 0;
-    5 -0.321942 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_StingU1 0 0 2;
@@ -9567,12 +9567,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 0.321942 auto auto 1 0 0;
+    1 0.321942 auto auto 1 0 0;
+    2 0.321942 auto auto 1 0 0;
+    3 0.321942 auto auto 1 0 0;
+    4 0.321942 auto auto 1 0 0;
+    5 0.321942 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingU1 0 0 3;
@@ -9599,12 +9599,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 5.763884449467521 auto auto 1 0 0;
-    1 2.347179188470676 auto auto 1 0 0;
-    2 1.3853580783088157 auto auto 1 0 0;
-    3 0.6821113153049526 auto auto 1 0 0;
-    4 0.29248099141486056 auto auto 1 0 0;
-    5 -0.0005550789077853551 auto auto 1 0 0;
+    0 -78.51465753959233 auto auto 1 0 0;
+    1 -69.75375914718698 auto auto 1 0 0;
+    2 -66.68287391902051 auto auto 1 0 0;
+    3 -66.26395711588943 auto auto 1 0 0;
+    4 -68.12845065491663 auto auto 1 0 0;
+    5 -70.61598840113886 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingU1 0 0 5;
@@ -9615,12 +9615,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -78.51465753959233 auto auto 1 0 0;
-    1 -69.75375914718698 auto auto 1 0 0;
-    2 -66.68287391902051 auto auto 1 0 0;
-    3 -66.26395711588943 auto auto 1 0 0;
-    4 -68.12845065491663 auto auto 1 0 0;
-    5 -70.61598840113886 auto auto 1 0 0;
+    0 -5.763884449467521 auto auto 1 0 0;
+    1 -2.347179188470676 auto auto 1 0 0;
+    2 -1.3853580783088157 auto auto 1 0 0;
+    3 -0.6821113153049526 auto auto 1 0 0;
+    4 -0.29248099141486056 auto auto 1 0 0;
+    5 0.0005550789077853551 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingU1 0 0 6;
@@ -9711,12 +9711,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingU2 0 0 3;
@@ -9743,12 +9743,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.00040006704333589297 auto auto 1 0 0;
-    1 0.00039792839146523005 auto auto 1 0 0;
-    2 0.0003990393015975 auto auto 1 0 0;
-    3 0.0004005849144720685 auto auto 1 0 0;
-    4 0.00040179471525259063 auto auto 1 0 0;
-    5 0.00040254797974762933 auto auto 1 0 0;
+    0 -18.068648407525245 auto auto 1 0 0;
+    1 -21.11409919444473 auto auto 1 0 0;
+    2 -19.633317738004916 auto auto 1 0 0;
+    3 -17.17686195650925 auto auto 1 0 0;
+    4 -14.65759477997995 auto auto 1 0 0;
+    5 -12.382784268883146 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingU2 0 0 5;
@@ -9759,12 +9759,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -18.068648407525245 auto auto 1 0 0;
-    1 -21.11409919444473 auto auto 1 0 0;
-    2 -19.633317738004916 auto auto 1 0 0;
-    3 -17.17686195650925 auto auto 1 0 0;
-    4 -14.65759477997995 auto auto 1 0 0;
-    5 -12.382784268883146 auto auto 1 0 0;
+    0 -0.00040006704333589297 auto auto 1 0 0;
+    1 -0.00039792839146523005 auto auto 1 0 0;
+    2 -0.0003990393015975 auto auto 1 0 0;
+    3 -0.0004005849144720685 auto auto 1 0 0;
+    4 -0.00040179471525259063 auto auto 1 0 0;
+    5 -0.00040254797974762933 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingU2 0 0 6;
@@ -9855,12 +9855,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_StingU3 0 0 3;
@@ -9887,12 +9887,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 7.491859840214366e-05 auto auto 1 0 0;
-    1 -6.5083587027314405 auto auto 1 0 0;
-    2 -10.626898575360672 auto auto 1 0 0;
-    3 -10.545230758739265 auto auto 1 0 0;
-    4 -5.819884125826417 auto auto 1 0 0;
-    5 3.920763040991159e-05 auto auto 1 0 0;
+    0 -32.01821178005661 auto auto 1 0 0;
+    1 -43.641694804269505 auto auto 1 0 0;
+    2 -43.01371220426205 auto auto 1 0 0;
+    3 -37.59375536208664 auto auto 1 0 0;
+    4 -27.60562475790148 auto auto 1 0 0;
+    5 -16.59708219718343 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_StingU3 0 0 5;
@@ -9903,12 +9903,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -32.01821178005661 auto auto 1 0 0;
-    1 -43.641694804269505 auto auto 1 0 0;
-    2 -43.01371220426205 auto auto 1 0 0;
-    3 -37.59375536208664 auto auto 1 0 0;
-    4 -27.60562475790148 auto auto 1 0 0;
-    5 -16.59708219718343 auto auto 1 0 0;
+    0 -7.491859840214366e-05 auto auto 1 0 0;
+    1 6.5083587027314405 auto auto 1 0 0;
+    2 10.626898575360672 auto auto 1 0 0;
+    3 10.545230758739265 auto auto 1 0 0;
+    4 5.819884125826417 auto auto 1 0 0;
+    5 -3.920763040991159e-05 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_StingU3 0 0 6;
@@ -9978,7 +9978,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.527451 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ S_Tail1 0 0 2;
@@ -9989,7 +9989,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 0.527451 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX S_Tail1 0 0 3;
@@ -10011,7 +10011,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -107.42786739715967 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ S_Tail1 0 0 5;
@@ -10022,7 +10022,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -107.42786739715967 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX S_Tail1 0 0 6;
@@ -10098,12 +10098,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ShoulderL 0 0 3;
@@ -10130,12 +10130,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -77.59045917561625 auto auto 1 0 0;
-    1 -51.17420860588816 auto auto 1 0 0;
-    2 -56.87375039389783 auto auto 1 0 0;
-    3 -66.21430945366687 auto auto 1 0 0;
-    4 -63.55079991619795 auto auto 1 0 0;
-    5 -41.43419113083935 auto auto 1 0 0;
+    0 -11.516809537456881 auto auto 1 0 0;
+    1 -104.28409229928786 auto auto 1 0 0;
+    2 -20.705307950535353 auto auto 1 0 0;
+    3 -15.703337661558876 auto auto 1 0 0;
+    4 -45.553402335487135 auto auto 1 0 0;
+    5 -47.838530630397926 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ShoulderL 0 0 5;
@@ -10146,12 +10146,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -11.516809537456881 auto auto 1 0 0;
-    1 -104.28409229928786 auto auto 1 0 0;
-    2 -20.705307950535353 auto auto 1 0 0;
-    3 -15.703337661558876 auto auto 1 0 0;
-    4 -45.553402335487135 auto auto 1 0 0;
-    5 -47.838530630397926 auto auto 1 0 0;
+    0 77.59045917561625 auto auto 1 0 0;
+    1 51.17420860588816 auto auto 1 0 0;
+    2 56.87375039389783 auto auto 1 0 0;
+    3 66.21430945366687 auto auto 1 0 0;
+    4 63.55079991619795 auto auto 1 0 0;
+    5 41.43419113083935 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ShoulderL 0 0 6;
@@ -10242,12 +10242,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ShoulderR 0 0 3;
@@ -10274,12 +10274,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -8.642225049412009 auto auto 1 0 0;
-    1 -16.60108152311863 auto auto 1 0 0;
-    2 7.799223203542877 auto auto 1 0 0;
-    3 19.46527831814925 auto auto 1 0 0;
-    4 22.568307517268398 auto auto 1 0 0;
-    5 37.121682980153025 auto auto 1 0 0;
+    0 -16.581177310431432 auto auto 1 0 0;
+    1 48.70786624759134 auto auto 1 0 0;
+    2 -50.051408835575614 auto auto 1 0 0;
+    3 -65.9965989924564 auto auto 1 0 0;
+    4 -27.071769935878596 auto auto 1 0 0;
+    5 -47.4898010884632 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ShoulderR 0 0 5;
@@ -10290,12 +10290,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -16.581177310431432 auto auto 1 0 0;
-    1 48.70786624759134 auto auto 1 0 0;
-    2 -50.051408835575614 auto auto 1 0 0;
-    3 -65.9965989924564 auto auto 1 0 0;
-    4 -27.071769935878596 auto auto 1 0 0;
-    5 -47.4898010884632 auto auto 1 0 0;
+    0 8.642225049412009 auto auto 1 0 0;
+    1 16.60108152311863 auto auto 1 0 0;
+    2 -7.799223203542877 auto auto 1 0 0;
+    3 -19.46527831814925 auto auto 1 0 0;
+    4 -22.568307517268398 auto auto 1 0 0;
+    5 -37.121682980153025 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ShoulderR 0 0 6;
@@ -10365,7 +10365,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -3.24976 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ Sphere 0 0 2;
@@ -10376,7 +10376,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 3.24976 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Sphere 0 0 3;
@@ -10398,7 +10398,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Sphere 0 0 5;
@@ -10475,7 +10475,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX SphereRot 0 0 3;
@@ -10497,7 +10497,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ SphereRot 0 0 5;
@@ -10568,12 +10568,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.05597 auto auto 1 0 0;
-    1 -1.05597 auto auto 1 0 0;
-    2 -1.05597 auto auto 1 0 0;
-    3 -1.05597 auto auto 1 0 0;
-    4 -1.05597 auto auto 1 0 0;
-    5 -1.05597 auto auto 1 0 0;
+    0 1.5015 auto auto 1 0 0;
+    1 1.5015 auto auto 1 0 0;
+    2 1.5015 auto auto 1 0 0;
+    3 1.5015 auto auto 1 0 0;
+    4 1.5015 auto auto 1 0 0;
+    5 1.5015 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ StingL1 0 0 2;
@@ -10584,12 +10584,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 1.5015 auto auto 1 0 0;
-    1 1.5015 auto auto 1 0 0;
-    2 1.5015 auto auto 1 0 0;
-    3 1.5015 auto auto 1 0 0;
-    4 1.5015 auto auto 1 0 0;
-    5 1.5015 auto auto 1 0 0;
+    0 1.05597 auto auto 1 0 0;
+    1 1.05597 auto auto 1 0 0;
+    2 1.05597 auto auto 1 0 0;
+    3 1.05597 auto auto 1 0 0;
+    4 1.05597 auto auto 1 0 0;
+    5 1.05597 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX StingL1 0 0 3;
@@ -10616,12 +10616,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -15.979591431228938 auto auto 1 0 0;
-    1 -20.328894356143035 auto auto 1 0 0;
-    2 -20.894480611688046 auto auto 1 0 0;
-    3 -20.98658985795542 auto auto 1 0 0;
-    4 -20.51286366972792 auto auto 1 0 0;
-    5 -19.801923355684924 auto auto 1 0 0;
+    0 -122.51490958317909 auto auto 1 0 0;
+    1 -112.35816173949772 auto auto 1 0 0;
+    2 -110.7415889668196 auto auto 1 0 0;
+    3 -111.72180424414945 auto auto 1 0 0;
+    4 -114.86004096305848 auto auto 1 0 0;
+    5 -118.61133537876209 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ StingL1 0 0 5;
@@ -10632,12 +10632,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -122.51490958317909 auto auto 1 0 0;
-    1 -112.35816173949772 auto auto 1 0 0;
-    2 -110.7415889668196 auto auto 1 0 0;
-    3 -111.72180424414945 auto auto 1 0 0;
-    4 -114.86004096305848 auto auto 1 0 0;
-    5 -118.61133537876209 auto auto 1 0 0;
+    0 15.979591431228938 auto auto 1 0 0;
+    1 20.328894356143035 auto auto 1 0 0;
+    2 20.894480611688046 auto auto 1 0 0;
+    3 20.98658985795542 auto auto 1 0 0;
+    4 20.51286366972792 auto auto 1 0 0;
+    5 19.801923355684924 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX StingL1 0 0 6;
@@ -10728,12 +10728,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX StingL2 0 0 3;
@@ -10760,12 +10760,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.4109212520851948 auto auto 1 0 0;
-    1 -7.958496591930297 auto auto 1 0 0;
-    2 -12.987866932495562 auto auto 1 0 0;
-    3 -12.213518106356938 auto auto 1 0 0;
-    4 -5.4451133564643195 auto auto 1 0 0;
-    5 2.107561161427409 auto auto 1 0 0;
+    0 -41.2805532752751 auto auto 1 0 0;
+    1 -48.47210556785246 auto auto 1 0 0;
+    2 -46.969028389961316 auto auto 1 0 0;
+    3 -42.91798144188718 auto auto 1 0 0;
+    4 -36.65163205075681 auto auto 1 0 0;
+    5 -30.205116206571503 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ StingL2 0 0 5;
@@ -10776,12 +10776,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -41.2805532752751 auto auto 1 0 0;
-    1 -48.47210556785246 auto auto 1 0 0;
-    2 -46.969028389961316 auto auto 1 0 0;
-    3 -42.91798144188718 auto auto 1 0 0;
-    4 -36.65163205075681 auto auto 1 0 0;
-    5 -30.205116206571503 auto auto 1 0 0;
+    0 -0.4109212520851948 auto auto 1 0 0;
+    1 7.958496591930297 auto auto 1 0 0;
+    2 12.987866932495562 auto auto 1 0 0;
+    3 12.213518106356938 auto auto 1 0 0;
+    4 5.4451133564643195 auto auto 1 0 0;
+    5 -2.107561161427409 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX StingL2 0 0 6;
@@ -10862,7 +10862,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX StingL3_null 0 0 3;
@@ -10884,7 +10884,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ StingL3_null 0 0 5;
@@ -10955,12 +10955,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.056 auto auto 1 0 0;
-    1 -1.056 auto auto 1 0 0;
-    2 -1.056 auto auto 1 0 0;
-    3 -1.056 auto auto 1 0 0;
-    4 -1.056 auto auto 1 0 0;
-    5 -1.056 auto auto 1 0 0;
+    0 -1.50149 auto auto 1 0 0;
+    1 -1.50149 auto auto 1 0 0;
+    2 -1.50149 auto auto 1 0 0;
+    3 -1.50149 auto auto 1 0 0;
+    4 -1.50149 auto auto 1 0 0;
+    5 -1.50149 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ StingR1 0 0 2;
@@ -10971,12 +10971,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -1.50149 auto auto 1 0 0;
-    1 -1.50149 auto auto 1 0 0;
-    2 -1.50149 auto auto 1 0 0;
-    3 -1.50149 auto auto 1 0 0;
-    4 -1.50149 auto auto 1 0 0;
-    5 -1.50149 auto auto 1 0 0;
+    0 1.056 auto auto 1 0 0;
+    1 1.056 auto auto 1 0 0;
+    2 1.056 auto auto 1 0 0;
+    3 1.056 auto auto 1 0 0;
+    4 1.056 auto auto 1 0 0;
+    5 1.056 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX StingR1 0 0 3;
@@ -11003,12 +11003,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 27.854204853758517 auto auto 1 0 0;
-    1 28.424015422737067 auto auto 1 0 0;
-    2 26.76835158072603 auto auto 1 0 0;
-    3 24.50954330088058 auto auto 1 0 0;
-    4 22.234857028047106 auto auto 1 0 0;
-    5 19.83992374213255 auto auto 1 0 0;
+    0 -125.70153198861941 auto auto 1 0 0;
+    1 -123.38741903815 auto auto 1 0 0;
+    2 -122.35614472505306 auto auto 1 0 0;
+    3 -121.03317902603052 auto auto 1 0 0;
+    4 -119.64361888467123 auto auto 1 0 0;
+    5 -118.33561471675456 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ StingR1 0 0 5;
@@ -11019,12 +11019,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -125.70153198861941 auto auto 1 0 0;
-    1 -123.38741903815 auto auto 1 0 0;
-    2 -122.35614472505306 auto auto 1 0 0;
-    3 -121.03317902603052 auto auto 1 0 0;
-    4 -119.64361888467123 auto auto 1 0 0;
-    5 -118.33561471675456 auto auto 1 0 0;
+    0 -27.854204853758517 auto auto 1 0 0;
+    1 -28.424015422737067 auto auto 1 0 0;
+    2 -26.76835158072603 auto auto 1 0 0;
+    3 -24.50954330088058 auto auto 1 0 0;
+    4 -22.234857028047106 auto auto 1 0 0;
+    5 -19.83992374213255 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX StingR1 0 0 6;
@@ -11115,12 +11115,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX StingR2 0 0 3;
@@ -11147,12 +11147,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -6.585837636406762 auto auto 1 0 0;
-    1 -10.30439398281283 auto auto 1 0 0;
-    2 -12.864532529010878 auto auto 1 0 0;
-    3 -12.956326378929159 auto auto 1 0 0;
-    4 -10.273395896167306 auto auto 1 0 0;
-    5 -6.893155018484557 auto auto 1 0 0;
+    0 -47.654887859188726 auto auto 1 0 0;
+    1 -58.91922409543913 auto auto 1 0 0;
+    2 -56.497127865073296 auto auto 1 0 0;
+    3 -50.03084570484789 auto auto 1 0 0;
+    4 -40.17776369605758 auto auto 1 0 0;
+    5 -29.548734233683426 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ StingR2 0 0 5;
@@ -11163,12 +11163,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -47.654887859188726 auto auto 1 0 0;
-    1 -58.91922409543913 auto auto 1 0 0;
-    2 -56.497127865073296 auto auto 1 0 0;
-    3 -50.03084570484789 auto auto 1 0 0;
-    4 -40.17776369605758 auto auto 1 0 0;
-    5 -29.548734233683426 auto auto 1 0 0;
+    0 6.585837636406762 auto auto 1 0 0;
+    1 10.30439398281283 auto auto 1 0 0;
+    2 12.864532529010878 auto auto 1 0 0;
+    3 12.956326378929159 auto auto 1 0 0;
+    4 10.273395896167306 auto auto 1 0 0;
+    5 6.893155018484557 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX StingR2 0 0 6;
@@ -11249,7 +11249,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX StingR3_null 0 0 3;
@@ -11271,7 +11271,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ StingR3_null 0 0 5;
@@ -11337,7 +11337,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -8.04976 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ Throw 0 0 2;
@@ -11348,7 +11348,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 8.04976 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Throw 0 0 3;
@@ -11370,7 +11370,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Throw 0 0 5;
@@ -11441,12 +11441,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.31 auto auto 1 0 0;
-    1 -2.31 auto auto 1 0 0;
-    2 -2.31 auto auto 1 0 0;
-    3 -2.31 auto auto 1 0 0;
-    4 -2.31 auto auto 1 0 0;
-    5 -2.31 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ ToeL 0 0 2;
@@ -11457,12 +11457,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 2.31 auto auto 1 0 0;
+    1 2.31 auto auto 1 0 0;
+    2 2.31 auto auto 1 0 0;
+    3 2.31 auto auto 1 0 0;
+    4 2.31 auto auto 1 0 0;
+    5 2.31 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ToeL 0 0 3;
@@ -11489,12 +11489,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 2.3439932200367792 auto auto 1 0 0;
-    2 5.066559647125232 auto auto 1 0 0;
-    3 5.9609553576982375 auto auto 1 0 0;
-    4 5.959914166504852 auto auto 1 0 0;
-    5 5.955173951805013 auto auto 1 0 0;
+    0 -89.9999716400358 auto auto 1 0 0;
+    1 -92.9983442750043 auto auto 1 0 0;
+    2 -97.51026181107166 auto auto 1 0 0;
+    3 -91.61006802777929 auto auto 1 0 0;
+    4 -91.6126282281173 auto auto 1 0 0;
+    5 -91.62977023016013 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ToeL 0 0 5;
@@ -11505,12 +11505,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -89.9999716400358 auto auto 1 0 0;
-    1 -92.9983442750043 auto auto 1 0 0;
-    2 -97.51026181107166 auto auto 1 0 0;
-    3 -91.61006802777929 auto auto 1 0 0;
-    4 -91.6126282281173 auto auto 1 0 0;
-    5 -91.62977023016013 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -2.3439932200367792 auto auto 1 0 0;
+    2 -5.066559647125232 auto auto 1 0 0;
+    3 -5.9609553576982375 auto auto 1 0 0;
+    4 -5.959914166504852 auto auto 1 0 0;
+    5 -5.955173951805013 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ToeL 0 0 6;
@@ -11585,12 +11585,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -2.31 auto auto 1 0 0;
-    1 -2.31 auto auto 1 0 0;
-    2 -2.31 auto auto 1 0 0;
-    3 -2.31 auto auto 1 0 0;
-    4 -2.31 auto auto 1 0 0;
-    5 -2.31 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
+    1 0.0 auto auto 1 0 0;
+    2 0.0 auto auto 1 0 0;
+    3 0.0 auto auto 1 0 0;
+    4 0.0 auto auto 1 0 0;
+    5 0.0 auto auto 1 0 0;
   }
 }
 anim translate.translateZ translateZ ToeR 0 0 2;
@@ -11601,12 +11601,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 2.31 auto auto 1 0 0;
+    1 2.31 auto auto 1 0 0;
+    2 2.31 auto auto 1 0 0;
+    3 2.31 auto auto 1 0 0;
+    4 2.31 auto auto 1 0 0;
+    5 2.31 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX ToeR 0 0 3;
@@ -11633,12 +11633,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -4.023099529515595 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 -1.935835611603498 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -96.9491828296516 auto auto 1 0 0;
+    1 -90.00003241138651 auto auto 1 0 0;
+    2 -90.00003241138651 auto auto 1 0 0;
+    3 -90.00003241138651 auto auto 1 0 0;
+    4 -96.50901277901198 auto auto 1 0 0;
+    5 -90.00003241138651 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ ToeR 0 0 5;
@@ -11649,12 +11649,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -96.9491828296516 auto auto 1 0 0;
-    1 -90.00003241138651 auto auto 1 0 0;
-    2 -90.00003241138651 auto auto 1 0 0;
-    3 -90.00003241138651 auto auto 1 0 0;
-    4 -96.50901277901198 auto auto 1 0 0;
-    5 -90.00003241138651 auto auto 1 0 0;
+    0 4.023099529515595 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 1.935835611603498 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX ToeR 0 0 6;
@@ -11735,7 +11735,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Tongue 0 0 3;
@@ -11757,7 +11757,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Tongue 0 0 5;
@@ -11834,7 +11834,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Trans 0 0 3;
@@ -11845,7 +11845,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 90.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateY rotateY Trans 0 0 4;
@@ -11856,7 +11856,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Trans 0 0 5;
@@ -11867,7 +11867,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -90.0 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Trans 0 0 6;
@@ -11933,7 +11933,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX UplipC 0 0 3;
@@ -11955,7 +11955,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ UplipC 0 0 5;
@@ -12032,7 +12032,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX UplipL1 0 0 3;
@@ -12054,7 +12054,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ UplipL1 0 0 5;
@@ -12131,7 +12131,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX UplipL2 0 0 3;
@@ -12153,7 +12153,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ UplipL2 0 0 5;
@@ -12230,7 +12230,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX UplipR1 0 0 3;
@@ -12252,7 +12252,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ UplipR1 0 0 5;
@@ -12329,7 +12329,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX UplipR2 0 0 3;
@@ -12351,7 +12351,7 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 -0.0 auto auto 1 0 0;
+    0 0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ UplipR2 0 0 5;
@@ -12438,12 +12438,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 0.0 auto auto 1 0 0;
-    1 0.0 auto auto 1 0 0;
-    2 0.0 auto auto 1 0 0;
-    3 0.0 auto auto 1 0 0;
-    4 0.0 auto auto 1 0 0;
-    5 0.0 auto auto 1 0 0;
+    0 -0.0 auto auto 1 0 0;
+    1 -0.0 auto auto 1 0 0;
+    2 -0.0 auto auto 1 0 0;
+    3 -0.0 auto auto 1 0 0;
+    4 -0.0 auto auto 1 0 0;
+    5 -0.0 auto auto 1 0 0;
   }
 }
 anim rotate.rotateX rotateX Waist 0 0 3;
@@ -12470,12 +12470,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 14.269252131442983 auto auto 1 0 0;
-    1 53.65397918931285 auto auto 1 0 0;
-    2 47.21166207336587 auto auto 1 0 0;
-    3 38.08909029142003 auto auto 1 0 0;
-    4 22.553533714895135 auto auto 1 0 0;
-    5 -0.14461215043783007 auto auto 1 0 0;
+    0 35.98878821850751 auto auto 1 0 0;
+    1 -23.670630404426916 auto auto 1 0 0;
+    2 17.8267134883402 auto auto 1 0 0;
+    3 34.465783528895436 auto auto 1 0 0;
+    4 13.387983130764693 auto auto 1 0 0;
+    5 -0.803279273620842 auto auto 1 0 0;
   }
 }
 anim rotate.rotateZ rotateZ Waist 0 0 5;
@@ -12486,12 +12486,12 @@ animData {
   preInfinity constant;
   postInfinity constant;
   keys {
-    0 35.98878821850751 auto auto 1 0 0;
-    1 -23.670630404426916 auto auto 1 0 0;
-    2 17.8267134883402 auto auto 1 0 0;
-    3 34.465783528895436 auto auto 1 0 0;
-    4 13.387983130764693 auto auto 1 0 0;
-    5 -0.803279273620842 auto auto 1 0 0;
+    0 -14.269252131442983 auto auto 1 0 0;
+    1 -53.65397918931285 auto auto 1 0 0;
+    2 -47.21166207336587 auto auto 1 0 0;
+    3 -38.08909029142003 auto auto 1 0 0;
+    4 -22.553533714895135 auto auto 1 0 0;
+    5 0.14461215043783007 auto auto 1 0 0;
   }
 }
 anim scale.scaleX scaleX Waist 0 0 6;

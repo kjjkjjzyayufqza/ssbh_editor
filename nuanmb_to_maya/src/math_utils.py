@@ -61,17 +61,123 @@ def quat_to_euler(q: Vector4, order: str = 'XYZ') -> Vector3:
         raise NotImplementedError(f"Rotation order {order} not implemented")
 
 
+def build_matrix4x4(t: Vector3, r: Vector4, s: Vector3) -> np.ndarray:
+    """Builds a 4x4 matrix from translation, rotation (quaternion), and scale (T*R*S)."""
+    # SSBH quaternions are X, Y, Z, W storage order
+    x, y, z, w = r.x, r.y, r.z, r.w
+    
+    # Calculate rotation matrix components from quaternion
+    xx, yy, zz = x * x, y * y, z * z
+    xy, xz, yz = x * y, x * z, y * z
+    xw, yw, zw = x * w, y * w, z * w
+
+    rot_mat = np.array([
+        [1 - 2 * (yy + zz),     2 * (xy - zw),     2 * (xz + yw)],
+        [    2 * (xy + zw), 1 - 2 * (xx + zz),     2 * (yz - xw)],
+        [    2 * (xz - yw),     2 * (yz + xw), 1 - 2 * (xx + yy)]
+    ])
+
+    # Apply scale to rotation matrix
+    scaled_rot_mat = rot_mat * [s.x, s.y, s.z]
+
+    mat = np.identity(4)
+    mat[:3, :3] = scaled_rot_mat
+    mat[0, 3] = t.x
+    mat[1, 3] = t.y
+    mat[2, 3] = t.z
+    
+    # Note: SSBH uses column-major order for translation in its internal representation, but its matrix multiplication order T*R*S generally assumes translation is in column 3.
+    # Given the Blender reference used T*R*S order, we build it the standard way (translation in the fourth column).
+    return mat
+
+
+def quat_from_matrix(matrix: np.ndarray) -> Vector4:
+    """Extract quaternion (x, y, z, w) from the 4x4 rotation matrix part."""
+    # Ensure rotation matrix is extracted (3x3 part) and normalized for potential scale issues
+    M = matrix[:3, :3]
+    # Handle scale: Q is only defined for orthogonal matrices (no scale).
+    # Since the input matrix handles T*R*S, we only need the R part.
+    # To get R from R*S, we need to divide by scale, but robustly decomposing a general 3x3 matrix into Q is complex.
+    # Assume rotation part of M is orthogonal IF input comes from a matrix generated without scale.
+    # However, if we decompose T*R*S, we must first remove the scale.
+    
+    scale_x = np.linalg.norm(M[0, :])
+    scale_y = np.linalg.norm(M[1, :])
+    scale_z = np.linalg.norm(M[2, :])
+    
+    # If matrix columns are not normalized, normalize them to extract rotation
+    if abs(scale_x - 1.0) > 1e-6 or abs(scale_y - 1.0) > 1e-6 or abs(scale_z - 1.0) > 1e-6:
+        # Use pseudo-polar decomposition or just extract rotation part assuming orthogonal decomposition
+        # Since we are trying to perfectly emulate what Blender did when it decomposed its resulting matrix (M_corrected),
+        # we will use a common simplified approach assuming M is M_rot * M_scale
+        
+        # Normalize rows to approximate the rotation matrix (ignoring shear)
+        R = np.copy(M)
+        if scale_x != 0: R[0, :] /= scale_x
+        if scale_y != 0: R[1, :] /= scale_y
+        if scale_z != 0: R[2, :] /= scale_z
+    else:
+        R = M
+
+    # Standard matrix to quaternion conversion (SSBH order: X, Y, Z, W)
+    
+    # Trace method
+    tr = R[0, 0] + R[1, 1] + R[2, 2]
+    
+    if tr > 0:
+        S = np.sqrt(tr + 1.0) * 2
+        w = 0.25 * S
+        x = (R[2, 1] - R[1, 2]) / S
+        y = (R[0, 2] - R[2, 0]) / S
+        z = (R[1, 0] - R[0, 1]) / S
+    elif (R[0, 0] > R[1, 1]) and (R[0, 0] > R[2, 2]):
+        S = np.sqrt(1.0 + R[0, 0] - R[1, 1] - R[2, 2]) * 2
+        w = (R[2, 1] - R[1, 2]) / S
+        x = 0.25 * S
+        y = (R[0, 1] + R[1, 0]) / S
+        z = (R[0, 2] + R[2, 0]) / S
+    elif R[1, 1] > R[2, 2]:
+        S = np.sqrt(1.0 + R[1, 1] - R[0, 0] - R[2, 2]) * 2
+        w = (R[0, 2] - R[2, 0]) / S
+        x = (R[0, 1] + R[1, 0]) / S
+        y = 0.25 * S
+        z = (R[1, 2] + R[2, 1]) / S
+    else:
+        S = np.sqrt(1.0 + R[2, 2] - R[0, 0] - R[1, 1]) * 2
+        w = (R[1, 0] - R[0, 1]) / S
+        x = (R[0, 2] + R[2, 0]) / S
+        y = (R[1, 2] + R[2, 1]) / S
+        z = 0.25 * S
+    
+    return Vector4(x=x, y=y, z=z, w=w)
+
+
+def matrix_to_trans_quat_scale(matrix: np.ndarray) -> Tuple[Vector3, Vector4, Vector3]:
+    """Decompose a 4x4 matrix into translation, rotation (quaternion), and scale."""
+    
+    t = Vector3(x=matrix[0, 3], y=matrix[1, 3], z=matrix[2, 3])
+    
+    # Extract scale by column normalization
+    scale_x = np.linalg.norm(matrix[0, :3])
+    scale_y = np.linalg.norm(matrix[1, :3])
+    scale_z = np.linalg.norm(matrix[2, :3])
+    s = Vector3(x=scale_x, y=scale_y, z=scale_z)
+
+    # Extract rotation part by normalizing the 3x3 rotational sub-matrix
+    R = np.copy(matrix[:3, :3])
+    if scale_x != 0: R[0, :] /= scale_x
+    if scale_y != 0: R[1, :] /= scale_y
+    if scale_z != 0: R[2, :] /= scale_z
+
+    q = quat_from_matrix(R)
+    
+    return t, q, s
+
+
 def lerp_vector3(a: Vector3, b: Vector3, t: float) -> Vector3:
     """
     Linear interpolation for Vector3.
-    
-    Args:
-        a: Start vector
-        b: End vector
-        t: Interpolation factor (0.0 to 1.0)
-    
-    Returns:
-        Interpolated vector
+    ... [content remains the same] ...
     """
     return Vector3(
         x=a.x * (1 - t) + b.x * t,
@@ -83,14 +189,7 @@ def lerp_vector3(a: Vector3, b: Vector3, t: float) -> Vector3:
 def slerp_quat(a: Vector4, b: Vector4, t: float) -> Vector4:
     """
     Spherical linear interpolation for quaternions.
-    
-    Args:
-        a: Start quaternion
-        b: End quaternion
-        t: Interpolation factor (0.0 to 1.0)
-    
-    Returns:
-        Interpolated quaternion
+    ... [content remains the same] ...
     """
     # Normalize quaternions
     a_arr = np.array([a.x, a.y, a.z, a.w])
@@ -134,18 +233,10 @@ def slerp_quat(a: Vector4, b: Vector4, t: float) -> Vector4:
 def interpolate_transform(a: Transform, b: Transform, t: float) -> Transform:
     """
     Interpolate between two transforms.
-    
-    Args:
-        a: Start transform
-        b: End transform
-        t: Interpolation factor (0.0 to 1.0)
-    
-    Returns:
-        Interpolated transform
+    ... [content remains the same] ...
     """
     return Transform(
         translation=lerp_vector3(a.translation, b.translation, t),
         rotation=slerp_quat(a.rotation, b.rotation, t),
         scale=lerp_vector3(a.scale, b.scale, t)
     )
-

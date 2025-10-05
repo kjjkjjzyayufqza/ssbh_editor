@@ -4,11 +4,12 @@ Orchestrates the conversion process from JSON to .anim file.
 """
 
 from typing import List, Dict
+import numpy as np
 from .nuanmb_parser import NuanmbParser
 from .maya_writer import MayaAnimWriter
-from .math_utils import quat_to_euler
+from .math_utils import quat_to_euler, build_matrix4x4, matrix_to_trans_quat_scale
 from .models import (
-    Node, Track, MayaAnimCurve, MayaKeyframe, GroupType
+    Node, Track, MayaAnimCurve, MayaKeyframe, GroupType, Vector3, Transform
 )
 
 
@@ -132,13 +133,27 @@ class NuanmbToMayaConverter:
         
         if not transform_track:
             return
+
+        # Apply root bone correction if bone is 'Trans'
+        processed_values = transform_track.values
+        if bone_name == "Trans":
+            processed_values = [self._apply_root_correction(t) for t in transform_track.values]
+
+        # Use a new Track object with corrected values for key creation functions
+        transform_track_for_keys = Track(
+             name=transform_track.name,
+             values=processed_values,
+             transform_flags=transform_track.transform_flags,
+             compensate_scale=transform_track.compensate_scale
+        )
+
         
         # Generate curves for each transform component
         curve_index = 0
         
         # Translation curves (X, Y, Z)
         for axis, attr in [('x', 'translateX'), ('y', 'translateY'), ('z', 'translateZ')]:
-            keys = self._create_translation_keys(transform_track, axis, final_frame)
+            keys = self._create_translation_keys(transform_track_for_keys, axis, final_frame)
             if keys:
                 curve = MayaAnimCurve(
                     attribute_path=f"translate.{attr}",
@@ -153,7 +168,7 @@ class NuanmbToMayaConverter:
                 curve_index += 1
         
         # Rotation curves (convert quaternion to Euler X, Y, Z)
-        euler_keys = self._create_rotation_keys(transform_track, final_frame)
+        euler_keys = self._create_rotation_keys(transform_track_for_keys, final_frame)
         
         for axis, attr in [('x', 'rotateX'), ('y', 'rotateY'), ('z', 'rotateZ')]:
             keys = euler_keys.get(axis, [])
@@ -172,7 +187,7 @@ class NuanmbToMayaConverter:
         
         # Scale curves (X, Y, Z)
         for axis, attr in [('x', 'scaleX'), ('y', 'scaleY'), ('z', 'scaleZ')]:
-            keys = self._create_scale_keys(transform_track, axis, final_frame)
+            keys = self._create_scale_keys(transform_track_for_keys, axis, final_frame)
             if keys:
                 curve = MayaAnimCurve(
                     attribute_path=f"scale.{attr}",
@@ -186,6 +201,50 @@ class NuanmbToMayaConverter:
                 self.writer.add_curve(curve)
                 curve_index += 1
     
+    def _apply_root_correction(self, raw_transform: Transform) -> Transform:
+        """
+        Applies world space correction matrices used by smash-ultimate-blender for the root bone.
+        M_corr = R_X_90 @ M_SSBH @ R_Z_-90
+        
+        Args:
+            raw_transform: The original SSBH Transform (T, R, S)
+            
+        Returns:
+            The corrected Transform (T', R', S')
+        """
+        T = raw_transform.translation
+        R = raw_transform.rotation
+        S = raw_transform.scale
+        
+        # 1. Build the SSBH transformation matrix (T*R*S. Note: build_matrix4x4 uses T in column 4)
+        M_ssbh = build_matrix4x4(T, R, S)
+        
+        # 2. Define the correction matrices R_X_90 and R_Z_-90 (Blender style, numpy array)
+        # R_X_90 (Rotate 90 degrees around X)
+        R_X_90 = np.array([
+            [1, 0,  0, 0],
+            [0, 0, -1, 0],
+            [0, 1,  0, 0],
+            [0, 0,  0, 1]
+        ])
+        
+        # R_Z_-90 (Rotate -90 degrees around Z)
+        R_Z_N90 = np.array([
+            [0, 1, 0, 0],
+            [-1, 0, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
+        ])
+        
+        # 3. Calculate corrected matrix: M_corr = R_X_90 @ M_ssbh @ R_Z_-90
+        M_corr = R_X_90 @ M_ssbh @ R_Z_N90
+        
+        # 4. Decompose back to T, R, S
+        T_new, Q_new, S_new = matrix_to_trans_quat_scale(M_corr)
+        
+        return Transform(translation=T_new, rotation=Q_new, scale=S_new)
+
+
     def _create_translation_keys(self, track: Track, axis: str, 
                                  final_frame: float) -> List[MayaKeyframe]:
         """
@@ -214,12 +273,16 @@ class NuanmbToMayaConverter:
             last_maya_frame = maya_frame
             
             # Get value for the axis
+            # Coordinate System Transformation applied (Standard Z-up to Y-up): X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
             if axis == 'x':
+                # Map to raw X
                 value = transform.translation.x
             elif axis == 'y':
-                value = transform.translation.y
-            else:
+                # Map to raw Z
                 value = transform.translation.z
+            else: # axis == 'z'
+                # Map to raw -Y
+                value = -transform.translation.y
             
             keys.append(MayaKeyframe(
                 frame=maya_frame,
@@ -267,7 +330,15 @@ class NuanmbToMayaConverter:
             last_maya_frame = maya_frame
             
             # Convert quaternion to Euler angles (in degrees)
-            euler = quat_to_euler(transform.rotation, order='XYZ')
+            raw_euler = quat_to_euler(transform.rotation, order='XYZ')
+            
+            # Apply Coordinate System Transformation (Standard Z-up to Y-up mapping): X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
+            # Use computed Euler angles (raw_euler.x, raw_euler.y, raw_euler.z) and map them to Maya's XYZ axes.
+            euler = Vector3(
+                x=raw_euler.x,
+                y=raw_euler.z,
+                z=-raw_euler.y
+            )
             
             # Apply continuity correction relative to the previous frame's stored value
             if frame_idx > 0:
@@ -312,12 +383,16 @@ class NuanmbToMayaConverter:
             last_maya_frame = maya_frame
             
             # Get value for the axis
+            # Coordinate System Transformation applied (Standard Z-up to Y-up mapping): X_new=X_raw, Y_new=Z_raw, Z_new=Y_raw
             if axis == 'x':
+                # Map to raw X
                 value = transform.scale.x
             elif axis == 'y':
-                value = transform.scale.y
-            else:
+                # Map to raw Z
                 value = transform.scale.z
+            else: # axis == 'z'
+                # Map to raw Y
+                value = transform.scale.y
             
             keys.append(MayaKeyframe(
                 frame=maya_frame,
