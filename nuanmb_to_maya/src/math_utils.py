@@ -186,6 +186,52 @@ def lerp_vector3(a: Vector3, b: Vector3, t: float) -> Vector3:
     )
 
 
+def quat_multiply(q1: Vector4, q2: Vector4) -> Vector4:
+    """
+    Multiply two quaternions: result = q1 * q2
+    
+    Args:
+        q1: First quaternion (x, y, z, w)
+        q2: Second quaternion (x, y, z, w)
+    
+    Returns:
+        Product quaternion
+    """
+    w1, x1, y1, z1 = q1.w, q1.x, q1.y, q1.z
+    w2, x2, y2, z2 = q2.w, q2.x, q2.y, q2.z
+    
+    w = w1*w2 - x1*x2 - y1*y2 - z1*z2
+    x = w1*x2 + x1*w2 + y1*z2 - z1*y2
+    y = w1*y2 - x1*z2 + y1*w2 + z1*x2
+    z = w1*z2 + x1*y2 - y1*x2 + z1*w2
+    
+    return Vector4(x=x, y=y, z=z, w=w)
+
+
+def axis_angle_to_quat(axis: Vector3, angle_deg: float) -> Vector4:
+    """
+    Create a quaternion from axis-angle representation.
+    
+    Args:
+        axis: Rotation axis (should be normalized)
+        angle_deg: Rotation angle in degrees
+    
+    Returns:
+        Quaternion representing the rotation
+    """
+    angle_rad = np.radians(angle_deg)
+    half_angle = angle_rad / 2.0
+    s = np.sin(half_angle)
+    c = np.cos(half_angle)
+    
+    return Vector4(
+        x=axis.x * s,
+        y=axis.y * s,
+        z=axis.z * s,
+        w=c
+    )
+
+
 def slerp_quat(a: Vector4, b: Vector4, t: float) -> Vector4:
     """
     Spherical linear interpolation for quaternions.

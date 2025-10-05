@@ -1,8 +1,10 @@
 # Maya Animation Import Issue - Bug Fix Report
 
-## Problem Description
+## Problem Description (Updated)
 
-The generated `.anim` file from NUANMB JSON was causing Maya to freeze/hang when importing.
+**Issue 1 (Original)**: The generated `.anim` file from NUANMB JSON was causing Maya to freeze/hang when importing.
+
+**Issue 2 (NEW - Coordinate System)**: Animations were playing along the -Y axis instead of the correct Y axis, indicating a double coordinate transformation problem.
 
 ## Root Cause Analysis (Updated)
 
@@ -131,7 +133,80 @@ animData {
 3. **Simpler is better**: Production files often use the simpler format without node definitions
 4. **Multiple valid formats exist**: Maya .anim format is flexible
 
+## Issue 3: Double Coordinate Transformation (NEW FIX)
+
+### Problem
+
+Animations were playing along the -Y axis instead of the correct Y axis. Root analysis revealed:
+
+1. **Root bone (Trans)** was being transformed **twice**:
+   - First by `_apply_root_correction()` (matrix transformation)
+   - Then again by coordinate mapping in `_create_translation_keys()`, `_create_rotation_keys()`, and `_create_scale_keys()`
+
+2. This caused the root bone to be incorrectly transformed while non-root bones were correct.
+
+### Root Cause
+
+The code structure had an architectural flaw:
+
+```python
+# Step 1: Apply matrix transformation to root bone
+if bone_name == "Trans":
+    processed_values = [self._apply_root_correction(t) for t in values]
+
+# Step 2: Create keys with coordinate mapping (WRONG for root bone!)
+keys = self._create_translation_keys(track, axis, final_frame)
+# This applies: X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
+```
+
+The root bone's transform was already in the correct coordinate system after `_apply_root_correction()`, but the key creation functions applied coordinate mapping again, causing incorrect axis orientation.
+
+### Solution
+
+Added `is_root_bone` parameter to distinguish between root and non-root bones:
+
+1. **Root bone**: After `_apply_root_correction()`, use values directly without coordinate mapping
+2. **Non-root bones**: Apply coordinate mapping (X→X, Y→Z, Z→-Y for translation)
+
+### Changes Made
+
+Modified `nuanmb_to_maya/src/converter.py`:
+
+1. **`_process_bone()`**:
+   - Added `is_root_bone = (bone_name == "Trans")` flag
+   - Pass this flag to all key creation functions
+
+2. **`_create_translation_keys()`**:
+   - Added `is_root_bone` parameter
+   - Root bone: Use `x→x, y→y, z→z` (no mapping)
+   - Non-root: Use `x→x, y→z, z→-y` (coordinate mapping)
+
+3. **`_create_rotation_keys()`**:
+   - Added `is_root_bone` parameter
+   - Root bone: Use Euler angles directly
+   - Non-root: Apply coordinate mapping to Euler angles
+
+4. **`_create_scale_keys()`**:
+   - Added `is_root_bone` parameter
+   - Root bone: Use `x→x, y→y, z→z` (no mapping)
+   - Non-root: Use `x→x, y→z, z→y` (coordinate mapping, no sign flip for scale)
+
+### Comparison with smash-ultimate-blender
+
+This fix aligns with how Blender handles the root bone (import_anim.py lines 319-325):
+
+```python
+if bone.parent is None:  # Root bone
+    y_up_to_z_up = Matrix.Rotation(math.radians(90), 4, 'X')
+    x_major_to_y_major = Matrix.Rotation(math.radians(-90), 4, 'Z')
+    bone.matrix = y_up_to_z_up @ raw_matrix @ x_major_to_y_major
+    # Then directly decompose and use - no extra coordinate mapping
+```
+
 ## Recommendation
 
-Test the new V2 `f00damagehi1.nuanmb.anim` file in Maya to confirm it imports without freezing. The file now uses the same structure as the working `try高達援護動作_1.anim` file provided by the user.
+Test the updated converter to confirm animations now play along the correct Y axis in Maya. The fix ensures:
+- Root bone transforms are applied via matrix transformation only (matching Blender's approach)
+- Non-root bones use coordinate mapping for SSBH to Maya conversion
+- No double transformation occurs
 

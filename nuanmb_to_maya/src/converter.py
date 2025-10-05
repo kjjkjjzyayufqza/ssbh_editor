@@ -8,7 +8,8 @@ import json
 import numpy as np
 from .nuanmb_parser import NuanmbParser
 from .maya_writer import MayaAnimWriter
-from .math_utils import quat_to_euler, build_matrix4x4, matrix_to_trans_quat_scale
+from .math_utils import (quat_to_euler, build_matrix4x4, matrix_to_trans_quat_scale, 
+                         quat_multiply, axis_angle_to_quat)
 from .models import (
     Node, Track, MayaAnimCurve, MayaKeyframe, GroupType, Vector3, Transform
 )
@@ -245,6 +246,7 @@ class NuanmbToMayaConverter:
             final_frame: Final frame index of animation
         """
         bone_name = node.name
+        is_root_bone = (bone_name == "Trans")
         
         # Find transform track
         transform_track = None
@@ -258,7 +260,7 @@ class NuanmbToMayaConverter:
 
         # Apply root bone correction if bone is 'Trans'
         processed_values = transform_track.values
-        if bone_name == "Trans":
+        if is_root_bone:
             processed_values = [self._apply_root_correction(t) for t in transform_track.values]
 
         # Use a new Track object with corrected values for key creation functions
@@ -275,7 +277,7 @@ class NuanmbToMayaConverter:
         
         # Translation curves (X, Y, Z)
         for axis, attr in [('x', 'translateX'), ('y', 'translateY'), ('z', 'translateZ')]:
-            keys = self._create_translation_keys(transform_track_for_keys, axis, final_frame)
+            keys = self._create_translation_keys(transform_track_for_keys, axis, final_frame, is_root_bone)
             if keys:
                 curve = MayaAnimCurve(
                     attribute_path=f"translate.{attr}",
@@ -290,7 +292,7 @@ class NuanmbToMayaConverter:
                 curve_index += 1
         
         # Rotation curves (convert quaternion to Euler X, Y, Z)
-        euler_keys = self._create_rotation_keys(transform_track_for_keys, final_frame)
+        euler_keys = self._create_rotation_keys(transform_track_for_keys, final_frame, is_root_bone)
         
         for axis, attr in [('x', 'rotateX'), ('y', 'rotateY'), ('z', 'rotateZ')]:
             keys = euler_keys.get(axis, [])
@@ -309,7 +311,7 @@ class NuanmbToMayaConverter:
         
         # Scale curves (X, Y, Z)
         for axis, attr in [('x', 'scaleX'), ('y', 'scaleY'), ('z', 'scaleZ')]:
-            keys = self._create_scale_keys(transform_track_for_keys, axis, final_frame)
+            keys = self._create_scale_keys(transform_track_for_keys, axis, final_frame, is_root_bone)
             if keys:
                 curve = MayaAnimCurve(
                     attribute_path=f"scale.{attr}",
@@ -325,8 +327,11 @@ class NuanmbToMayaConverter:
     
     def _apply_root_correction(self, raw_transform: Transform) -> Transform:
         """
-        Applies world space correction matrices used by smash-ultimate-blender for the root bone.
-        M_corr = R_X_90 @ M_SSBH @ R_Z_-90
+        Applies world space correction used by smash-ultimate-blender for the root bone.
+        Uses quaternion multiplication for rotation: Q_corr = Q_X_90 * Q_raw * Q_Z_-90
+        
+        The coordinate transformation converts from SSBH's Z-up right-handed system
+        to Maya's Y-up right-handed system.
         
         Args:
             raw_transform: The original SSBH Transform (T, R, S)
@@ -338,11 +343,21 @@ class NuanmbToMayaConverter:
         R = raw_transform.rotation
         S = raw_transform.scale
         
-        # 1. Build the SSBH transformation matrix (T*R*S. Note: build_matrix4x4 uses T in column 4)
+        # Create rotation quaternions for coordinate system conversion
+        # Q_X_90: Rotate 90 degrees around X axis (Z-up to Y-up)
+        Q_X_90 = axis_angle_to_quat(Vector3(x=1.0, y=0.0, z=0.0), 90.0)
+        
+        # Q_Z_-90: Rotate -90 degrees around Z axis (X-major to Y-major)
+        Q_Z_N90 = axis_angle_to_quat(Vector3(x=0.0, y=0.0, z=1.0), -90.0)
+        
+        # Apply rotation correction: Q_corr = Q_X_90 * Q_raw * Q_Z_-90
+        Q_temp = quat_multiply(R, Q_Z_N90)
+        Q_corr = quat_multiply(Q_X_90, Q_temp)
+        
+        # Transform translation using the same logic
+        # Apply transformation matrix approach for translation
         M_ssbh = build_matrix4x4(T, R, S)
         
-        # 2. Define the correction matrices R_X_90 and R_Z_-90 (Blender style, numpy array)
-        # R_X_90 (Rotate 90 degrees around X)
         R_X_90 = np.array([
             [1, 0,  0, 0],
             [0, 0, -1, 0],
@@ -350,7 +365,6 @@ class NuanmbToMayaConverter:
             [0, 0,  0, 1]
         ])
         
-        # R_Z_-90 (Rotate -90 degrees around Z)
         R_Z_N90 = np.array([
             [0, 1, 0, 0],
             [-1, 0, 0, 0],
@@ -358,17 +372,17 @@ class NuanmbToMayaConverter:
             [0, 0, 0, 1]
         ])
         
-        # 3. Calculate corrected matrix: M_corr = R_X_90 @ M_ssbh @ R_Z_-90
         M_corr = R_X_90 @ M_ssbh @ R_Z_N90
+        T_corr = Vector3(x=M_corr[0, 3], y=M_corr[1, 3], z=M_corr[2, 3])
         
-        # 4. Decompose back to T, R, S
-        T_new, Q_new, S_new = matrix_to_trans_quat_scale(M_corr)
+        # Scale remains the same (coordinate system change doesn't affect scale)
+        S_corr = S
         
-        return Transform(translation=T_new, rotation=Q_new, scale=S_new)
+        return Transform(translation=T_corr, rotation=Q_corr, scale=S_corr)
 
 
     def _create_translation_keys(self, track: Track, axis: str, 
-                                 final_frame: float) -> List[MayaKeyframe]:
+                                 final_frame: float, is_root_bone: bool = False) -> List[MayaKeyframe]:
         """
         Create translation keyframes for a specific axis.
         
@@ -376,6 +390,7 @@ class NuanmbToMayaConverter:
             track: Animation track
             axis: Axis name ('x', 'y', or 'z')
             final_frame: Final frame index
+            is_root_bone: Whether this is the root bone (Trans)
             
         Returns:
             List of Maya keyframes (without duplicates)
@@ -395,16 +410,26 @@ class NuanmbToMayaConverter:
             last_maya_frame = maya_frame
             
             # Get value for the axis
-            # Coordinate System Transformation applied (Standard Z-up to Y-up): X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
-            if axis == 'x':
-                # Map to raw X
-                value = transform.translation.x
-            elif axis == 'y':
-                # Map to raw Z
-                value = transform.translation.z
-            else: # axis == 'z'
-                # Map to raw -Y
-                value = -transform.translation.y
+            if is_root_bone:
+                # Root bone has already been transformed by _apply_root_correction
+                # No additional coordinate mapping needed
+                if axis == 'x':
+                    value = transform.translation.x
+                elif axis == 'y':
+                    value = transform.translation.y
+                else:  # axis == 'z'
+                    value = transform.translation.z
+            else:
+                # Non-root bones: For Maya/Blender compatibility,  
+                # bones might need different handling based on the bone axis convention
+                # For now, use the same Z-up to Y-up mapping as root bone
+                # TODO: May need to apply bone-local coordinate transformation
+                if axis == 'x':
+                    value = transform.translation.x
+                elif axis == 'y':
+                    value = transform.translation.z
+                else:  # axis == 'z'
+                    value = -transform.translation.y
             
             keys.append(MayaKeyframe(
                 frame=maya_frame,
@@ -413,13 +438,14 @@ class NuanmbToMayaConverter:
         
         return keys
     
-    def _create_rotation_keys(self, track: Track, final_frame: float) -> Dict[str, List[MayaKeyframe]]:
+    def _create_rotation_keys(self, track: Track, final_frame: float, is_root_bone: bool = False) -> Dict[str, List[MayaKeyframe]]:
         """
         Create rotation keyframes (convert quaternion to Euler) with continuity correction.
         
         Args:
             track: Animation track
             final_frame: Final frame index
+            is_root_bone: Whether this is the root bone (Trans)
             
         Returns:
             Dictionary mapping axis ('x', 'y', 'z') to keyframe lists (without duplicates)
@@ -454,13 +480,22 @@ class NuanmbToMayaConverter:
             # Convert quaternion to Euler angles (in degrees)
             raw_euler = quat_to_euler(transform.rotation, order='XYZ')
             
-            # Apply Coordinate System Transformation (Standard Z-up to Y-up mapping): X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
-            # Use computed Euler angles (raw_euler.x, raw_euler.y, raw_euler.z) and map them to Maya's XYZ axes.
-            euler = Vector3(
-                x=raw_euler.x,
-                y=raw_euler.z,
-                z=-raw_euler.y
-            )
+            if is_root_bone:
+                # Root bone has already been transformed by _apply_root_correction
+                # No additional coordinate mapping needed
+                euler = Vector3(
+                    x=raw_euler.x,
+                    y=raw_euler.y,
+                    z=raw_euler.z
+                )
+            else:
+                # Non-root bones need coordinate system transformation (Z-up to Y-up)
+                # X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
+                euler = Vector3(
+                    x=raw_euler.x,
+                    y=raw_euler.z,
+                    z=-raw_euler.y
+                )
             
             # Apply continuity correction relative to the previous frame's stored value
             if frame_idx > 0:
@@ -478,7 +513,7 @@ class NuanmbToMayaConverter:
         return euler_keys
     
     def _create_scale_keys(self, track: Track, axis: str, 
-                          final_frame: float) -> List[MayaKeyframe]:
+                          final_frame: float, is_root_bone: bool = False) -> List[MayaKeyframe]:
         """
         Create scale keyframes for a specific axis.
         
@@ -486,6 +521,7 @@ class NuanmbToMayaConverter:
             track: Animation track
             axis: Axis name ('x', 'y', or 'z')
             final_frame: Final frame index
+            is_root_bone: Whether this is the root bone (Trans)
             
         Returns:
             List of Maya keyframes (without duplicates)
@@ -505,16 +541,24 @@ class NuanmbToMayaConverter:
             last_maya_frame = maya_frame
             
             # Get value for the axis
-            # Coordinate System Transformation applied (Standard Z-up to Y-up mapping): X_new=X_raw, Y_new=Z_raw, Z_new=Y_raw
-            if axis == 'x':
-                # Map to raw X
-                value = transform.scale.x
-            elif axis == 'y':
-                # Map to raw Z
-                value = transform.scale.z
-            else: # axis == 'z'
-                # Map to raw Y
-                value = transform.scale.y
+            if is_root_bone:
+                # Root bone has already been transformed by _apply_root_correction
+                # No additional coordinate mapping needed
+                if axis == 'x':
+                    value = transform.scale.x
+                elif axis == 'y':
+                    value = transform.scale.y
+                else:  # axis == 'z'
+                    value = transform.scale.z
+            else:
+                # Non-root bones need coordinate system transformation (Z-up to Y-up)
+                # X_new=X_raw, Y_new=Z_raw, Z_new=Y_raw (scale doesn't flip sign)
+                if axis == 'x':
+                    value = transform.scale.x
+                elif axis == 'y':
+                    value = transform.scale.z
+                else:  # axis == 'z'
+                    value = transform.scale.y
             
             keys.append(MayaKeyframe(
                 frame=maya_frame,
