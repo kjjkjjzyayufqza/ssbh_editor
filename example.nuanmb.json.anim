@@ -5,40 +5,7 @@ linearUnit cm;
 angularUnit deg;
 startTime 0;
 endTime 0;
-anim translate.translateX translateX GBL_RT 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY GBL_RT 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ GBL_RT 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX GBL_RT 0 0 3;
+anim rotate.rotateX rotateX GBL_RT 0 0 0;
 animData {
   input time;
   output angular;
@@ -49,7 +16,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY GBL_RT 0 0 4;
+anim rotate.rotateY rotateY GBL_RT 0 0 1;
 animData {
   input time;
   output angular;
@@ -60,7 +27,7 @@ animData {
     0 -0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ GBL_RT 0 0 5;
+anim rotate.rotateZ rotateZ GBL_RT 0 0 2;
 animData {
   input time;
   output angular;
@@ -71,7 +38,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX GBL_RT 0 0 6;
+anim scale.scaleX scaleX GBL_RT 0 0 3;
 animData {
   input time;
   output unitless;
@@ -82,7 +49,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY GBL_RT 0 0 7;
+anim scale.scaleY scaleY GBL_RT 0 0 4;
 animData {
   input time;
   output unitless;
@@ -93,7 +60,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ GBL_RT 0 0 8;
+anim scale.scaleZ scaleZ GBL_RT 0 0 5;
 animData {
   input time;
   output unitless;
@@ -302,40 +269,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX KOSHI 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY KOSHI 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ KOSHI 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX KOSHI 0 0 3;
+anim rotate.rotateX rotateX KOSHI 0 0 0;
 animData {
   input time;
   output angular;
@@ -346,7 +280,7 @@ animData {
     0 -71.99999890070276 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY KOSHI 0 0 4;
+anim rotate.rotateY rotateY KOSHI 0 0 1;
 animData {
   input time;
   output angular;
@@ -357,7 +291,7 @@ animData {
     0 4.762733038035506e-05 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ KOSHI 0 0 5;
+anim rotate.rotateZ rotateZ KOSHI 0 0 2;
 animData {
   input time;
   output angular;
@@ -368,7 +302,7 @@ animData {
     0 -89.99993444660223 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX KOSHI 0 0 6;
+anim scale.scaleX scaleX KOSHI 0 0 3;
 animData {
   input time;
   output unitless;
@@ -379,7 +313,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY KOSHI 0 0 7;
+anim scale.scaleY scaleY KOSHI 0 0 4;
 animData {
   input time;
   output unitless;
@@ -390,7 +324,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ KOSHI 0 0 8;
+anim scale.scaleZ scaleZ KOSHI 0 0 5;
 animData {
   input time;
   output unitless;
@@ -405,40 +339,7 @@ anim ATH_IP_FARM_L 0 1 0;
 anim ATH_IP_FARM_R 0 1 0;
 anim ATH_IP_SARM_L 0 1 0;
 anim ATH_IP_SARM_R 0 1 0;
-anim translate.translateX translateX MOMO_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY MOMO_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ MOMO_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX MOMO_L 0 0 3;
+anim rotate.rotateX rotateX MOMO_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -449,7 +350,7 @@ animData {
     0 -5.058626732585879 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY MOMO_L 0 0 4;
+anim rotate.rotateY rotateY MOMO_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -460,7 +361,7 @@ animData {
     0 -20.849551476487417 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ MOMO_L 0 0 5;
+anim rotate.rotateZ rotateZ MOMO_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -471,7 +372,7 @@ animData {
     0 -52.506546188211296 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX MOMO_L 0 0 6;
+anim scale.scaleX scaleX MOMO_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -482,7 +383,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY MOMO_L 0 0 7;
+anim scale.scaleY scaleY MOMO_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -493,7 +394,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ MOMO_L 0 0 8;
+anim scale.scaleZ scaleZ MOMO_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -505,40 +406,7 @@ animData {
   }
 }
 anim ATH_X_MOMO_L 0 1 0;
-anim translate.translateX translateX HIZA_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY HIZA_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ HIZA_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX HIZA_L 0 0 3;
+anim rotate.rotateX rotateX HIZA_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -549,7 +417,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY HIZA_L 0 0 4;
+anim rotate.rotateY rotateY HIZA_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -560,7 +428,7 @@ animData {
     0 -0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ HIZA_L 0 0 5;
+anim rotate.rotateZ rotateZ HIZA_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -571,7 +439,7 @@ animData {
     0 110.00029151139417 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX HIZA_L 0 0 6;
+anim scale.scaleX scaleX HIZA_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -582,7 +450,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY HIZA_L 0 0 7;
+anim scale.scaleY scaleY HIZA_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -593,7 +461,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ HIZA_L 0 0 8;
+anim scale.scaleZ scaleZ HIZA_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -604,40 +472,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX ASHI_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY ASHI_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ ASHI_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX ASHI_L 0 0 3;
+anim rotate.rotateX rotateX ASHI_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -648,7 +483,7 @@ animData {
     0 -1.4282174804133199 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY ASHI_L 0 0 4;
+anim rotate.rotateY rotateY ASHI_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -659,7 +494,7 @@ animData {
     0 -0.781228481989422 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ ASHI_L 0 0 5;
+anim rotate.rotateZ rotateZ ASHI_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -670,7 +505,7 @@ animData {
     0 -1.0538417337712314 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX ASHI_L 0 0 6;
+anim scale.scaleX scaleX ASHI_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -681,7 +516,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY ASHI_L 0 0 7;
+anim scale.scaleY scaleY ASHI_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -692,7 +527,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ ASHI_L 0 0 8;
+anim scale.scaleZ scaleZ ASHI_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -705,40 +540,7 @@ animData {
 }
 anim ATH_V_ASHI_L 0 1 0;
 anim ATH_V_ASHI_LN 0 1 0;
-anim translate.translateX translateX TSUMASAKI_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY TSUMASAKI_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ TSUMASAKI_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX TSUMASAKI_L 0 0 3;
+anim rotate.rotateX rotateX TSUMASAKI_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -749,7 +551,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY TSUMASAKI_L 0 0 4;
+anim rotate.rotateY rotateY TSUMASAKI_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -760,7 +562,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ TSUMASAKI_L 0 0 5;
+anim rotate.rotateZ rotateZ TSUMASAKI_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -771,7 +573,7 @@ animData {
     0 -89.99999999999999 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX TSUMASAKI_L 0 0 6;
+anim scale.scaleX scaleX TSUMASAKI_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -782,7 +584,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY TSUMASAKI_L 0 0 7;
+anim scale.scaleY scaleY TSUMASAKI_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -793,7 +595,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ TSUMASAKI_L 0 0 8;
+anim scale.scaleZ scaleZ TSUMASAKI_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -808,40 +610,7 @@ anim ATH_V_ASHI_L1 0 1 0;
 anim ATH_V_ASHI_L1N 0 1 0;
 anim ATH_X_HIZA_L 0 1 0;
 anim ATH_X_SUNE_L 0 1 0;
-anim translate.translateX translateX MOMO_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY MOMO_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ MOMO_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX MOMO_R 0 0 3;
+anim rotate.rotateX rotateX MOMO_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -852,7 +621,7 @@ animData {
     0 6.509081726347125 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY MOMO_R 0 0 4;
+anim rotate.rotateY rotateY MOMO_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -863,7 +632,7 @@ animData {
     0 9.32253188348504 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ MOMO_R 0 0 5;
+anim rotate.rotateZ rotateZ MOMO_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -874,7 +643,7 @@ animData {
     0 -20.688023520999295 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX MOMO_R 0 0 6;
+anim scale.scaleX scaleX MOMO_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -885,7 +654,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY MOMO_R 0 0 7;
+anim scale.scaleY scaleY MOMO_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -896,7 +665,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ MOMO_R 0 0 8;
+anim scale.scaleZ scaleZ MOMO_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -908,40 +677,7 @@ animData {
   }
 }
 anim ATH_X_MOMO_R 0 1 0;
-anim translate.translateX translateX HIZA_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY HIZA_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ HIZA_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX HIZA_R 0 0 3;
+anim rotate.rotateX rotateX HIZA_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -952,7 +688,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY HIZA_R 0 0 4;
+anim rotate.rotateY rotateY HIZA_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -963,7 +699,7 @@ animData {
     0 -0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ HIZA_R 0 0 5;
+anim rotate.rotateZ rotateZ HIZA_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -974,7 +710,7 @@ animData {
     0 53.587840733702805 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX HIZA_R 0 0 6;
+anim scale.scaleX scaleX HIZA_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -985,7 +721,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY HIZA_R 0 0 7;
+anim scale.scaleY scaleY HIZA_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -996,7 +732,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ HIZA_R 0 0 8;
+anim scale.scaleZ scaleZ HIZA_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1007,40 +743,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX ASHI_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY ASHI_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ ASHI_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX ASHI_R 0 0 3;
+anim rotate.rotateX rotateX ASHI_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -1051,7 +754,7 @@ animData {
     0 -3.1704612490413875 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY ASHI_R 0 0 4;
+anim rotate.rotateY rotateY ASHI_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -1062,7 +765,7 @@ animData {
     0 1.854543671727498 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ ASHI_R 0 0 5;
+anim rotate.rotateZ rotateZ ASHI_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -1073,7 +776,7 @@ animData {
     0 19.764648403833334 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX ASHI_R 0 0 6;
+anim scale.scaleX scaleX ASHI_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1084,7 +787,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY ASHI_R 0 0 7;
+anim scale.scaleY scaleY ASHI_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1095,7 +798,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ ASHI_R 0 0 8;
+anim scale.scaleZ scaleZ ASHI_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1108,40 +811,7 @@ animData {
 }
 anim ATH_V_ASHI_R 0 1 0;
 anim ATH_V_ASHI_RN 0 1 0;
-anim translate.translateX translateX TSUMASAKI_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY TSUMASAKI_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ TSUMASAKI_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX TSUMASAKI_R 0 0 3;
+anim rotate.rotateX rotateX TSUMASAKI_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -1152,7 +822,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY TSUMASAKI_R 0 0 4;
+anim rotate.rotateY rotateY TSUMASAKI_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -1163,7 +833,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ TSUMASAKI_R 0 0 5;
+anim rotate.rotateZ rotateZ TSUMASAKI_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -1174,7 +844,7 @@ animData {
     0 -89.99999999999999 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX TSUMASAKI_R 0 0 6;
+anim scale.scaleX scaleX TSUMASAKI_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1185,7 +855,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY TSUMASAKI_R 0 0 7;
+anim scale.scaleY scaleY TSUMASAKI_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1196,7 +866,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ TSUMASAKI_R 0 0 8;
+anim scale.scaleZ scaleZ TSUMASAKI_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1211,40 +881,7 @@ anim ATH_V_ASHI_R1 0 1 0;
 anim ATH_V_ASHI_R1N 0 1 0;
 anim ATH_X_HIZA_R 0 1 0;
 anim ATH_X_SUNE_R 0 1 0;
-anim translate.translateX translateX MUNE1 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY MUNE1 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ MUNE1 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX MUNE1 0 0 3;
+anim rotate.rotateX rotateX MUNE1 0 0 0;
 animData {
   input time;
   output angular;
@@ -1255,7 +892,7 @@ animData {
     0 70.53091716833487 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY MUNE1 0 0 4;
+anim rotate.rotateY rotateY MUNE1 0 0 1;
 animData {
   input time;
   output angular;
@@ -1266,7 +903,7 @@ animData {
     0 -4.591584067215057 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ MUNE1 0 0 5;
+anim rotate.rotateZ rotateZ MUNE1 0 0 2;
 animData {
   input time;
   output angular;
@@ -1277,7 +914,7 @@ animData {
     0 91.1713324189463 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX MUNE1 0 0 6;
+anim scale.scaleX scaleX MUNE1 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1288,7 +925,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY MUNE1 0 0 7;
+anim scale.scaleY scaleY MUNE1 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1299,7 +936,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ MUNE1 0 0 8;
+anim scale.scaleZ scaleZ MUNE1 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1310,40 +947,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX MUNE2 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY MUNE2 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ MUNE2 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX MUNE2 0 0 3;
+anim rotate.rotateX rotateX MUNE2 0 0 0;
 animData {
   input time;
   output angular;
@@ -1354,7 +958,7 @@ animData {
     0 -1.8310545824020772 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY MUNE2 0 0 4;
+anim rotate.rotateY rotateY MUNE2 0 0 1;
 animData {
   input time;
   output angular;
@@ -1365,7 +969,7 @@ animData {
     0 -0.6895551591971845 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ MUNE2 0 0 5;
+anim rotate.rotateZ rotateZ MUNE2 0 0 2;
 animData {
   input time;
   output angular;
@@ -1376,7 +980,7 @@ animData {
     0 7.6877240298410685 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX MUNE2 0 0 6;
+anim scale.scaleX scaleX MUNE2 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1387,7 +991,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY MUNE2 0 0 7;
+anim scale.scaleY scaleY MUNE2 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1398,7 +1002,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ MUNE2 0 0 8;
+anim scale.scaleZ scaleZ MUNE2 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1415,40 +1019,7 @@ anim ATH_S_BSABER 0 1 0;
 anim ATH_V_MUNE_L 0 1 0;
 anim ATH_V_MUNE_N 0 1 0;
 anim ATH_V_MUNE_R 0 1 0;
-anim translate.translateX translateX KUBI 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY KUBI 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ KUBI 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX KUBI 0 0 3;
+anim rotate.rotateX rotateX KUBI 0 0 0;
 animData {
   input time;
   output angular;
@@ -1459,7 +1030,7 @@ animData {
     0 6.4978599022380905 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY KUBI 0 0 4;
+anim rotate.rotateY rotateY KUBI 0 0 1;
 animData {
   input time;
   output angular;
@@ -1470,7 +1041,7 @@ animData {
     0 -0.9999825412969776 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ KUBI 0 0 5;
+anim rotate.rotateZ rotateZ KUBI 0 0 2;
 animData {
   input time;
   output angular;
@@ -1481,7 +1052,7 @@ animData {
     0 -4.7805684563451005e-08 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX KUBI 0 0 6;
+anim scale.scaleX scaleX KUBI 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1492,7 +1063,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY KUBI 0 0 7;
+anim scale.scaleY scaleY KUBI 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1503,7 +1074,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ KUBI 0 0 8;
+anim scale.scaleZ scaleZ KUBI 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1514,40 +1085,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX ATAMA 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY ATAMA 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ ATAMA 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX ATAMA 0 0 3;
+anim rotate.rotateX rotateX ATAMA 0 0 0;
 animData {
   input time;
   output angular;
@@ -1558,7 +1096,7 @@ animData {
     0 90.23920273042552 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY ATAMA 0 0 4;
+anim rotate.rotateY rotateY ATAMA 0 0 1;
 animData {
   input time;
   output angular;
@@ -1569,7 +1107,7 @@ animData {
     0 -9.792995728418274 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ ATAMA 0 0 5;
+anim rotate.rotateZ rotateZ ATAMA 0 0 2;
 animData {
   input time;
   output angular;
@@ -1580,7 +1118,7 @@ animData {
     0 82.94212882854045 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX ATAMA 0 0 6;
+anim scale.scaleX scaleX ATAMA 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1591,7 +1129,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY ATAMA 0 0 7;
+anim scale.scaleY scaleY ATAMA 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1602,7 +1140,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ ATAMA 0 0 8;
+anim scale.scaleZ scaleZ ATAMA 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1615,40 +1153,7 @@ animData {
 }
 anim ATH_SHOTL 0 1 0;
 anim ATH_SHOTR 0 1 0;
-anim translate.translateX translateX SAKOTSU_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY SAKOTSU_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ SAKOTSU_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX SAKOTSU_L 0 0 3;
+anim rotate.rotateX rotateX SAKOTSU_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -1659,7 +1164,7 @@ animData {
     0 -0.00015217958576896543 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY SAKOTSU_L 0 0 4;
+anim rotate.rotateY rotateY SAKOTSU_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -1670,7 +1175,7 @@ animData {
     0 -63.000000334900754 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ SAKOTSU_L 0 0 5;
+anim rotate.rotateZ rotateZ SAKOTSU_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -1681,7 +1186,7 @@ animData {
     0 -89.99990674422929 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX SAKOTSU_L 0 0 6;
+anim scale.scaleX scaleX SAKOTSU_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1692,7 +1197,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY SAKOTSU_L 0 0 7;
+anim scale.scaleY scaleY SAKOTSU_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1703,7 +1208,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ SAKOTSU_L 0 0 8;
+anim scale.scaleZ scaleZ SAKOTSU_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1716,40 +1221,7 @@ animData {
 }
 anim ATH_IP_KARM_L 0 1 0;
 anim ATH_IP_KATA0_L 0 1 0;
-anim translate.translateX translateX KATA_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY KATA_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ KATA_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX KATA_L 0 0 3;
+anim rotate.rotateX rotateX KATA_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -1760,7 +1232,7 @@ animData {
     0 -66.12160544755837 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY KATA_L 0 0 4;
+anim rotate.rotateY rotateY KATA_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -1771,7 +1243,7 @@ animData {
     0 -8.952199590942474 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ KATA_L 0 0 5;
+anim rotate.rotateZ rotateZ KATA_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -1782,7 +1254,7 @@ animData {
     0 -72.16795105834964 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX KATA_L 0 0 6;
+anim scale.scaleX scaleX KATA_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1793,7 +1265,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY KATA_L 0 0 7;
+anim scale.scaleY scaleY KATA_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1804,7 +1276,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ KATA_L 0 0 8;
+anim scale.scaleZ scaleZ KATA_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1815,40 +1287,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX UDE_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY UDE_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ UDE_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX UDE_L 0 0 3;
+anim rotate.rotateX rotateX UDE_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -1859,7 +1298,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY UDE_L 0 0 4;
+anim rotate.rotateY rotateY UDE_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -1870,7 +1309,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ UDE_L 0 0 5;
+anim rotate.rotateZ rotateZ UDE_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -1881,7 +1320,7 @@ animData {
     0 -56.733303172925076 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX UDE_L 0 0 6;
+anim scale.scaleX scaleX UDE_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1892,7 +1331,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY UDE_L 0 0 7;
+anim scale.scaleY scaleY UDE_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -1903,7 +1342,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ UDE_L 0 0 8;
+anim scale.scaleZ scaleZ UDE_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -1914,40 +1353,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX TE_L 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY TE_L 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ TE_L 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX TE_L 0 0 3;
+anim rotate.rotateX rotateX TE_L 0 0 0;
 animData {
   input time;
   output angular;
@@ -1958,7 +1364,7 @@ animData {
     0 86.90840604149477 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY TE_L 0 0 4;
+anim rotate.rotateY rotateY TE_L 0 0 1;
 animData {
   input time;
   output angular;
@@ -1969,7 +1375,7 @@ animData {
     0 -13.980400597563019 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ TE_L 0 0 5;
+anim rotate.rotateZ rotateZ TE_L 0 0 2;
 animData {
   input time;
   output angular;
@@ -1980,7 +1386,7 @@ animData {
     0 0.747584151637425 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX TE_L 0 0 6;
+anim scale.scaleX scaleX TE_L 0 0 3;
 animData {
   input time;
   output unitless;
@@ -1991,7 +1397,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY TE_L 0 0 7;
+anim scale.scaleY scaleY TE_L 0 0 4;
 animData {
   input time;
   output unitless;
@@ -2002,7 +1408,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ TE_L 0 0 8;
+anim scale.scaleZ scaleZ TE_L 0 0 5;
 animData {
   input time;
   output unitless;
@@ -2015,40 +1421,7 @@ animData {
 }
 anim ATH_TE_L 0 1 0;
 anim ATH_TE_L90 0 1 0;
-anim translate.translateX translateX SAKOTSU_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY SAKOTSU_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ SAKOTSU_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX SAKOTSU_R 0 0 3;
+anim rotate.rotateX rotateX SAKOTSU_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -2059,7 +1432,7 @@ animData {
     0 177.99975616840882 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY SAKOTSU_R 0 0 4;
+anim rotate.rotateY rotateY SAKOTSU_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -2070,7 +1443,7 @@ animData {
     0 74.000048716632 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ SAKOTSU_R 0 0 5;
+anim rotate.rotateZ rotateZ SAKOTSU_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -2081,7 +1454,7 @@ animData {
     0 -90.000251380912 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX SAKOTSU_R 0 0 6;
+anim scale.scaleX scaleX SAKOTSU_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -2092,7 +1465,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY SAKOTSU_R 0 0 7;
+anim scale.scaleY scaleY SAKOTSU_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -2103,7 +1476,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ SAKOTSU_R 0 0 8;
+anim scale.scaleZ scaleZ SAKOTSU_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -2116,40 +1489,7 @@ animData {
 }
 anim ATH_IP_KARM_R 0 1 0;
 anim ATH_IP_KATA0_R 0 1 0;
-anim translate.translateX translateX KATA_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY KATA_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ KATA_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX KATA_R 0 0 3;
+anim rotate.rotateX rotateX KATA_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -2160,7 +1500,7 @@ animData {
     0 -85.80041912787262 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY KATA_R 0 0 4;
+anim rotate.rotateY rotateY KATA_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -2171,7 +1511,7 @@ animData {
     0 -0.6368531551974018 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ KATA_R 0 0 5;
+anim rotate.rotateZ rotateZ KATA_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -2182,7 +1522,7 @@ animData {
     0 80.61061688021404 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX KATA_R 0 0 6;
+anim scale.scaleX scaleX KATA_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -2193,7 +1533,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY KATA_R 0 0 7;
+anim scale.scaleY scaleY KATA_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -2204,7 +1544,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ KATA_R 0 0 8;
+anim scale.scaleZ scaleZ KATA_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -2215,40 +1555,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX UDE_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY UDE_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ UDE_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX UDE_R 0 0 3;
+anim rotate.rotateX rotateX UDE_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -2259,7 +1566,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY UDE_R 0 0 4;
+anim rotate.rotateY rotateY UDE_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -2270,7 +1577,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ UDE_R 0 0 5;
+anim rotate.rotateZ rotateZ UDE_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -2281,7 +1588,7 @@ animData {
     0 -59.13376052882116 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX UDE_R 0 0 6;
+anim scale.scaleX scaleX UDE_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -2292,7 +1599,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY UDE_R 0 0 7;
+anim scale.scaleY scaleY UDE_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -2303,7 +1610,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ UDE_R 0 0 8;
+anim scale.scaleZ scaleZ UDE_R 0 0 5;
 animData {
   input time;
   output unitless;
@@ -2314,40 +1621,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim translate.translateX translateX TE_R 0 0 0;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateY translateY TE_R 0 0 1;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim translate.translateZ translateZ TE_R 0 0 2;
-animData {
-  input time;
-  output linear;
-  weighted 0;
-  preInfinity constant;
-  postInfinity constant;
-  keys {
-    0 0.0 auto auto 1 0 0;
-  }
-}
-anim rotate.rotateX rotateX TE_R 0 0 3;
+anim rotate.rotateX rotateX TE_R 0 0 0;
 animData {
   input time;
   output angular;
@@ -2358,7 +1632,7 @@ animData {
     0 90.0 auto auto 1 0 0;
   }
 }
-anim rotate.rotateY rotateY TE_R 0 0 4;
+anim rotate.rotateY rotateY TE_R 0 0 1;
 animData {
   input time;
   output angular;
@@ -2369,7 +1643,7 @@ animData {
     0 20.00003804838819 auto auto 1 0 0;
   }
 }
-anim rotate.rotateZ rotateZ TE_R 0 0 5;
+anim rotate.rotateZ rotateZ TE_R 0 0 2;
 animData {
   input time;
   output angular;
@@ -2380,7 +1654,7 @@ animData {
     0 0.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleX scaleX TE_R 0 0 6;
+anim scale.scaleX scaleX TE_R 0 0 3;
 animData {
   input time;
   output unitless;
@@ -2391,7 +1665,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleY scaleY TE_R 0 0 7;
+anim scale.scaleY scaleY TE_R 0 0 4;
 animData {
   input time;
   output unitless;
@@ -2402,7 +1676,7 @@ animData {
     0 1.0 auto auto 1 0 0;
   }
 }
-anim scale.scaleZ scaleZ TE_R 0 0 8;
+anim scale.scaleZ scaleZ TE_R 0 0 5;
 animData {
   input time;
   output unitless;

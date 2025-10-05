@@ -11,22 +11,26 @@ from .models import Vector3, Vector4, Transform
 def quat_to_euler(q: Vector4, order: str = 'XYZ') -> Vector3:
     """
     Convert quaternion to Euler angles (in degrees).
-    
+
     Args:
         q: Quaternion (x, y, z, w)
         order: Rotation order ('XYZ', 'YZX', 'ZXY', etc.)
-    
+
     Returns:
         Euler angles in degrees
     """
+    # SSBH stores quaternions in JSON as [x, y, z, w] representing (x, y, z, w)
+    # But this actually represents the quaternion (w, x, y, z) in mathematical terms
+    # So we need to reorder to get the correct (w, x, y, z) for rotation matrix calculation
+    w, x, y, z = q.w, q.x, q.y, q.z
+
     # Normalize quaternion
-    x, y, z, w = q.x, q.y, q.z, q.w
     norm = np.sqrt(x*x + y*y + z*z + w*w)
-    
+
     # Handle zero quaternion
     if norm < 1e-10:
         return Vector3(x=0.0, y=0.0, z=0.0)
-    
+
     x, y, z, w = x/norm, y/norm, z/norm, w/norm
     
     # Convert to rotation matrix
