@@ -13,6 +13,9 @@ This tool converts NUANMB (Nintendo U Animation Binary) animation files from Sup
 ## Features
 
 - ✅ Convert bone animations (translation, rotation, scale)
+- ✅ Hierarchical bone ordering based on skeleton file (NUSKTB format)
+- ✅ Topological sort ensuring parents are always before children
+- ✅ Automatic empty bone entries for bones in skeleton but not in animation
 - ✅ Quaternion to Euler angle conversion
 - ✅ FPS conversion (60fps NUANMB to Maya FPS)
 - ✅ Support for multiple Maya FPS standards (24, 29.97, 30, 60)
@@ -41,40 +44,44 @@ pip install -e .
 
 ## Usage
 
-### Step 1: Convert NUANMB to JSON
+### Step 1: Convert NUANMB and NUSKTB to JSON
 
-First, use the `ssbh_data` tool to export the NUANMB file to JSON:
+First, use the `ssbh_data` tool to export the NUANMB and NUSKTB files to JSON:
 
 ```bash
+# Export animation file
 ssbh_data_json animation.nuanmb animation.json
+
+# Export skeleton file (for bone ordering)
+ssbh_data_json model.nusktb skeleton.json
 ```
 
 ### Step 2: Convert JSON to Maya Anim
 
-**Recommended (keep 60fps):**
+**Recommended (keep 60fps with skeleton bone order):**
 ```bash
-python main.py animation.json animation.anim --fps 60
+python main.py animation.json skeleton.json animation.anim --fps 60
 ```
 
 **Or convert to Maya standard FPS:**
 ```bash
-python main.py animation.json animation.anim --fps 29.97
+python main.py animation.json skeleton.json animation.anim --fps 29.97
 ```
 
 ### Advanced Options
 
 ```bash
 # Keep original 60fps without conversion (recommended)
-python main.py animation.json animation.anim --no-fps-conversion
+python main.py animation.json skeleton.json animation.anim --no-fps-conversion
 
 # Specify target FPS
-python main.py animation.json animation.anim --fps 24
+python main.py animation.json skeleton.json animation.anim --fps 24
 
 # Specify Maya version (default: 2020)
-python main.py animation.json animation.anim --maya-version 2023
+python main.py animation.json skeleton.json animation.anim --maya-version 2023
 
 # Enable verbose output
-python main.py animation.json animation.anim --verbose
+python main.py animation.json skeleton.json animation.anim --verbose
 ```
 
 > **Note:** Using `--fps 60` or `--no-fps-conversion` is recommended to avoid frame loss and preserve exact timing. The converter automatically removes duplicate frames during FPS conversion.
@@ -130,12 +137,15 @@ nuanmb_to_maya/
 
 ### Animation Data Flow
 
-1. **Parse JSON** - Load NUANMB JSON exported by ssbh_data
-2. **Extract Transform Groups** - Get bone animation data
-3. **Convert Quaternions** - Convert rotations to Euler angles (XYZ order)
-4. **Adjust FPS** - Convert from 60fps to target Maya FPS
-5. **Generate Curves** - Create Maya animation curves for each attribute
-6. **Write File** - Output Maya-compatible ASCII .anim file
+1. **Load Skeleton** - Load bone hierarchy from NUSKTB JSON file
+2. **Topological Sort** - Sort bones by parent_index to ensure correct hierarchy (parents before children)
+3. **Parse Animation** - Load NUANMB JSON exported by ssbh_data
+4. **Extract Transform Groups** - Get bone animation data
+5. **Sort Animation Bones** - Reorder animation bones to match hierarchical skeleton order
+6. **Convert Quaternions** - Convert rotations to Euler angles (XYZ order)
+7. **Adjust FPS** - Convert from 60fps to target Maya FPS
+8. **Generate Curves** - Create Maya animation curves for each attribute
+9. **Write File** - Output Maya-compatible ASCII .anim file
 
 ### Coordinate System
 
@@ -196,6 +206,12 @@ All code follows PEP 8 guidelines with English comments and docstrings.
 This tool is part of the SSBH Editor project. See the main project for license information.
 
 ## Version History
+
+### 0.2.0 (2025-10-05)
+- Added skeleton bone ordering support with hierarchical topological sort
+- Animation bones now sorted by parent_index hierarchy
+- Ensures parent bones are always before children in output
+- Fixes bone order mismatch when importing to Maya
 
 ### 0.1.0 (2025-10-04)
 - Initial release

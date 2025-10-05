@@ -3,7 +3,8 @@ Main converter module for NUANMB to Maya animation format.
 Orchestrates the conversion process from JSON to .anim file.
 """
 
-from typing import List, Dict
+from typing import List, Dict, Tuple
+import json
 import numpy as np
 from .nuanmb_parser import NuanmbParser
 from .maya_writer import MayaAnimWriter
@@ -16,18 +17,20 @@ from .models import (
 class NuanmbToMayaConverter:
     """Convert NUANMB animation to Maya .anim format"""
     
-    def __init__(self, input_json: str, output_anim: str, 
+    def __init__(self, input_json: str, skeleton_json: str, output_anim: str, 
                  maya_fps: float = 29.97, maya_version: str = "2020"):
         """
         Initialize converter.
         
         Args:
             input_json: Path to input NUANMB JSON file (from ssbh_data)
+            skeleton_json: Path to skeleton JSON file (NUSKTB format) for bone ordering
             output_anim: Path to output Maya .anim file
             maya_fps: Target Maya FPS (default: 29.97 for ntsc)
             maya_version: Maya version string (default: "2020")
         """
         self.input_json = input_json
+        self.skeleton_json = skeleton_json
         self.output_anim = output_anim
         self.maya_fps = maya_fps
         self.maya_version = maya_version
@@ -38,6 +41,9 @@ class NuanmbToMayaConverter:
         # Determine time unit based on FPS
         self.time_unit = self._determine_time_unit(maya_fps)
         
+        # Load skeleton bone order
+        self.bone_order = self._load_skeleton_bone_order()
+        
         self.parser = NuanmbParser(input_json)
         self.writer = MayaAnimWriter(
             output_anim, 
@@ -45,6 +51,96 @@ class NuanmbToMayaConverter:
             time_unit=self.time_unit,
             fps=maya_fps
         )
+    
+    def _load_skeleton_bone_order(self) -> List[str]:
+        """
+        Load bone order from skeleton JSON file and sort by hierarchy.
+        Uses parent_index to ensure parents are always before children.
+        
+        Returns:
+            List of bone names in hierarchical order (parents before children)
+            
+        Raises:
+            FileNotFoundError: If skeleton file not found
+            Exception: If skeleton file parsing fails
+        """
+        try:
+            with open(self.skeleton_json, 'r', encoding='utf-8') as f:
+                skeleton_data = json.load(f)
+            
+            if 'bones' not in skeleton_data:
+                return []
+            
+            bones = skeleton_data['bones']
+            print(f"Loaded skeleton: {len(bones)} bones")
+            
+            # Perform topological sort based on parent_index
+            bone_order = self._topological_sort_bones(bones)
+            print(f"Sorted bones by hierarchy: {len(bone_order)} bones")
+            
+            return bone_order
+            
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Skeleton file not found: {self.skeleton_json}")
+        except Exception as e:
+            raise Exception(f"Failed to parse skeleton file: {e}")
+    
+    def _topological_sort_bones(self, bones: List[Dict]) -> List[str]:
+        """
+        Sort bones by hierarchy using topological sort.
+        Ensures parent bones are always placed before their children.
+        
+        Args:
+            bones: List of bone dictionaries with 'name' and 'parent_index' fields
+            
+        Returns:
+            List of bone names sorted by hierarchy
+        """
+        # Build adjacency list (parent -> children mapping)
+        children_map = {}
+        bone_names = []
+        root_indices = []
+        
+        for i, bone in enumerate(bones):
+            bone_name = bone.get('name', f'bone_{i}')
+            bone_names.append(bone_name)
+            parent_idx = bone.get('parent_index')
+            
+            if parent_idx is None:
+                root_indices.append(i)
+            else:
+                if parent_idx not in children_map:
+                    children_map[parent_idx] = []
+                children_map[parent_idx].append(i)
+        
+        # Perform depth-first traversal from root bones
+        sorted_order = []
+        visited = set()
+        
+        def dfs(bone_index: int):
+            """Depth-first search to traverse bone hierarchy"""
+            if bone_index in visited:
+                return
+            
+            visited.add(bone_index)
+            sorted_order.append(bone_names[bone_index])
+            
+            # Visit children
+            if bone_index in children_map:
+                for child_idx in children_map[bone_index]:
+                    dfs(child_idx)
+        
+        # Start DFS from all root bones
+        for root_idx in root_indices:
+            dfs(root_idx)
+        
+        # Add any unvisited bones (shouldn't happen in valid skeleton)
+        for i, bone_name in enumerate(bone_names):
+            if i not in visited:
+                print(f"Warning: Orphan bone found: {bone_name}")
+                sorted_order.append(bone_name)
+        
+        return sorted_order
     
     def _determine_time_unit(self, fps: float) -> str:
         """
@@ -95,17 +191,43 @@ class NuanmbToMayaConverter:
                           if g.group_type == GroupType.TRANSFORM]
         print(f"  Transform groups: {len(transform_groups)}")
         
-        # Count bones
-        bone_count = sum(len(g.nodes) for g in transform_groups)
+        # Step 3: Collect all nodes from transform groups
+        all_nodes = []
+        for group in transform_groups:
+            all_nodes.extend(group.nodes)
+        
+        bone_count = len(all_nodes)
         print(f"  Bones: {bone_count}")
         
-        # Step 3: Process each bone
-        print("Converting bone animations...")
-        for group in transform_groups:
-            for node in group.nodes:
-                self._process_bone(node, anim_data.final_frame_index)
+        # Step 4: Create bone name to node mapping
+        node_map = {node.name: node for node in all_nodes}
         
-        # Step 4: Write Maya file
+        # Step 5: Process bones in skeleton order, adding empty entries for missing bones
+        print("Converting bone animations...")
+        bones_with_anim = 0
+        bones_without_anim = 0
+        
+        for bone_name in self.bone_order:
+            if bone_name in node_map:
+                # Bone has animation data
+                self._process_bone(node_map[bone_name], anim_data.final_frame_index)
+                bones_with_anim += 1
+            else:
+                # Bone exists in skeleton but not in animation - add empty entry
+                self.writer.add_empty_bone(bone_name)
+                bones_without_anim += 1
+        
+        # Process any bones in animation but not in skeleton (at the end)
+        for node in all_nodes:
+            if node.name not in self.bone_order:
+                print(f"Warning: Bone '{node.name}' found in animation but not in skeleton")
+                self._process_bone(node, anim_data.final_frame_index)
+                bones_with_anim += 1
+        
+        print(f"  Bones with animation: {bones_with_anim}")
+        print(f"  Bones without animation (empty): {bones_without_anim}")
+        
+        # Step 6: Write Maya file
         print("Writing Maya .anim file...")
         self.writer.write()
         

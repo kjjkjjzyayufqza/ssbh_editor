@@ -3,7 +3,7 @@ Writer for Maya .anim file format.
 Generates ASCII Maya animation files from animation curve data.
 """
 
-from typing import List, TextIO
+from typing import List, Tuple, TextIO, Union, Any
 from .models import MayaAnimCurve, MayaKeyframe
 
 
@@ -26,6 +26,8 @@ class MayaAnimWriter:
         self.time_unit = time_unit
         self.fps = fps
         self.curves: List[MayaAnimCurve] = []
+        self.empty_bones: List[str] = []
+        self.write_order: List[Tuple[str, Union[MayaAnimCurve, str]]] = []  # ('curve', curve_obj) or ('empty', bone_name)
     
     def add_curve(self, curve: MayaAnimCurve):
         """
@@ -35,10 +37,21 @@ class MayaAnimWriter:
             curve: Maya animation curve
         """
         self.curves.append(curve)
+        self.write_order.append(('curve', curve))
+    
+    def add_empty_bone(self, bone_name: str):
+        """
+        Add an empty bone entry (bone with no animation data).
+        
+        Args:
+            bone_name: Name of the bone
+        """
+        self.empty_bones.append(bone_name)
+        self.write_order.append(('empty', bone_name))
     
     def write(self):
         """
-        Write all curves to Maya .anim file.
+        Write all curves and empty bone entries to Maya .anim file in order.
         
         Raises:
             IOError: If file cannot be written
@@ -46,9 +59,12 @@ class MayaAnimWriter:
         with open(self.output_path, 'w', encoding='utf-8') as f:
             self._write_header(f)
             
-            # Write animation curves directly (no node definitions needed)
-            for curve in self.curves:
-                self._write_curve(f, curve)
+            # Write curves and empty bones in the order they were added
+            for item_type, item_data in self.write_order:
+                if item_type == 'curve':
+                    self._write_curve(f, item_data)
+                elif item_type == 'empty':
+                    self._write_node_definition(f, item_data)
     
     def _write_header(self, f: TextIO):
         """Write Maya anim file header"""
@@ -145,7 +161,7 @@ class MayaAnimWriter:
         """
         return sum(len(curve.keys) for curve in self.curves)
     
-    def _calculate_time_range(self) -> tuple:
+    def _calculate_time_range(self) -> Tuple[int, int]:
         """
         Calculate the time range (start and end frames) from all curves.
         

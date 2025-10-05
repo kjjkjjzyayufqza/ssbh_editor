@@ -3,7 +3,7 @@ NUANMB to Maya Animation Converter
 Main entry point for converting Super Smash Bros. Ultimate animation files to Maya format.
 
 Usage:
-    python main.py input.json output.anim [--fps 29.97] [--maya-version 2020]
+    python main.py input.json skeleton.json output.anim [--fps 29.97] [--maya-version 2020]
 """
 
 import argparse
@@ -16,12 +16,17 @@ def main():
     """Main program entry point"""
     parser = argparse.ArgumentParser(
         description='Convert NUANMB animation JSON to Maya .anim format',
-        epilog='Example: python main.py animation.json animation.anim --fps 24'
+        epilog='Example: python main.py animation.json skeleton.json animation.anim --fps 24'
     )
     
     parser.add_argument(
         'input',
-        help='Input JSON file (exported from ssbh_data)'
+        help='Input NUANMB JSON file (exported from ssbh_data)'
+    )
+    
+    parser.add_argument(
+        'skeleton',
+        help='Input skeleton JSON file (NUSKTB format) for bone ordering'
     )
     
     parser.add_argument(
@@ -66,6 +71,15 @@ def main():
     if input_path.suffix.lower() != '.json':
         print(f"Warning: Input file doesn't have .json extension: {args.input}", file=sys.stderr)
     
+    # Validate skeleton file
+    skeleton_path = Path(args.skeleton)
+    if not skeleton_path.exists():
+        print(f"Error: Skeleton file not found: {args.skeleton}", file=sys.stderr)
+        return 1
+    
+    if skeleton_path.suffix.lower() != '.json':
+        print(f"Warning: Skeleton file doesn't have .json extension: {args.skeleton}", file=sys.stderr)
+    
     # Validate output path
     output_path = Path(args.output)
     if output_path.suffix.lower() != '.anim':
@@ -81,6 +95,7 @@ def main():
         # Create converter
         converter = NuanmbToMayaConverter(
             input_json=str(input_path),
+            skeleton_json=str(skeleton_path),
             output_anim=str(output_path),
             maya_fps=target_fps,
             maya_version=args.maya_version
