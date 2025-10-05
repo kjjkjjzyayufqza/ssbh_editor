@@ -327,58 +327,17 @@ class NuanmbToMayaConverter:
     
     def _apply_root_correction(self, raw_transform: Transform) -> Transform:
         """
-        Applies world space correction used by smash-ultimate-blender for the root bone.
-        Uses quaternion multiplication for rotation: Q_corr = Q_X_90 * Q_raw * Q_Z_-90
-        
-        The coordinate transformation converts from SSBH's Z-up right-handed system
-        to Maya's Y-up right-handed system.
-        
+        Root bone correction - simplified to keep original coordinate system.
+        No coordinate transformation needed.
+
         Args:
             raw_transform: The original SSBH Transform (T, R, S)
-            
+
         Returns:
-            The corrected Transform (T', R', S')
+            The original Transform (no correction applied)
         """
-        T = raw_transform.translation
-        R = raw_transform.rotation
-        S = raw_transform.scale
-        
-        # Create rotation quaternions for coordinate system conversion
-        # Q_X_90: Rotate 90 degrees around X axis (Z-up to Y-up)
-        Q_X_90 = axis_angle_to_quat(Vector3(x=1.0, y=0.0, z=0.0), 90.0)
-        
-        # Q_Z_-90: Rotate -90 degrees around Z axis (X-major to Y-major)
-        Q_Z_N90 = axis_angle_to_quat(Vector3(x=0.0, y=0.0, z=1.0), -90.0)
-        
-        # Apply rotation correction: Q_corr = Q_X_90 * Q_raw * Q_Z_-90
-        Q_temp = quat_multiply(R, Q_Z_N90)
-        Q_corr = quat_multiply(Q_X_90, Q_temp)
-        
-        # Transform translation using the same logic
-        # Apply transformation matrix approach for translation
-        M_ssbh = build_matrix4x4(T, R, S)
-        
-        R_X_90 = np.array([
-            [1, 0,  0, 0],
-            [0, 0, -1, 0],
-            [0, 1,  0, 0],
-            [0, 0,  0, 1]
-        ])
-        
-        R_Z_N90 = np.array([
-            [0, 1, 0, 0],
-            [-1, 0, 0, 0],
-            [0, 0, 1, 0],
-            [0, 0, 0, 1]
-        ])
-        
-        M_corr = R_X_90 @ M_ssbh @ R_Z_N90
-        T_corr = Vector3(x=M_corr[0, 3], y=M_corr[1, 3], z=M_corr[2, 3])
-        
-        # Scale remains the same (coordinate system change doesn't affect scale)
-        S_corr = S
-        
-        return Transform(translation=T_corr, rotation=Q_corr, scale=S_corr)
+        # Return the original transform without any coordinate system conversion
+        return raw_transform
 
 
     def _create_translation_keys(self, track: Track, axis: str, 
@@ -420,16 +379,14 @@ class NuanmbToMayaConverter:
                 else:  # axis == 'z'
                     value = transform.translation.z
             else:
-                # Non-root bones: For Maya/Blender compatibility,  
-                # bones might need different handling based on the bone axis convention
-                # For now, use the same Z-up to Y-up mapping as root bone
-                # TODO: May need to apply bone-local coordinate transformation
+                # No coordinate system transformation needed - keep original axes
+                # X=X, Y=Y, Z=Z
                 if axis == 'x':
                     value = transform.translation.x
                 elif axis == 'y':
-                    value = transform.translation.z
+                    value = transform.translation.y
                 else:  # axis == 'z'
-                    value = -transform.translation.y
+                    value = transform.translation.z
             
             keys.append(MayaKeyframe(
                 frame=maya_frame,
@@ -489,12 +446,12 @@ class NuanmbToMayaConverter:
                     z=raw_euler.z
                 )
             else:
-                # Non-root bones need coordinate system transformation (Z-up to Y-up)
-                # X_new=X_raw, Y_new=Z_raw, Z_new=-Y_raw
+                # No coordinate system transformation needed - keep original axes
+                # X=X, Y=Y, Z=Z
                 euler = Vector3(
                     x=raw_euler.x,
-                    y=raw_euler.z,
-                    z=-raw_euler.y
+                    y=raw_euler.y,
+                    z=raw_euler.z
                 )
             
             # Apply continuity correction relative to the previous frame's stored value
@@ -551,14 +508,14 @@ class NuanmbToMayaConverter:
                 else:  # axis == 'z'
                     value = transform.scale.z
             else:
-                # Non-root bones need coordinate system transformation (Z-up to Y-up)
-                # X_new=X_raw, Y_new=Z_raw, Z_new=Y_raw (scale doesn't flip sign)
+                # No coordinate system transformation needed - keep original axes
+                # X=X, Y=Y, Z=Z
                 if axis == 'x':
                     value = transform.scale.x
                 elif axis == 'y':
-                    value = transform.scale.z
-                else:  # axis == 'z'
                     value = transform.scale.y
+                else:  # axis == 'z'
+                    value = transform.scale.z
             
             keys.append(MayaKeyframe(
                 frame=maya_frame,
