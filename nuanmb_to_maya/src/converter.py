@@ -1,6 +1,7 @@
 """
 Main converter module for NUANMB to Maya animation format.
 Orchestrates the conversion process from JSON to .anim file.
+TODO: 未实现 - translate部分已被注释掉
 """
 
 from typing import List, Dict, Tuple
@@ -275,32 +276,33 @@ class NuanmbToMayaConverter:
         # Generate curves for each transform component
         curve_index = 0
 
+        # TODO: 未实现 - translate部分已被注释掉
         # Check if all translation values are zero across all frames and axes
         # If so, skip all translation curves to avoid useless transforms
-        all_translations_zero = True
-        for transform in processed_values:
-            if (transform.translation.x != 0.0 or
-                transform.translation.y != 0.0 or
-                transform.translation.z != 0.0):
-                all_translations_zero = False
-                break
+        # all_translations_zero = True
+        # for transform in processed_values:
+        #     if (transform.translation.x != 0.0 or
+        #         transform.translation.y != 0.0 or
+        #         transform.translation.z != 0.0):
+        #         all_translations_zero = False
+        #         break
 
-        if not all_translations_zero:
-            # Translation curves (X, Y, Z)
-            for axis, attr in [('x', 'translateX'), ('y', 'translateY'), ('z', 'translateZ')]:
-                keys = self._create_translation_keys(transform_track_for_keys, axis, final_frame, is_root_bone)
-                if keys:
-                    curve = MayaAnimCurve(
-                        attribute_path=f"translate.{attr}",
-                        attribute_name=attr,
-                        object_name=bone_name,
-                        input_type=0,
-                        output_type=0,  # Linear distance/translation
-                        index=curve_index,
-                        keys=keys
-                    )
-                    self.writer.add_curve(curve)
-                    curve_index += 1
+        # if not all_translations_zero:
+        #     # Translation curves (X, Y, Z)
+        #     for axis, attr in [('x', 'translateX'), ('y', 'translateY'), ('z', 'translateZ')]:
+        #         keys = self._create_translation_keys(transform_track_for_keys, axis, final_frame, is_root_bone)
+        #         if keys:
+        #             curve = MayaAnimCurve(
+        #                 attribute_path=f"translate.{attr}",
+        #                 attribute_name=attr,
+        #                 object_name=bone_name,
+        #                 input_type=0,
+        #                 output_type=0,  # Linear distance/translation
+        #                 index=curve_index,
+        #                 keys=keys
+        #             )
+        #             self.writer.add_curve(curve)
+        #             curve_index += 1
         
         # Rotation curves (convert quaternion to Euler X, Y, Z)
         euler_keys = self._create_rotation_keys(transform_track_for_keys, final_frame, is_root_bone)
