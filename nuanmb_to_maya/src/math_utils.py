@@ -8,13 +8,13 @@ from typing import Tuple
 from .models import Vector3, Vector4, Transform
 
 
-def quat_to_euler(q: Vector4, order: str = 'XYZ') -> Vector3:
+def quat_to_euler(q: Vector4, order: str = 'xyz') -> Vector3:
     """
     Convert quaternion to Euler angles (in degrees).
 
     Args:
         q: Quaternion (x, y, z, w)
-        order: Rotation order ('XYZ', 'YZX', 'ZXY', etc.)
+        order: Rotation order ('xyz' for Maya intrinsic XYZ, lowercase = intrinsic, uppercase = extrinsic)
 
     Returns:
         Euler angles in degrees
@@ -41,20 +41,31 @@ def quat_to_euler(q: Vector4, order: str = 'XYZ') -> Vector3:
     ])
     
     # Extract Euler angles based on order
-    if order == 'XYZ':
-        # Extract XYZ Euler angles
-        sy = np.sqrt(rot_mat[0, 0]**2 + rot_mat[1, 0]**2)
+    # Maya uses intrinsic xyz rotation order (lowercase in scipy convention)
+    # This is equivalent to extrinsic ZYX order
+    if order == 'xyz' or order == 'XYZ':
+        # Extract xyz Euler angles (intrinsic rotations)
+        # R = Rx(α) * Ry(β) * Rz(γ) in intrinsic (body-fixed) frame
+        # This matches Maya's default rotation order
         
-        singular = sy < 1e-6
+        # Check for gimbal lock
+        sin_beta = -rot_mat[2, 0]
         
-        if not singular:
-            euler_x = np.arctan2(rot_mat[2, 1], rot_mat[2, 2])
-            euler_y = np.arctan2(-rot_mat[2, 0], sy)
-            euler_z = np.arctan2(rot_mat[1, 0], rot_mat[0, 0])
+        if abs(sin_beta) >= 1.0 - 1e-6:
+            # Gimbal lock case
+            euler_y = np.arcsin(np.clip(sin_beta, -1.0, 1.0))
+            
+            if sin_beta > 0:  # β = 90°
+                euler_x = np.arctan2(rot_mat[0, 1], rot_mat[1, 1])
+                euler_z = 0
+            else:  # β = -90°
+                euler_x = np.arctan2(-rot_mat[0, 1], rot_mat[1, 1])
+                euler_z = 0
         else:
-            euler_x = np.arctan2(-rot_mat[1, 2], rot_mat[1, 1])
-            euler_y = np.arctan2(-rot_mat[2, 0], sy)
-            euler_z = 0
+            # Normal case
+            euler_y = np.arcsin(np.clip(sin_beta, -1.0, 1.0))
+            euler_x = np.arctan2(rot_mat[2, 1], rot_mat[2, 2])
+            euler_z = np.arctan2(rot_mat[1, 0], rot_mat[0, 0])
         
         return Vector3(
             x=np.degrees(euler_x),

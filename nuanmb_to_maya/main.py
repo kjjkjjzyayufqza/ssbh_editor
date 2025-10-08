@@ -3,7 +3,7 @@ NUANMB to Maya Animation Converter
 Main entry point for converting Super Smash Bros. Ultimate animation files to Maya format.
 
 Usage:
-    python main.py input.json skeleton.json output.anim [--fps 29.97] [--maya-version 2020]
+    python main.py input.json skeleton.json output.anim [--maya-version 2020]
 """
 
 import argparse
@@ -15,8 +15,8 @@ from src.converter import NuanmbToMayaConverter
 def main():
     """Main program entry point"""
     parser = argparse.ArgumentParser(
-        description='Convert NUANMB animation JSON to Maya .anim format',
-        epilog='Example: python main.py animation.json skeleton.json animation.anim --fps 24'
+        description='Convert NUANMB animation JSON to Maya .anim format (always uses 60fps to preserve all frames)',
+        epilog='Example: python main.py animation.json skeleton.json animation.anim'
     )
     
     parser.add_argument(
@@ -32,19 +32,6 @@ def main():
     parser.add_argument(
         'output',
         help='Output Maya .anim file'
-    )
-    
-    parser.add_argument(
-        '--fps',
-        type=float,
-        default=29.97,
-        help='Target Maya FPS (default: 29.97 for ntsc). Common values: 24 (film), 29.97 (ntsc), 30, 60. Use 60 to keep original NUANMB framerate.'
-    )
-    
-    parser.add_argument(
-        '--no-fps-conversion',
-        action='store_true',
-        help='Keep original 60fps framerate without conversion (equivalent to --fps 60)'
     )
     
     parser.add_argument(
@@ -88,8 +75,8 @@ def main():
     # Create output directory if it doesn't exist
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
-    # Determine target FPS
-    target_fps = 60.0 if args.no_fps_conversion else args.fps
+    # Always use 60fps to preserve all original frames from NUANMB (which is 60fps)
+    target_fps = 60.0
     
     try:
         # Create converter
