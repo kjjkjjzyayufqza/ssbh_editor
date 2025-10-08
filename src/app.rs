@@ -501,6 +501,9 @@ pub struct UiState {
     pub batch_export_selected_models: Vec<bool>, // Checkbox state for each model
     pub batch_export_base_path: Option<PathBuf>, // Base directory for export
     pub batch_export_base_filename: String, // Base filename for export
+
+    // GLTF export options
+    pub export_gltf_use_json_files: bool, // Use model.json and skeleton.json instead of SSBH files
 }
 
 impl Default for UiState {
@@ -539,6 +542,9 @@ impl Default for UiState {
             batch_export_selected_models: Vec::new(),
             batch_export_base_path: None,
             batch_export_base_filename: "scene".to_string(),
+
+            // GLTF export options
+            export_gltf_use_json_files: false,
         }
     }
 }
@@ -980,7 +986,7 @@ impl SsbhApp {
                 .and_then(|i| self.models.get(i))
                 .filter(|model| !model.model.meshes.is_empty())
             {
-                if let Err(e) = crate::export::gltf::export_scene_to_gltf(&selected_model.model, file) {
+                if let Err(e) = crate::export::gltf::export_scene_to_gltf(&selected_model.model, file, self.ui_state.export_gltf_use_json_files) {
                     error!("Error exporting GLTF to {file:?}: {e}");
                 } else {
                     log::info!("Successfully exported scene to GLTF: {file:?}");
@@ -988,7 +994,7 @@ impl SsbhApp {
             } else {
                 // Find the first model with mesh data
                 if let Some(model) = models_with_mesh.first() {
-                    if let Err(e) = crate::export::gltf::export_scene_to_gltf(&model.model, file) {
+                    if let Err(e) = crate::export::gltf::export_scene_to_gltf(&model.model, file, self.ui_state.export_gltf_use_json_files) {
                         error!("Error exporting GLTF to {file:?}: {e}");
                     } else {
                         log::info!("Successfully exported scene to GLTF: {file:?}");
@@ -1214,7 +1220,7 @@ impl SsbhApp {
                     let export_path = base_dir.join(format!("{}_{}.{}", self.ui_state.batch_export_base_filename, export_index, extension));
 
                     let result = match self.ui_state.batch_export_type {
-                        BatchExportType::Gltf => crate::export::gltf::export_scene_to_gltf(&model.model, &export_path),
+                        BatchExportType::Gltf => crate::export::gltf::export_scene_to_gltf(&model.model, &export_path, self.ui_state.export_gltf_use_json_files),
                         BatchExportType::Dae => {
                             let config = crate::export::dae::DaeExportConfig::default();
                             crate::export::dae::export_scene_to_dae(&model.model, &export_path, &config)

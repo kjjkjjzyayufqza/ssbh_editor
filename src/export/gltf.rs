@@ -3,13 +3,22 @@ use gltf_json::{accessor, buffer, material, mesh, scene, validation, Accessor, A
 use gltf_json::buffer::View as BufferView;
 use ssbh_data::{mesh_data::MeshData, skel_data::SkelData};
 use ssbh_wgpu::ModelFolder;
-use std::{collections::BTreeMap, path::Path};
+use std::{collections::BTreeMap, path::Path, fs};
 
 /// Export a model folder to GLTF format
+/// If use_json_files is true, load data from model.json and skeleton.json in root directory instead
 pub fn export_scene_to_gltf(
     model_folder: &ModelFolder,
     output_path: &Path,
+    use_json_files: bool,
 ) -> Result<()> {
+    // If using JSON files, load data from root directory JSON files
+    let effective_model_folder = if use_json_files {
+        &load_model_from_json_files()?
+    } else {
+        model_folder
+    };
+
     let mut gltf_root = Root {
         asset: Asset {
             generator: Some("SSBH Editor".to_string()),
@@ -28,7 +37,7 @@ pub fn export_scene_to_gltf(
     let mut skins = Vec::new();
 
     // Process skeleton data first to establish bone hierarchy
-    let skeleton_node_count = if let Some((_, Some(skel_data))) = model_folder.skels.first() {
+    let skeleton_node_count = if let Some((_, Some(skel_data))) = effective_model_folder.skels.first() {
         process_skeleton_data(
             skel_data,
             &mut nodes,
@@ -39,8 +48,8 @@ pub fn export_scene_to_gltf(
     };
 
     // Process mesh data and create mesh nodes
-    if let Some((_, Some(mesh_data))) = model_folder.meshes.first() {
-        let skel_data = model_folder.skels.first()
+    if let Some((_, Some(mesh_data))) = effective_model_folder.meshes.first() {
+        let skel_data = effective_model_folder.skels.first()
             .and_then(|(_, skel)| skel.as_ref());
         
         let mesh_count = process_mesh_data(
@@ -113,16 +122,16 @@ pub fn export_scene_to_gltf(
     let mut scene_nodes = Vec::new();
     
     // Add root skeleton nodes (if any skeleton exists)
-    if let Some((_, Some(skel_data))) = model_folder.skels.first() {
+    if let Some((_, Some(skel_data))) = effective_model_folder.skels.first() {
         for (bone_index, bone) in skel_data.bones.iter().enumerate() {
             if bone.parent_index.is_none() {
                 scene_nodes.push(Index::new(bone_index as u32));
             }
         }
     }
-    
+
     // Add all mesh nodes (they start after skeleton nodes)
-    let skeleton_count = model_folder.skels.first()
+    let skeleton_count = effective_model_folder.skels.first()
         .and_then(|(_, skel)| skel.as_ref())
         .map_or(0, |s| s.bones.len());
     
@@ -839,7 +848,7 @@ fn create_mat4_accessor(
 ) -> Result<usize> {
     let byte_offset = buffer_data.len();
     let byte_length = matrices.len() * 16 * 4; // 16 components * 4 bytes per f32
-    
+
     // Convert matrices to bytes
     for matrix in matrices {
         for &component in matrix {
@@ -878,4 +887,51 @@ fn create_mat4_accessor(
 
     accessors.push(accessor);
     Ok(accessors.len() - 1)
+}
+
+fn load_model_from_json_files() -> Result<ModelFolder> {
+    // Load skeleton data from skeleton.json
+    let skeleton_path = Path::new("skeleton.json");
+    let skel_data = if skeleton_path.exists() {
+        let skeleton_json = fs::read_to_string(skeleton_path)?;
+        let skel: SkelData = serde_json::from_str(&skeleton_json)?;
+        Some(skel)
+    } else {
+        None
+    };
+
+    // Load mesh data from model.json
+    let model_path = Path::new("model.json");
+    let mesh_data = if model_path.exists() {
+        let model_json = fs::read_to_string(model_path)?;
+        let mesh: MeshData = serde_json::from_str(&model_json)?;
+        Some(mesh)
+    } else {
+        None
+    };
+
+    // Construct ModelFolder with loaded data
+    let mut model_folder = ModelFolder {
+        meshes: Vec::new(),
+        skels: Vec::new(),
+        matls: Vec::new(),
+        modls: Vec::new(),
+        adjs: Vec::new(),
+        anims: Vec::new(),
+        hlpbs: Vec::new(),
+        nutexbs: Vec::new(),
+        meshexes: Vec::new(),
+        xmbs: Vec::new(),
+    };
+
+    // Add loaded data to model folder
+    if let Some(mesh) = mesh_data {
+        model_folder.meshes.push(("model.numsheb".to_string(), Some(mesh)));
+    }
+
+    if let Some(skel) = skel_data {
+        model_folder.skels.push(("model.nusktb".to_string(), Some(skel)));
+    }
+
+    Ok(model_folder)
 }

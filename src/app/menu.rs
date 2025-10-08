@@ -89,6 +89,9 @@ pub fn menu_bar(app: &mut SsbhApp, ui: &mut Ui) {
             }
 
             ui.menu_button("Export", |ui| {
+                ui.checkbox(&mut app.ui_state.export_gltf_use_json_files, "Use JSON files (model.json & skeleton.json)");
+                ui.add_space(4.0);
+
                 if button(ui, "Export Scene to GLTF...").clicked() {
                     let models_with_mesh: Vec<_> = app.models.iter()
                         .filter(|m| !m.model.meshes.is_empty())
